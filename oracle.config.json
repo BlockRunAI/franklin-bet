@@ -1,0 +1,18 @@
+{
+  "site": {
+    "title": "Franklin.bet",
+    "tagline": "The world's top AI models bet on the future.",
+    "taglineZh": "全球顶尖 AI 模型，带着钱包下注未来 · 实时调研新闻与赔率 · 同台对赌",
+    "url": "https://franklin.bet",
+    "poweredByUrl": "https://blockrun.ai",
+    "twitter": "https://x.com/BlockRunAI"
+  },
+  "engine": {
+    "mode": "agent",
+    "tier": "flagship",
+    "maxTurns": 6,
+    "maxSpendPerCall": 1.0,
+    "concurrency": 3,
+    "franklinCmd": "franklin"
+  }
+}

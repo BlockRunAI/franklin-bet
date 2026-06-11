@@ -1,0 +1,658 @@
+{
+  "generatedAt": "2026-06-11T00:00:00Z",
+  "source": "sample",
+  "engine": "sample",
+  "note": "Deterministic placeholder data from a rough strength table — NOT real model output. Run `npm run generate -- --agent` for grounded predictions.",
+  "byEvent": {
+    "wc26-mex-pol": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Mexico",
+        "confidence": 0.61,
+        "rationale": "Mexico carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Mexico",
+        "confidence": 0.63,
+        "rationale": "Mexico carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Mexico",
+        "confidence": 0.65,
+        "rationale": "Mexico carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Mexico",
+        "confidence": 0.67,
+        "rationale": "Mexico carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Draw",
+        "confidence": 0.57,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Draw",
+        "confidence": 0.59,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Poland",
+        "confidence": 0.59,
+        "rationale": "Poland are live here and well capable of springing the upset."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Poland",
+        "confidence": 0.54,
+        "rationale": "Poland are live here and well capable of springing the upset."
+      }
+    ],
+    "wc26-fra-sen": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "France",
+        "confidence": 0.71,
+        "rationale": "France carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "France",
+        "confidence": 0.73,
+        "rationale": "France carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "France",
+        "confidence": 0.75,
+        "rationale": "France carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "France",
+        "confidence": 0.77,
+        "rationale": "France carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "France",
+        "confidence": 0.72,
+        "rationale": "France carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Draw",
+        "confidence": 0.57,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Draw",
+        "confidence": 0.59,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Senegal",
+        "confidence": 0.46,
+        "rationale": "Senegal are live here and well capable of springing the upset."
+      }
+    ],
+    "wc26-bra-jpn": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Brazil",
+        "confidence": 0.7,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Brazil",
+        "confidence": 0.72,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Brazil",
+        "confidence": 0.74,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Brazil",
+        "confidence": 0.76,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Brazil",
+        "confidence": 0.71,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Draw",
+        "confidence": 0.57,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Draw",
+        "confidence": 0.59,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Japan",
+        "confidence": 0.47,
+        "rationale": "Japan are live here and well capable of springing the upset."
+      }
+    ],
+    "wc26-arg-nga": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Argentina",
+        "confidence": 0.72,
+        "rationale": "Argentina carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Argentina",
+        "confidence": 0.74,
+        "rationale": "Argentina carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Argentina",
+        "confidence": 0.76,
+        "rationale": "Argentina carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Argentina",
+        "confidence": 0.78,
+        "rationale": "Argentina carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Argentina",
+        "confidence": 0.73,
+        "rationale": "Argentina carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Draw",
+        "confidence": 0.56,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Draw",
+        "confidence": 0.58,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Nigeria",
+        "confidence": 0.46,
+        "rationale": "Nigeria are live here and well capable of springing the upset."
+      }
+    ],
+    "wc26-eng-usa": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "England",
+        "confidence": 0.68,
+        "rationale": "England carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "England",
+        "confidence": 0.7,
+        "rationale": "England carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "England",
+        "confidence": 0.72,
+        "rationale": "England carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "England",
+        "confidence": 0.74,
+        "rationale": "England carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "England",
+        "confidence": 0.69,
+        "rationale": "England carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Draw",
+        "confidence": 0.57,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Draw",
+        "confidence": 0.59,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "USA",
+        "confidence": 0.49,
+        "rationale": "USA are live here and well capable of springing the upset."
+      }
+    ],
+    "wc26-esp-mar": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Spain",
+        "confidence": 0.67,
+        "rationale": "Spain carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Spain",
+        "confidence": 0.69,
+        "rationale": "Spain carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Spain",
+        "confidence": 0.71,
+        "rationale": "Spain carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Spain",
+        "confidence": 0.73,
+        "rationale": "Spain carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Spain",
+        "confidence": 0.68,
+        "rationale": "Spain carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Draw",
+        "confidence": 0.58,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Draw",
+        "confidence": 0.6,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Morocco",
+        "confidence": 0.49,
+        "rationale": "Morocco are live here and well capable of springing the upset."
+      }
+    ],
+    "wc26-ger-cro": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Germany",
+        "confidence": 0.61,
+        "rationale": "Germany carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Germany",
+        "confidence": 0.63,
+        "rationale": "Germany carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Germany",
+        "confidence": 0.65,
+        "rationale": "Germany carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Germany",
+        "confidence": 0.67,
+        "rationale": "Germany carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Draw",
+        "confidence": 0.57,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Draw",
+        "confidence": 0.59,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Croatia",
+        "confidence": 0.59,
+        "rationale": "Croatia are live here and well capable of springing the upset."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Croatia",
+        "confidence": 0.54,
+        "rationale": "Croatia are live here and well capable of springing the upset."
+      }
+    ],
+    "wc26-por-uru": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Portugal",
+        "confidence": 0.63,
+        "rationale": "Portugal carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Portugal",
+        "confidence": 0.65,
+        "rationale": "Portugal carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Portugal",
+        "confidence": 0.67,
+        "rationale": "Portugal carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Portugal",
+        "confidence": 0.69,
+        "rationale": "Portugal carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Draw",
+        "confidence": 0.57,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Draw",
+        "confidence": 0.59,
+        "rationale": "Evenly matched on paper — this has the makings of a tight draw."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Uruguay",
+        "confidence": 0.58,
+        "rationale": "Uruguay are live here and well capable of springing the upset."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Uruguay",
+        "confidence": 0.53,
+        "rationale": "Uruguay are live here and well capable of springing the upset."
+      }
+    ],
+    "wc26-r16-bra-ned": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Brazil",
+        "confidence": 0.73,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Brazil",
+        "confidence": 0.75,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Brazil",
+        "confidence": 0.77,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Brazil",
+        "confidence": 0.79,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Brazil",
+        "confidence": 0.74,
+        "rationale": "Brazil carry the edge in quality and should control this one."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Netherlands",
+        "confidence": 0.59,
+        "rationale": "Netherlands are live here and well capable of springing the upset."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Netherlands",
+        "confidence": 0.61,
+        "rationale": "Netherlands are live here and well capable of springing the upset."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Netherlands",
+        "confidence": 0.56,
+        "rationale": "Netherlands are live here and well capable of springing the upset."
+      }
+    ],
+    "btc-eoy-2026": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Below $90k",
+        "confidence": 0.54,
+        "rationale": "Current signals point to Below $90k."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Below $90k",
+        "confidence": 0.62,
+        "rationale": "Current signals point to Below $90k."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Below $90k",
+        "confidence": 0.61,
+        "rationale": "Current signals point to Below $90k."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Below $90k",
+        "confidence": 0.6,
+        "rationale": "Current signals point to Below $90k."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "$90k–$130k",
+        "confidence": 0.47,
+        "rationale": "Backing $90k–$130k as the live alternative."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "$130k–$180k",
+        "confidence": 0.46,
+        "rationale": "Backing $130k–$180k as the live alternative."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "$180k–$250k",
+        "confidence": 0.45,
+        "rationale": "Backing $180k–$250k as the live alternative."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Above $250k",
+        "confidence": 0.44,
+        "rationale": "Backing Above $250k as the live alternative."
+      }
+    ],
+    "us-house-2026": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Democrats",
+        "confidence": 0.54,
+        "rationale": "Current signals point to Democrats."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Democrats",
+        "confidence": 0.62,
+        "rationale": "Current signals point to Democrats."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Democrats",
+        "confidence": 0.61,
+        "rationale": "Current signals point to Democrats."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Democrats",
+        "confidence": 0.6,
+        "rationale": "Current signals point to Democrats."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Republicans",
+        "confidence": 0.47,
+        "rationale": "Backing Republicans as the live alternative."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Republicans",
+        "confidence": 0.46,
+        "rationale": "Backing Republicans as the live alternative."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Republicans",
+        "confidence": 0.45,
+        "rationale": "Backing Republicans as the live alternative."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Republicans",
+        "confidence": 0.44,
+        "rationale": "Backing Republicans as the live alternative."
+      }
+    ],
+    "next-frontier-model": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "OpenAI",
+        "confidence": 0.54,
+        "rationale": "Current signals point to OpenAI."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "OpenAI",
+        "confidence": 0.62,
+        "rationale": "Current signals point to OpenAI."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "OpenAI",
+        "confidence": 0.61,
+        "rationale": "Current signals point to OpenAI."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "OpenAI",
+        "confidence": 0.6,
+        "rationale": "Current signals point to OpenAI."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Anthropic",
+        "confidence": 0.47,
+        "rationale": "Backing Anthropic as the live alternative."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Google DeepMind",
+        "confidence": 0.46,
+        "rationale": "Backing Google DeepMind as the live alternative."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "xAI",
+        "confidence": 0.45,
+        "rationale": "Backing xAI as the live alternative."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "a Chinese lab",
+        "confidence": 0.44,
+        "rationale": "Backing a Chinese lab as the live alternative."
+      }
+    ],
+    "ballon-dor-2026": [
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Lamine Yamal",
+        "confidence": 0.54,
+        "rationale": "Current signals point to Lamine Yamal."
+      },
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Lamine Yamal",
+        "confidence": 0.62,
+        "rationale": "Current signals point to Lamine Yamal."
+      },
+      {
+        "modelId": "anthropic/claude-fable-5",
+        "pick": "Lamine Yamal",
+        "confidence": 0.61,
+        "rationale": "Current signals point to Lamine Yamal."
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Lamine Yamal",
+        "confidence": 0.6,
+        "rationale": "Current signals point to Lamine Yamal."
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Kylian Mbappé",
+        "confidence": 0.47,
+        "rationale": "Backing Kylian Mbappé as the live alternative."
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Jude Bellingham",
+        "confidence": 0.46,
+        "rationale": "Backing Jude Bellingham as the live alternative."
+      },
+      {
+        "modelId": "moonshot/kimi-k2.6",
+        "pick": "Vinícius Jr.",
+        "confidence": 0.45,
+        "rationale": "Backing Vinícius Jr. as the live alternative."
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Erling Haaland",
+        "confidence": 0.44,
+        "rationale": "Backing Erling Haaland as the live alternative."
+      }
+    ]
+  }
+}

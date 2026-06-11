@@ -1,0 +1,78 @@
+name: Refresh predictions
+
+# "Sync to the webpage" automation. A maintainer triggers this (or a schedule
+# does), it re-runs the council against the events, commits the updated
+# data/predictions.json, and pushes — which your static host redeploys.
+#
+# Required repo secret:
+#   BASE_CHAIN_WALLET_KEY — a funded Base wallet private key (0x…). Used by both
+#   the chat engine (@blockrun/llm) and the agent engine (Franklin). Keep it a
+#   secret; never commit it.
+
+on:
+  workflow_dispatch:
+    inputs:
+      engine:
+        description: "Engine: chat (fast, ungrounded) or agent (grounded via Franklin prediction mode)"
+        type: choice
+        options: [chat, agent]
+        default: chat
+      event:
+        description: "Optional single event id to regenerate (blank = all)"
+        type: string
+        default: ""
+      max_spend:
+        description: "Agent mode only — hard USD cap per prediction call"
+        type: string
+        default: "1.0"
+  # Uncomment to refresh on a schedule (agent mode spends real USDC — enable with care):
+  # schedule:
+  #   - cron: "0 6 * * 1"   # Mondays 06:00 UTC
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-predictions
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Install Franklin (agent engine only)
+        if: ${{ inputs.engine == 'agent' }}
+        run: npm install -g @blockrun/franklin
+
+      - name: Generate predictions
+        env:
+          BASE_CHAIN_WALLET_KEY: ${{ secrets.BASE_CHAIN_WALLET_KEY }}
+          FRANKLIN_CMD: franklin
+        run: |
+          set -e
+          ARGS=""
+          [ "${{ inputs.engine }}" = "agent" ] && ARGS="$ARGS --agent --max-spend ${{ inputs.max_spend }}"
+          [ -n "${{ inputs.event }}" ] && ARGS="$ARGS --event ${{ inputs.event }}"
+          echo "Running: node scripts/generate.mjs $ARGS"
+          node scripts/generate.mjs $ARGS
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "franklin-bet-bot"
+          git config user.email "bot@franklin.bet"
+          if ! git diff --quiet -- data/predictions.json; then
+            git add data/predictions.json data/events.json
+            git commit -m "chore: refresh predictions (${{ inputs.engine }})"
+            git push
+          else
+            echo "No changes to predictions.json — nothing to commit."
+          fi

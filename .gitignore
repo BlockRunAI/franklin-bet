@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.local
+.DS_Store
+*.log
+
+# local backups / scratch (not shipped)
+data/predictions.sample.json
+data/predictions.chat-backup.json
+data/*.backup.json

@@ -1,0 +1,18 @@
+{
+  "name": "franklin-bet",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Franklin.bet — the world's top AI models research the news, read the live odds, and bet on every World Cup match. Built on Franklin × BlockRun.",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "seed": "node scripts/seed-sample.mjs",
+    "generate": "node scripts/generate.mjs",
+    "generate:agent": "node scripts/generate.mjs --agent",
+    "generate:free": "ORACLE_TIER=free node scripts/generate.mjs",
+    "add-event": "node scripts/add-event.mjs"
+  },
+  "dependencies": {
+    "@blockrun/llm": "^1.0.0"
+  }
+}
