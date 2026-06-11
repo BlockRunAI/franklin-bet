@@ -14,7 +14,7 @@ const el = (tag, cls, html) => {
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const pad = (n) => String(n).padStart(2, "0");
 
-const STATE = { events: [], models: [], modelById: {}, preds: {}, filter: "All", lang: "en" };
+const STATE = { events: [], models: [], modelById: {}, preds: {}, results: { byEvent: {} }, filter: "All", lang: "en" };
 
 // --- i18n (4 languages) ----------------------------------------------------
 // Dynamic labels live here; static markup carries data-en/data-es/data-zh/data-ja.
@@ -51,6 +51,12 @@ const I18N = {
   toWin: { en: "to win", es: "gana", zh: "胜", ja: "勝利" },
   drawPick: { en: "Draw", es: "Empate", zh: "平局", ja: "引き分け" },
   noPreds: { en: "No predictions generated yet for this match.", es: "Aún no hay pronósticos para este partido.", zh: "这场比赛还没有生成预测。", ja: "この試合の予測はまだありません。" },
+  winRate: { en: "World Cup win rate", es: "Acierto Mundial", zh: "World Cup 胜率", ja: "W杯 的中率" },
+  played: { en: "played", es: "jugados", zh: "场已赛", ja: "試合" },
+  ftLabel: { en: "FT", es: "Final", zh: "完场", ja: "終了" },
+  liveLabel: { en: "LIVE", es: "EN VIVO", zh: "进行中", ja: "ライブ" },
+  resultLabel: { en: "Result", es: "Resultado", zh: "最终结果", ja: "結果" },
+  notPlayed: { en: "not played yet", es: "aún sin jugar", zh: "暂无已赛场次", ja: "未消化" },
 };
 const t = (k) => (I18N[k] ? (I18N[k][STATE.lang] ?? I18N[k].en) : k);
 
@@ -80,6 +86,33 @@ async function loadJSON(path) {
 }
 
 const isMatch = (ev) => !!(ev && ev.home && ev.away);
+
+// --- Results (optional data/results.json: actual scores + status) ----------
+// { byEvent: { "<id>": { status: "scheduled"|"live"|"finished", home, away, minute? } } }
+function resultOf(ev) {
+  const r = STATE.results.byEvent?.[ev.id];
+  if (!r || r.status === "scheduled") return null;
+  const bucket = r.home > r.away ? "home" : r.home < r.away ? "away" : "draw";
+  return { ...r, bucket };
+}
+
+// Per-model World Cup accuracy: correct picks / finished matches.
+function winRates() {
+  const wr = {};
+  for (const m of STATE.models) wr[m.id] = { correct: 0, played: 0 };
+  for (const ev of STATE.events) {
+    if (!isMatch(ev)) continue;
+    const r = resultOf(ev);
+    if (!r || r.status !== "finished") continue;
+    for (const v of STATE.preds.byEvent?.[ev.id] || []) {
+      const s = wr[v.modelId];
+      if (!s) continue;
+      s.played += 1;
+      if (bucketOf(ev, v.pick) === r.bucket) s.correct += 1;
+    }
+  }
+  return wr;
+}
 
 // --- Consensus math -------------------------------------------------------
 function consensusFor(eventId) {
@@ -204,7 +237,14 @@ function matchCard(ev) {
 
   const top = el("div", "ec-top");
   top.append(el("span", "ec-cat", esc(catLabel(ev.category))));
-  if (ev.kickoff) { const cd = el("span", "mc-countdown"); COUNTDOWNS.push({ el: cd, kickoff: ev.kickoff }); top.append(cd); }
+  const r = resultOf(ev);
+  if (r && r.status === "finished") {
+    top.append(el("span", "mc-status mc-ft", `${t("ftLabel")} ${r.home}–${r.away}`));
+  } else if (r && r.status === "live") {
+    top.append(el("span", "mc-status mc-live", `🔴 ${t("liveLabel")} ${r.home}–${r.away}${r.minute ? ` ${r.minute}'` : ""}`));
+  } else if (ev.kickoff) {
+    const cd = el("span", "mc-countdown"); COUNTDOWNS.push({ el: cd, kickoff: ev.kickoff }); top.append(cd);
+  }
   card.append(top);
 
   const teams = el("div", "match-teams");
@@ -229,6 +269,10 @@ function matchCard(ev) {
       : (STATE.lang === "zh" ? `${con.leaderPick} ${t("toWin")}` : `${con.leaderPick} ${t("toWin")}`);
     const pickLine = el("div", "mc-pick-line");
     pickLine.innerHTML = `<span class="mcp-label">${esc(t("councilPick"))}</span> <b>${esc(winTxt)}</b> · ${con.agreeCount}/${con.total} ${esc(t("agree"))}`;
+    if (r && r.status === "finished") {
+      const ok = bucketOf(ev, con.leaderPick) === r.bucket;
+      pickLine.innerHTML += ` <span class="mc-verdict ${ok ? "ok" : "no"}">${ok ? "✓" : "✗"}</span>`;
+    }
     card.append(pickLine);
 
     const foot = el("div", "ec-foot");
@@ -289,8 +333,9 @@ function renderShowdown() {
       if (v.pick === con.leaderPick) s.withLeader += 1;
     }
   }
+  const wr = winRates();
   const grid = $("#showdown-grid"); grid.innerHTML = "";
-  // Roster order (Western brands first, then the rest) — not sorted by boldness.
+  // Roster order — not sorted by boldness.
   for (const m of STATE.models) {
     const s = stats[m.id];
     const avg = s.conf.length ? s.conf.reduce((x, y) => x + y, 0) / s.conf.length : 0;
@@ -300,6 +345,15 @@ function renderShowdown() {
     const sw = el("span", "mc-swatch"); sw.style.background = m.color; sw.style.color = m.color; head.append(sw);
     const nm = el("div"); nm.append(el("div", "mc-name", esc(m.name)), el("div", "mc-provider", esc(m.provider))); head.append(nm);
     card.append(head);
+
+    // World Cup win rate (accuracy) — headline metric, auto-computed from results.
+    const w = wr[m.id];
+    const wrPct = w.played ? Math.round((w.correct / w.played) * 100) : null;
+    const wrEl = el("div", "mc-winrate");
+    wrEl.append(el("div", "mc-wr-val" + (wrPct === null ? " dim" : ""), wrPct === null ? "—" : `${wrPct}%`));
+    wrEl.append(el("div", "mc-wr-label", `${t("winRate")} · ${w.played ? `${w.correct}/${w.played} ${t("played")}` : t("notPlayed")}`));
+    card.append(wrEl);
+
     const st = el("div", "mc-stats");
     const a = el("div", "mc-stat"); a.append(el("div", "v", `${Math.round(avg * 100)}%`), el("div", "l", t("avgConf")));
     const b = el("div", "mc-stat"); b.append(el("div", "v", `${align}%`), el("div", "l", t("withConsensus")));
@@ -341,6 +395,14 @@ function openModal(ev, con) {
     const bar = el("div", "threeway m-threeway");
     for (const b of buckets) { const seg = el("div", `tw-seg tw-${b.key}`); seg.style.width = `${Math.max(2, Math.round(b.share * 100))}%`; bar.append(seg); }
     body.append(bar);
+
+    const fin = resultOf(ev);
+    if (fin && fin.status === "finished") {
+      const ok = bucketOf(ev, con.leaderPick) === fin.bucket;
+      const res = el("div", "m-result " + (ok ? "ok" : "no"));
+      res.innerHTML = `<b>${esc(t("resultLabel"))}: ${esc(ev.home)} ${fin.home}–${fin.away} ${esc(ev.away)}</b> · ${esc(t("councilPick"))} ${ok ? "✓" : "✗"}`;
+      body.append(res);
+    }
   } else {
     const cwrap = el("div", "m-consensus"); const left = el("div");
     left.append(el("div", "big", esc(con.leaderPick)));
@@ -373,6 +435,11 @@ function renderVote(ev, con, v, match) {
   head.append(el("span", "mv-model", esc(m.name)));
   const bucketCls = match ? ` mv-pick-${bucketOf(ev, v.pick)}` : "";
   head.append(el("span", `mv-pick${bucketCls}`, `→ ${esc(v.pick)}`));
+  const fin = match ? resultOf(ev) : null;
+  if (fin && fin.status === "finished") {
+    const ok = bucketOf(ev, v.pick) === fin.bucket;
+    head.append(el("span", `mv-verdict ${ok ? "ok" : "no"}`, ok ? "✓" : "✗"));
+  }
   if (v.pick === con.leaderPick && con.agreeCount > 1) head.append(el("span", "mv-lead-tag", t("consensusTag")));
   else if (con.soloPicks.has(v.pick)) head.append(el("span", "mv-contrarian-tag", t("soloTag")));
   head.append(el("span", "mv-conf", `${Math.round((v.confidence || 0) * 100)}% ${t("confident")}`));
@@ -474,6 +541,7 @@ async function init() {
     STATE.events = events; STATE.models = models;
     STATE.modelById = Object.fromEntries(models.map((m) => [m.id, m]));
     STATE.preds = preds;
+    STATE.results = await loadJSON("data/results.json").catch(() => ({ byEvent: {} }));
     await applyBranding();
     rerender();
   } catch (err) {

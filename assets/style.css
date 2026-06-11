@@ -168,8 +168,28 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 80px; }
 .mv-pick-away { color: var(--accent-3) !important; }
 .mv-pick-draw { color: var(--muted) !important; }
 
-/* Match countdown */
+/* Match countdown + status */
 .mc-countdown { font-size: 11.5px; color: var(--accent-2); font-variant-numeric: tabular-nums; }
+.mc-status { font-size: 11.5px; font-weight: 600; padding: 2px 9px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+.mc-ft { color: var(--text); background: rgba(255,255,255,0.08); border: 1px solid var(--border); }
+.mc-live { color: #fff; background: rgba(255,92,92,0.18); border: 1px solid rgba(255,92,92,0.5); }
+.mc-verdict { font-weight: 700; }
+.mc-verdict.ok { color: var(--good); }
+.mc-verdict.no { color: var(--accent-3); }
+
+/* Win-rate headline metric on model cards */
+.mc-winrate { margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.mc-wr-val { font-family: "Space Grotesk", sans-serif; font-size: 30px; font-weight: 700; line-height: 1; background: linear-gradient(120deg, var(--good), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.mc-wr-val.dim { background: none; -webkit-text-fill-color: var(--muted-dim); color: var(--muted-dim); }
+.mc-wr-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted-dim); margin-top: 5px; }
+
+/* Modal verdicts */
+.mv-verdict { font-weight: 700; font-size: 13px; }
+.mv-verdict.ok { color: var(--good); }
+.mv-verdict.no { color: var(--accent-3); }
+.m-result { margin: -8px 0 20px; padding: 12px 14px; border-radius: 12px; font-size: 14px; border: 1px solid var(--border); }
+.m-result.ok { background: rgba(45,212,167,0.10); border-color: rgba(45,212,167,0.3); }
+.m-result.no { background: rgba(255,92,171,0.10); border-color: rgba(255,92,171,0.3); }
 
 /* Language switcher */
 .lang-switch { display: inline-flex; gap: 2px; border: 1px solid var(--border); border-radius: 999px; padding: 2px; }

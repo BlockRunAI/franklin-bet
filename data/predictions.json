@@ -6,19 +6,19 @@
   "byEvent": {
     "wc26-a-mx-za": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Mexico",
         "confidence": 0.64,
         "rationale": "Mexico carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Mexico",
         "confidence": 0.66,
         "rationale": "Mexico carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Mexico",
         "confidence": 0.68,
         "rationale": "Mexico carry the edge in quality and should control this one."
@@ -56,19 +56,19 @@
     ],
     "wc26-a-kr-cz": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "South Korea",
         "confidence": 0.58,
         "rationale": "South Korea carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "South Korea",
         "confidence": 0.6,
         "rationale": "South Korea carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "South Korea",
         "confidence": 0.62,
         "rationale": "South Korea carry the edge in quality and should control this one."
@@ -106,19 +106,19 @@
     ],
     "wc26-b-ca-ba": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Canada",
         "confidence": 0.58,
         "rationale": "Canada carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Canada",
         "confidence": 0.6,
         "rationale": "Canada carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Canada",
         "confidence": 0.62,
         "rationale": "Canada carry the edge in quality and should control this one."
@@ -156,19 +156,19 @@
     ],
     "wc26-d-us-py": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "United States",
         "confidence": 0.64,
         "rationale": "United States carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "United States",
         "confidence": 0.66,
         "rationale": "United States carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "United States",
         "confidence": 0.68,
         "rationale": "United States carry the edge in quality and should control this one."
@@ -206,19 +206,19 @@
     ],
     "wc26-b-qa-ch": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Qatar",
         "confidence": 0.48,
         "rationale": "Qatar carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.56,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -256,19 +256,19 @@
     ],
     "wc26-c-br-ma": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Brazil",
         "confidence": 0.67,
         "rationale": "Brazil carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Brazil",
         "confidence": 0.69,
         "rationale": "Brazil carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Brazil",
         "confidence": 0.71,
         "rationale": "Brazil carry the edge in quality and should control this one."
@@ -306,19 +306,19 @@
     ],
     "wc26-c-ht-gbs": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Haiti",
         "confidence": 0.49,
         "rationale": "Haiti carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.57,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -356,19 +356,19 @@
     ],
     "wc26-d-au-tr": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Australia",
         "confidence": 0.55,
         "rationale": "Australia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Australia",
         "confidence": 0.57,
         "rationale": "Australia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.6,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -406,19 +406,19 @@
     ],
     "wc26-e-de-cw": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Germany",
         "confidence": 0.74,
         "rationale": "Germany carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Germany",
         "confidence": 0.76,
         "rationale": "Germany carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Germany",
         "confidence": 0.78,
         "rationale": "Germany carry the edge in quality and should control this one."
@@ -456,19 +456,19 @@
     ],
     "wc26-f-nl-jp": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Netherlands",
         "confidence": 0.64,
         "rationale": "Netherlands carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Netherlands",
         "confidence": 0.66,
         "rationale": "Netherlands carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Netherlands",
         "confidence": 0.68,
         "rationale": "Netherlands carry the edge in quality and should control this one."
@@ -506,19 +506,19 @@
     ],
     "wc26-e-ci-ec": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Ivory Coast",
         "confidence": 0.56,
         "rationale": "Ivory Coast carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Ivory Coast",
         "confidence": 0.58,
         "rationale": "Ivory Coast carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Ivory Coast",
         "confidence": 0.6,
         "rationale": "Ivory Coast carry the edge in quality and should control this one."
@@ -556,19 +556,19 @@
     ],
     "wc26-f-se-tn": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Sweden",
         "confidence": 0.6,
         "rationale": "Sweden carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Sweden",
         "confidence": 0.62,
         "rationale": "Sweden carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Sweden",
         "confidence": 0.64,
         "rationale": "Sweden carry the edge in quality and should control this one."
@@ -606,19 +606,19 @@
     ],
     "wc26-h-es-cv": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Spain",
         "confidence": 0.76,
         "rationale": "Spain carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Spain",
         "confidence": 0.78,
         "rationale": "Spain carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Spain",
         "confidence": 0.8,
         "rationale": "Spain carry the edge in quality and should control this one."
@@ -656,19 +656,19 @@
     ],
     "wc26-g-be-eg": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Belgium",
         "confidence": 0.67,
         "rationale": "Belgium carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Belgium",
         "confidence": 0.69,
         "rationale": "Belgium carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Belgium",
         "confidence": 0.71,
         "rationale": "Belgium carry the edge in quality and should control this one."
@@ -706,19 +706,19 @@
     ],
     "wc26-h-sa-uy": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Saudi Arabia",
         "confidence": 0.47,
         "rationale": "Saudi Arabia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.56,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -756,19 +756,19 @@
     ],
     "wc26-g-ir-nz": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "IR Iran",
         "confidence": 0.64,
         "rationale": "IR Iran carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "IR Iran",
         "confidence": 0.66,
         "rationale": "IR Iran carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "IR Iran",
         "confidence": 0.68,
         "rationale": "IR Iran carry the edge in quality and should control this one."
@@ -806,19 +806,19 @@
     ],
     "wc26-i-fr-sn": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "France",
         "confidence": 0.7,
         "rationale": "France carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "France",
         "confidence": 0.72,
         "rationale": "France carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "France",
         "confidence": 0.74,
         "rationale": "France carry the edge in quality and should control this one."
@@ -856,19 +856,19 @@
     ],
     "wc26-i-iq-no": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Iraq",
         "confidence": 0.49,
         "rationale": "Iraq carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.56,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -906,19 +906,19 @@
     ],
     "wc26-j-ar-dz": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Argentina",
         "confidence": 0.73,
         "rationale": "Argentina carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Argentina",
         "confidence": 0.75,
         "rationale": "Argentina carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Argentina",
         "confidence": 0.77,
         "rationale": "Argentina carry the edge in quality and should control this one."
@@ -956,19 +956,19 @@
     ],
     "wc26-j-at-jo": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Austria",
         "confidence": 0.68,
         "rationale": "Austria carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Austria",
         "confidence": 0.7,
         "rationale": "Austria carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Austria",
         "confidence": 0.72,
         "rationale": "Austria carry the edge in quality and should control this one."
@@ -1006,19 +1006,19 @@
     ],
     "wc26-k-pt-cd": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Portugal",
         "confidence": 0.71,
         "rationale": "Portugal carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Portugal",
         "confidence": 0.73,
         "rationale": "Portugal carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Portugal",
         "confidence": 0.75,
         "rationale": "Portugal carry the edge in quality and should control this one."
@@ -1056,19 +1056,19 @@
     ],
     "wc26-l-gbe-hr": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "England",
         "confidence": 0.64,
         "rationale": "England carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "England",
         "confidence": 0.66,
         "rationale": "England carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "England",
         "confidence": 0.68,
         "rationale": "England carry the edge in quality and should control this one."
@@ -1106,19 +1106,19 @@
     ],
     "wc26-l-gh-pa": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Ghana",
         "confidence": 0.63,
         "rationale": "Ghana carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Ghana",
         "confidence": 0.65,
         "rationale": "Ghana carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Ghana",
         "confidence": 0.67,
         "rationale": "Ghana carry the edge in quality and should control this one."
@@ -1156,19 +1156,19 @@
     ],
     "wc26-k-uz-co": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Uzbekistan",
         "confidence": 0.49,
         "rationale": "Uzbekistan carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.56,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -1206,19 +1206,19 @@
     ],
     "wc26-a-cz-za": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Czechia",
         "confidence": 0.61,
         "rationale": "Czechia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Czechia",
         "confidence": 0.63,
         "rationale": "Czechia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Czechia",
         "confidence": 0.65,
         "rationale": "Czechia carry the edge in quality and should control this one."
@@ -1256,19 +1256,19 @@
     ],
     "wc26-b-ch-ba": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Switzerland",
         "confidence": 0.65,
         "rationale": "Switzerland carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Switzerland",
         "confidence": 0.67,
         "rationale": "Switzerland carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Switzerland",
         "confidence": 0.69,
         "rationale": "Switzerland carry the edge in quality and should control this one."
@@ -1306,19 +1306,19 @@
     ],
     "wc26-b-ca-qa": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Canada",
         "confidence": 0.63,
         "rationale": "Canada carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Canada",
         "confidence": 0.65,
         "rationale": "Canada carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Canada",
         "confidence": 0.67,
         "rationale": "Canada carry the edge in quality and should control this one."
@@ -1356,19 +1356,19 @@
     ],
     "wc26-a-mx-kr": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Mexico",
         "confidence": 0.59,
         "rationale": "Mexico carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Mexico",
         "confidence": 0.61,
         "rationale": "Mexico carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Mexico",
         "confidence": 0.63,
         "rationale": "Mexico carry the edge in quality and should control this one."
@@ -1406,19 +1406,19 @@
     ],
     "wc26-d-us-au": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "United States",
         "confidence": 0.63,
         "rationale": "United States carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "United States",
         "confidence": 0.65,
         "rationale": "United States carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "United States",
         "confidence": 0.67,
         "rationale": "United States carry the edge in quality and should control this one."
@@ -1456,19 +1456,19 @@
     ],
     "wc26-c-gbs-ma": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Scotland",
         "confidence": 0.51,
         "rationale": "Scotland carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Scotland",
         "confidence": 0.53,
         "rationale": "Scotland carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -1506,19 +1506,19 @@
     ],
     "wc26-c-br-ht": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Brazil",
         "confidence": 0.76,
         "rationale": "Brazil carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Brazil",
         "confidence": 0.78,
         "rationale": "Brazil carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Brazil",
         "confidence": 0.8,
         "rationale": "Brazil carry the edge in quality and should control this one."
@@ -1556,19 +1556,19 @@
     ],
     "wc26-d-tr-py": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Turkey",
         "confidence": 0.61,
         "rationale": "Turkey carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Turkey",
         "confidence": 0.63,
         "rationale": "Turkey carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Turkey",
         "confidence": 0.65,
         "rationale": "Turkey carry the edge in quality and should control this one."
@@ -1606,19 +1606,19 @@
     ],
     "wc26-f-nl-se": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Netherlands",
         "confidence": 0.69,
         "rationale": "Netherlands carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Netherlands",
         "confidence": 0.71,
         "rationale": "Netherlands carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Netherlands",
         "confidence": 0.73,
         "rationale": "Netherlands carry the edge in quality and should control this one."
@@ -1656,19 +1656,19 @@
     ],
     "wc26-e-de-ci": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Germany",
         "confidence": 0.66,
         "rationale": "Germany carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Germany",
         "confidence": 0.68,
         "rationale": "Germany carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Germany",
         "confidence": 0.7,
         "rationale": "Germany carry the edge in quality and should control this one."
@@ -1706,19 +1706,19 @@
     ],
     "wc26-e-ec-cw": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Ecuador",
         "confidence": 0.69,
         "rationale": "Ecuador carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Ecuador",
         "confidence": 0.71,
         "rationale": "Ecuador carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Ecuador",
         "confidence": 0.73,
         "rationale": "Ecuador carry the edge in quality and should control this one."
@@ -1756,19 +1756,19 @@
     ],
     "wc26-f-tn-jp": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Tunisia",
         "confidence": 0.51,
         "rationale": "Tunisia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Tunisia",
         "confidence": 0.53,
         "rationale": "Tunisia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -1806,19 +1806,19 @@
     ],
     "wc26-h-es-sa": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Spain",
         "confidence": 0.75,
         "rationale": "Spain carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Spain",
         "confidence": 0.77,
         "rationale": "Spain carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Spain",
         "confidence": 0.79,
         "rationale": "Spain carry the edge in quality and should control this one."
@@ -1856,19 +1856,19 @@
     ],
     "wc26-g-be-ir": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Belgium",
         "confidence": 0.68,
         "rationale": "Belgium carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Belgium",
         "confidence": 0.7,
         "rationale": "Belgium carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Belgium",
         "confidence": 0.72,
         "rationale": "Belgium carry the edge in quality and should control this one."
@@ -1906,19 +1906,19 @@
     ],
     "wc26-h-uy-cv": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Uruguay",
         "confidence": 0.71,
         "rationale": "Uruguay carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Uruguay",
         "confidence": 0.73,
         "rationale": "Uruguay carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Uruguay",
         "confidence": 0.75,
         "rationale": "Uruguay carry the edge in quality and should control this one."
@@ -1956,19 +1956,19 @@
     ],
     "wc26-g-nz-eg": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "New Zealand",
         "confidence": 0.51,
         "rationale": "New Zealand carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "New Zealand",
         "confidence": 0.53,
         "rationale": "New Zealand carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2006,19 +2006,19 @@
     ],
     "wc26-j-ar-at": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Argentina",
         "confidence": 0.71,
         "rationale": "Argentina carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Argentina",
         "confidence": 0.73,
         "rationale": "Argentina carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Argentina",
         "confidence": 0.75,
         "rationale": "Argentina carry the edge in quality and should control this one."
@@ -2056,19 +2056,19 @@
     ],
     "wc26-i-fr-iq": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "France",
         "confidence": 0.76,
         "rationale": "France carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "France",
         "confidence": 0.78,
         "rationale": "France carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "France",
         "confidence": 0.8,
         "rationale": "France carry the edge in quality and should control this one."
@@ -2106,19 +2106,19 @@
     ],
     "wc26-i-no-sn": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Norway",
         "confidence": 0.57,
         "rationale": "Norway carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Norway",
         "confidence": 0.59,
         "rationale": "Norway carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Norway",
         "confidence": 0.61,
         "rationale": "Norway carry the edge in quality and should control this one."
@@ -2156,19 +2156,19 @@
     ],
     "wc26-j-jo-dz": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Jordan",
         "confidence": 0.5,
         "rationale": "Jordan carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Jordan",
         "confidence": 0.52,
         "rationale": "Jordan carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2206,19 +2206,19 @@
     ],
     "wc26-k-pt-uz": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Portugal",
         "confidence": 0.72,
         "rationale": "Portugal carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Portugal",
         "confidence": 0.74,
         "rationale": "Portugal carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Portugal",
         "confidence": 0.76,
         "rationale": "Portugal carry the edge in quality and should control this one."
@@ -2256,19 +2256,19 @@
     ],
     "wc26-l-gbe-gh": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "England",
         "confidence": 0.71,
         "rationale": "England carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "England",
         "confidence": 0.73,
         "rationale": "England carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "England",
         "confidence": 0.75,
         "rationale": "England carry the edge in quality and should control this one."
@@ -2306,19 +2306,19 @@
     ],
     "wc26-l-pa-hr": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Panama",
         "confidence": 0.47,
         "rationale": "Panama carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.56,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2356,19 +2356,19 @@
     ],
     "wc26-k-co-cd": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Colombia",
         "confidence": 0.66,
         "rationale": "Colombia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Colombia",
         "confidence": 0.68,
         "rationale": "Colombia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Colombia",
         "confidence": 0.7,
         "rationale": "Colombia carry the edge in quality and should control this one."
@@ -2406,19 +2406,19 @@
     ],
     "wc26-b-ch-ca": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Switzerland",
         "confidence": 0.64,
         "rationale": "Switzerland carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Switzerland",
         "confidence": 0.66,
         "rationale": "Switzerland carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Switzerland",
         "confidence": 0.68,
         "rationale": "Switzerland carry the edge in quality and should control this one."
@@ -2456,19 +2456,19 @@
     ],
     "wc26-b-ba-qa": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Bosnia and Herzegovina",
         "confidence": 0.61,
         "rationale": "Bosnia and Herzegovina carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Bosnia and Herzegovina",
         "confidence": 0.63,
         "rationale": "Bosnia and Herzegovina carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Bosnia and Herzegovina",
         "confidence": 0.65,
         "rationale": "Bosnia and Herzegovina carry the edge in quality and should control this one."
@@ -2506,19 +2506,19 @@
     ],
     "wc26-c-gbs-br": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Scotland",
         "confidence": 0.46,
         "rationale": "Scotland carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.55,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.57,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2556,19 +2556,19 @@
     ],
     "wc26-c-ma-ht": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Morocco",
         "confidence": 0.72,
         "rationale": "Morocco carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Morocco",
         "confidence": 0.74,
         "rationale": "Morocco carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Morocco",
         "confidence": 0.76,
         "rationale": "Morocco carry the edge in quality and should control this one."
@@ -2606,19 +2606,19 @@
     ],
     "wc26-a-cz-mx": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Czechia",
         "confidence": 0.55,
         "rationale": "Czechia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Czechia",
         "confidence": 0.57,
         "rationale": "Czechia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.6,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2656,19 +2656,19 @@
     ],
     "wc26-a-za-kr": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "South Africa",
         "confidence": 0.53,
         "rationale": "South Africa carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "South Africa",
         "confidence": 0.55,
         "rationale": "South Africa carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.6,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2706,19 +2706,19 @@
     ],
     "wc26-e-cw-ci": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Curaçao",
         "confidence": 0.49,
         "rationale": "Curaçao carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.56,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2756,19 +2756,19 @@
     ],
     "wc26-e-ec-de": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Ecuador",
         "confidence": 0.51,
         "rationale": "Ecuador carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Ecuador",
         "confidence": 0.53,
         "rationale": "Ecuador carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2806,19 +2806,19 @@
     ],
     "wc26-f-jp-se": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Japan",
         "confidence": 0.63,
         "rationale": "Japan carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Japan",
         "confidence": 0.65,
         "rationale": "Japan carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Japan",
         "confidence": 0.67,
         "rationale": "Japan carry the edge in quality and should control this one."
@@ -2856,19 +2856,19 @@
     ],
     "wc26-f-tn-nl": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Tunisia",
         "confidence": 0.46,
         "rationale": "Tunisia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.56,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2906,19 +2906,19 @@
     ],
     "wc26-d-tr-us": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Turkey",
         "confidence": 0.56,
         "rationale": "Turkey carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Turkey",
         "confidence": 0.58,
         "rationale": "Turkey carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.6,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -2956,19 +2956,19 @@
     ],
     "wc26-d-py-au": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Paraguay",
         "confidence": 0.56,
         "rationale": "Paraguay carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Paraguay",
         "confidence": 0.58,
         "rationale": "Paraguay carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Paraguay",
         "confidence": 0.6,
         "rationale": "Paraguay carry the edge in quality and should control this one."
@@ -3006,19 +3006,19 @@
     ],
     "wc26-i-no-fr": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Norway",
         "confidence": 0.47,
         "rationale": "Norway carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.56,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -3056,19 +3056,19 @@
     ],
     "wc26-i-sn-iq": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Senegal",
         "confidence": 0.68,
         "rationale": "Senegal carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Senegal",
         "confidence": 0.7,
         "rationale": "Senegal carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Senegal",
         "confidence": 0.72,
         "rationale": "Senegal carry the edge in quality and should control this one."
@@ -3106,19 +3106,19 @@
     ],
     "wc26-h-cv-sa": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Cape Verde",
         "confidence": 0.56,
         "rationale": "Cape Verde carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Cape Verde",
         "confidence": 0.58,
         "rationale": "Cape Verde carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.6,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -3156,19 +3156,19 @@
     ],
     "wc26-h-uy-es": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Uruguay",
         "confidence": 0.5,
         "rationale": "Uruguay carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Uruguay",
         "confidence": 0.52,
         "rationale": "Uruguay carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -3206,19 +3206,19 @@
     ],
     "wc26-g-eg-ir": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Egypt",
         "confidence": 0.58,
         "rationale": "Egypt carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Egypt",
         "confidence": 0.6,
         "rationale": "Egypt carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Egypt",
         "confidence": 0.62,
         "rationale": "Egypt carry the edge in quality and should control this one."
@@ -3256,19 +3256,19 @@
     ],
     "wc26-g-nz-be": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "New Zealand",
         "confidence": 0.45,
         "rationale": "New Zealand carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.55,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.57,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -3306,19 +3306,19 @@
     ],
     "wc26-l-pa-gbe": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Draw",
         "confidence": 0.53,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.55,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "England",
         "confidence": 0.78,
         "rationale": "England are live here and well capable of springing the upset."
@@ -3356,19 +3356,19 @@
     ],
     "wc26-l-hr-gh": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Croatia",
         "confidence": 0.66,
         "rationale": "Croatia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Croatia",
         "confidence": 0.68,
         "rationale": "Croatia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Croatia",
         "confidence": 0.7,
         "rationale": "Croatia carry the edge in quality and should control this one."
@@ -3406,19 +3406,19 @@
     ],
     "wc26-k-co-pt": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Colombia",
         "confidence": 0.52,
         "rationale": "Colombia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Colombia",
         "confidence": 0.54,
         "rationale": "Colombia carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -3456,19 +3456,19 @@
     ],
     "wc26-k-cd-uz": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "DR Congo",
         "confidence": 0.59,
         "rationale": "DR Congo carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "DR Congo",
         "confidence": 0.61,
         "rationale": "DR Congo carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "DR Congo",
         "confidence": 0.63,
         "rationale": "DR Congo carry the edge in quality and should control this one."
@@ -3506,19 +3506,19 @@
     ],
     "wc26-j-dz-at": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Algeria",
         "confidence": 0.56,
         "rationale": "Algeria carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Algeria",
         "confidence": 0.58,
         "rationale": "Algeria carry the edge in quality and should control this one."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Draw",
         "confidence": 0.6,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
@@ -3556,19 +3556,19 @@
     ],
     "wc26-j-jo-ar": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Draw",
         "confidence": 0.52,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Draw",
         "confidence": 0.54,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Argentina",
         "confidence": 0.8,
         "rationale": "Argentina are live here and well capable of springing the upset."
@@ -3606,19 +3606,19 @@
     ],
     "btc-eoy-2026": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Below $90k",
         "confidence": 0.54,
         "rationale": "Current signals point to Below $90k."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Below $90k",
         "confidence": 0.62,
         "rationale": "Current signals point to Below $90k."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Below $90k",
         "confidence": 0.61,
         "rationale": "Current signals point to Below $90k."
@@ -3656,19 +3656,19 @@
     ],
     "us-house-2026": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Democrats",
         "confidence": 0.54,
         "rationale": "Current signals point to Democrats."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Democrats",
         "confidence": 0.62,
         "rationale": "Current signals point to Democrats."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Democrats",
         "confidence": 0.61,
         "rationale": "Current signals point to Democrats."
@@ -3706,19 +3706,19 @@
     ],
     "next-frontier-model": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "OpenAI",
         "confidence": 0.54,
         "rationale": "Current signals point to OpenAI."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "OpenAI",
         "confidence": 0.62,
         "rationale": "Current signals point to OpenAI."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "OpenAI",
         "confidence": 0.61,
         "rationale": "Current signals point to OpenAI."
@@ -3756,19 +3756,19 @@
     ],
     "ballon-dor-2026": [
       {
-        "modelId": "openai/gpt-5.5",
+        "modelId": "anthropic/claude-opus-4.8",
         "pick": "Lamine Yamal",
         "confidence": 0.54,
         "rationale": "Current signals point to Lamine Yamal."
       },
       {
-        "modelId": "anthropic/claude-opus-4.8",
+        "modelId": "anthropic/claude-fable-5",
         "pick": "Lamine Yamal",
         "confidence": 0.62,
         "rationale": "Current signals point to Lamine Yamal."
       },
       {
-        "modelId": "anthropic/claude-fable-5",
+        "modelId": "openai/gpt-5.5",
         "pick": "Lamine Yamal",
         "confidence": 0.61,
         "rationale": "Current signals point to Lamine Yamal."

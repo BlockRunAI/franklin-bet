@@ -91,6 +91,22 @@ function seedGeneric(ev, models) {
   });
 }
 
+// Sample finished results for the earliest matches — so the win-rate metric,
+// scores and verdicts are visible before the automated results feed exists.
+function seedResults(events) {
+  const matches = events.filter((e) => e.home && e.away).sort((a, b) => a.kickoff.localeCompare(b.kickoff));
+  const byEvent = {};
+  for (const ev of matches.slice(0, 8)) {
+    const h = STRENGTH[ev.home] ?? 78, a = STRENGTH[ev.away] ?? 78, d = h - a;
+    let home, away;
+    if (Math.abs(d) < 5) { home = 1; away = 1; }
+    else if (d > 0) { home = 2; away = d > 15 ? 0 : 1; }
+    else { away = 2; home = -d > 15 ? 0 : 1; }
+    byEvent[ev.id] = { status: "finished", home, away };
+  }
+  return byEvent;
+}
+
 function main() {
   const events = JSON.parse(require_fs("data/events.json"));
   const models = JSON.parse(require_fs("data/models.json"));
@@ -110,6 +126,10 @@ function main() {
   writeJSONSync("data/predictions.json", out);
   const total = Object.values(byEvent).reduce((n, v) => n + v.length, 0);
   console.log(`✓ Seeded data/predictions.json — ${events.length} matches, ${total} sample picks.`);
+
+  const results = { updatedAt: "2026-06-13T00:00:00Z", source: "sample", note: "Sample finished results for the first matchdays — replace with the automated results feed.", byEvent: seedResults(events) };
+  writeJSONSync("data/results.json", results);
+  console.log(`✓ Seeded data/results.json — ${Object.keys(results.byEvent).length} finished matches (sample).`);
 }
 
 // Minimal sync fs helpers (this script is intentionally dependency-free).
