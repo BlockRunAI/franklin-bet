@@ -42,13 +42,13 @@
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Poland",
         "confidence": 0.59,
         "rationale": "Poland are live here and well capable of springing the upset."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Poland",
         "confidence": 0.54,
         "rationale": "Poland are live here and well capable of springing the upset."
@@ -92,13 +92,13 @@
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Senegal",
         "confidence": 0.46,
         "rationale": "Senegal are live here and well capable of springing the upset."
@@ -142,13 +142,13 @@
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Japan",
         "confidence": 0.47,
         "rationale": "Japan are live here and well capable of springing the upset."
@@ -192,13 +192,13 @@
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Draw",
         "confidence": 0.58,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Nigeria",
         "confidence": 0.46,
         "rationale": "Nigeria are live here and well capable of springing the upset."
@@ -242,13 +242,13 @@
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Draw",
         "confidence": 0.59,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "USA",
         "confidence": 0.49,
         "rationale": "USA are live here and well capable of springing the upset."
@@ -292,13 +292,13 @@
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Draw",
         "confidence": 0.6,
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Morocco",
         "confidence": 0.49,
         "rationale": "Morocco are live here and well capable of springing the upset."
@@ -342,13 +342,13 @@
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Croatia",
         "confidence": 0.59,
         "rationale": "Croatia are live here and well capable of springing the upset."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Croatia",
         "confidence": 0.54,
         "rationale": "Croatia are live here and well capable of springing the upset."
@@ -392,13 +392,13 @@
         "rationale": "Evenly matched on paper — this has the makings of a tight draw."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Uruguay",
         "confidence": 0.58,
         "rationale": "Uruguay are live here and well capable of springing the upset."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Uruguay",
         "confidence": 0.53,
         "rationale": "Uruguay are live here and well capable of springing the upset."
@@ -442,13 +442,13 @@
         "rationale": "Netherlands are live here and well capable of springing the upset."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Netherlands",
         "confidence": 0.61,
         "rationale": "Netherlands are live here and well capable of springing the upset."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Netherlands",
         "confidence": 0.56,
         "rationale": "Netherlands are live here and well capable of springing the upset."
@@ -492,13 +492,13 @@
         "rationale": "Backing $130k–$180k as the live alternative."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "$180k–$250k",
         "confidence": 0.45,
         "rationale": "Backing $180k–$250k as the live alternative."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Above $250k",
         "confidence": 0.44,
         "rationale": "Backing Above $250k as the live alternative."
@@ -542,13 +542,13 @@
         "rationale": "Backing Republicans as the live alternative."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Republicans",
         "confidence": 0.45,
         "rationale": "Backing Republicans as the live alternative."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Republicans",
         "confidence": 0.44,
         "rationale": "Backing Republicans as the live alternative."
@@ -592,13 +592,13 @@
         "rationale": "Backing Google DeepMind as the live alternative."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "xAI",
         "confidence": 0.45,
         "rationale": "Backing xAI as the live alternative."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "a Chinese lab",
         "confidence": 0.44,
         "rationale": "Backing a Chinese lab as the live alternative."
@@ -642,13 +642,13 @@
         "rationale": "Backing Jude Bellingham as the live alternative."
       },
       {
-        "modelId": "moonshot/kimi-k2.6",
+        "modelId": "minimax/minimax-m3",
         "pick": "Vinícius Jr.",
         "confidence": 0.45,
         "rationale": "Backing Vinícius Jr. as the live alternative."
       },
       {
-        "modelId": "minimax/minimax-m3",
+        "modelId": "moonshot/kimi-k2.6",
         "pick": "Erling Haaland",
         "confidence": 0.44,
         "rationale": "Backing Erling Haaland as the live alternative."

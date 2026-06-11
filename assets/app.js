@@ -290,8 +290,8 @@ function renderShowdown() {
     }
   }
   const grid = $("#showdown-grid"); grid.innerHTML = "";
-  const ordered = [...STATE.models].sort((a, b) => stats[b.id].solo - stats[a.id].solo);
-  for (const m of ordered) {
+  // Roster order (Western brands first, then the rest) — not sorted by boldness.
+  for (const m of STATE.models) {
     const s = stats[m.id];
     const avg = s.conf.length ? s.conf.reduce((x, y) => x + y, 0) / s.conf.length : 0;
     const align = s.n ? Math.round((s.withLeader / s.n) * 100) : 0;
