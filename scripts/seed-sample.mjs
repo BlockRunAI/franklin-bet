@@ -8,11 +8,19 @@
 //
 //   npm run seed
 
-// Rough, illustrative team strength (0–100). Sample data only.
+// Rough, illustrative team strength (0–100). Sample data only — real picks come
+// from the grounded agent. Keys match the team names in data/events.json.
 const STRENGTH = {
-  Argentina: 92, France: 92, Brazil: 90, Spain: 89, Portugal: 85, England: 86,
-  Germany: 84, Netherlands: 84, Uruguay: 80, Croatia: 80, Morocco: 79, Japan: 76,
-  Mexico: 76, Senegal: 76, USA: 75, Nigeria: 75, Poland: 72,
+  "Argentina": 93, "France": 92, "Spain": 91, "Brazil": 90, "England": 88,
+  "Portugal": 87, "Netherlands": 86, "Germany": 84, "Belgium": 84, "Croatia": 82,
+  "Uruguay": 82, "Colombia": 81, "Morocco": 80, "Switzerland": 80, "Japan": 79,
+  "Senegal": 78, "Norway": 78, "United States": 78, "Mexico": 77, "Austria": 77,
+  "Turkey": 76, "Ecuador": 76, "Algeria": 75, "South Korea": 75, "Ivory Coast": 75,
+  "Egypt": 74, "Sweden": 74, "Czechia": 74, "Scotland": 73, "Canada": 73,
+  "Ghana": 73, "Australia": 73, "IR Iran": 73, "DR Congo": 72, "Paraguay": 72,
+  "Bosnia and Herzegovina": 72, "Tunisia": 71, "South Africa": 70, "Uzbekistan": 70,
+  "Qatar": 68, "Saudi Arabia": 68, "Panama": 68, "Iraq": 67, "New Zealand": 66,
+  "Jordan": 66, "Cape Verde": 66, "Curaçao": 64, "Haiti": 63,
 };
 
 function probs(home, away, allowDraw) {
