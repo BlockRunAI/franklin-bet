@@ -1,0 +1,55 @@
+name: Predict upcoming matches
+
+# Runs daily and generates grounded AI predictions for matches kicking off in the
+# next ~3 days that aren't predicted yet — i.e. each match gets its prediction
+# JSON a couple of days before kickoff. Commits data/predictions.json.
+#
+# Requires repo secret BASE_CHAIN_WALLET_KEY (funded Base wallet). Agent mode also
+# needs the Franklin CLI with `franklin predict` (installed below).
+
+on:
+  workflow_dispatch:
+    inputs:
+      upcoming:
+        description: "Generate matches kicking off within N days"
+        type: string
+        default: "3"
+      max_spend:
+        description: "Hard USD cap per prediction call"
+        type: string
+        default: "1.0"
+  # schedule:
+  #   - cron: "0 12 * * *"   # daily 12:00 UTC — enable during the tournament
+
+permissions:
+  contents: write
+concurrency:
+  group: predict-upcoming
+  cancel-in-progress: false
+
+jobs:
+  predict:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci || npm install
+      - name: Install Franklin CLI
+        run: npm install -g @blockrun/franklin
+      - name: Generate predictions for upcoming matches
+        env:
+          BASE_CHAIN_WALLET_KEY: ${{ secrets.BASE_CHAIN_WALLET_KEY }}
+          FRANKLIN_CMD: franklin
+        run: node scripts/generate.mjs --agent --skip-done --upcoming ${{ github.event.inputs.upcoming || '3' }} --max-spend ${{ github.event.inputs.max_spend || '1.0' }}
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "franklin-bet-bot"
+          git config user.email "bot@franklin.bet"
+          if ! git diff --quiet -- data/predictions.json; then
+            git add data/predictions.json
+            git commit -m "chore: predictions for upcoming matches"
+            git push
+          else
+            echo "No new predictions."
+          fi

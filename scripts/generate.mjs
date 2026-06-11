@@ -28,6 +28,8 @@ function parseArgs(argv) {
     else if (a === "--max-spend") args.maxSpend = Number(argv[++i]);
     else if (a === "--max-turns") args.maxTurns = Number(argv[++i]);
     else if (a === "--concurrency") args.concurrency = Number(argv[++i]);
+    else if (a === "--upcoming") args.upcoming = Number(argv[++i]);
+    else if (a === "--skip-done") args.skipDone = true;
   }
   return args;
 }
@@ -41,12 +43,26 @@ async function main() {
   if (!args.agent && eng.mode === "agent") args.agent = true;
 
   const allEvents = await loadJSON("events.json");
-  const events = args.events.length
+  let events = args.events.length
     ? allEvents.filter((e) => args.events.includes(e.id))
     : allEvents;
+  // --upcoming N: only matches kicking off within the next N days (the cron that
+  // runs ~2 days before each match). --skip-done: skip events already predicted.
+  if (args.upcoming != null) {
+    const now = Date.now(), horizon = now + args.upcoming * 86400000;
+    events = events.filter((e) => { const tt = Date.parse(e.kickoff || ""); return !isNaN(tt) && tt >= now && tt <= horizon; });
+    console.log(`Filter: kicking off within ${args.upcoming} day(s) → ${events.length} match(es).`);
+  }
+  if (args.skipDone) {
+    const existing = await loadJSON("predictions.json").catch(() => null);
+    const done = new Set(Object.entries(existing?.byEvent || {}).filter(([, v]) => v && v.length).map(([id]) => id));
+    const before = events.length;
+    events = events.filter((e) => !done.has(e.id));
+    console.log(`Filter: skip already-predicted → dropped ${before - events.length}, ${events.length} left.`);
+  }
   if (!events.length) {
-    console.error("✗ No matching events. Check --event id against data/events.json.");
-    process.exit(1);
+    console.log("Nothing to generate (no matching events after filters).");
+    process.exit(0);
   }
 
   let models;
@@ -95,8 +111,8 @@ async function main() {
   const fresh = await generateEvents(client, events, models, genOpts, onLog);
 
   // Incremental merge when only some events were (re)generated.
-  const existing = (args.events.length || args.models.length)
-    ? await loadJSON("predictions.json").catch(() => null) : null;
+  const partial = args.events.length || args.models.length || args.upcoming != null || args.skipDone;
+  const existing = partial ? await loadJSON("predictions.json").catch(() => null) : null;
   const out = mergePredictions(existing, fresh, { tier, engine: args.agent ? "agent" : "chat" });
   await writeJSON("predictions.json", out);
 

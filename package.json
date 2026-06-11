@@ -11,6 +11,7 @@
     "generate": "node scripts/generate.mjs",
     "generate:agent": "node scripts/generate.mjs --agent",
     "generate:free": "ORACLE_TIER=free node scripts/generate.mjs",
+    "fetch-results": "node scripts/fetch-results.mjs",
     "add-event": "node scripts/add-event.mjs"
   },
   "dependencies": {
