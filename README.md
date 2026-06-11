@@ -90,8 +90,27 @@ npm run generate -- --agent --event wc26-arg-nga   # one match, merged in
 npm run generate:free                 # zero-USDC NVIDIA tier (chat engine)
 ```
 
-Agent mode needs the Franklin CLI: `npm i -g @blockrun/franklin`, or point
-`FRANKLIN_CMD` at a local build (e.g. `FRANKLIN_CMD="node /path/Franklin/dist/index.js"`).
+### Engines
+
+| Engine | Command | Grounded? | Dependency |
+|--------|---------|-----------|------------|
+| `chat` | `npm run generate` | No (training data) | `@blockrun/llm` only |
+| `agent` | `npm run generate -- --agent` | Yes (live web + market odds) | the **Franklin CLI** |
+
+Agent mode invokes Franklin's **prediction mode** as a CLI — `franklin predict
+--json` — and reads its JSON envelope. Franklin is treated as a *system tool*
+(like `git` or `ffmpeg`), not an npm dependency, so it's **not** in
+`package.json`. Install it separately:
+
+```bash
+npm i -g @blockrun/franklin     # needs a version with `franklin predict`
+# …or point at a local build during development:
+export FRANKLIN_CMD="node /path/to/Franklin/dist/index.js"
+```
+
+The contract between the two repos is the `franklin predict --json` envelope
+(`{ finalText, trace, turnReason, usage }`), not raw stdout — so the CLI can
+evolve without breaking the site as long as that shape holds.
 
 ### Add a fixture / topic
 
