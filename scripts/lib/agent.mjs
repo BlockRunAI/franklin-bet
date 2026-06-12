@@ -11,7 +11,7 @@
 //   FRANKLIN_CMD="node /Users/you/BlockRun/Franklin/dist/index.js"
 
 import { spawn } from "node:child_process";
-import { parseModelJSON } from "./oracle.mjs";
+import { parseModelJSON, snapPick } from "./oracle.mjs";
 
 function franklinInvocation(cmdOverride) {
   // env wins (handy for local dev), then explicit override (from config), then PATH.
@@ -54,15 +54,12 @@ function shorten(s, n) {
 // Ask one model to predict one event via Franklin prediction mode.
 // Returns a normalized prediction (+ marketOdds + trace), or { __abstained }.
 export async function askModelAgent(_client, model, event, opts = {}) {
-  const { maxTurns = 6, maxSpend = 1.2, timeoutMs = 360000, franklinCmd } = opts;
+  const { maxTurns, maxSpend, timeoutMs = 600000, franklinCmd } = opts;
   const { bin, baseArgs } = franklinInvocation(franklinCmd);
-  const args = [
-    ...baseArgs, "predict",
-    "--model", model.id,
-    "--question", event.question,
-    "--max-turns", String(maxTurns),
-    "--max-spend", String(maxSpend),
-  ];
+  const args = [...baseArgs, "predict", "--model", model.id, "--question", event.question];
+  // Caps are opt-in: only passed when provided, so "no flag" = no cap.
+  if (maxTurns != null) args.push("--max-turns", String(maxTurns));
+  if (maxSpend != null) args.push("--max-spend", String(maxSpend));
 
   return new Promise((resolve) => {
     let stdout = "", stderr = "", done = false;
@@ -85,9 +82,14 @@ export async function askModelAgent(_client, model, event, opts = {}) {
         // It researched but never produced a clean final JSON.
         return finish({ __abstained: true, modelId: model.id, error: `unparseable answer (${env.turnReason})`, trace: compactTrace(env.trace) });
       }
+      const snapped = snapPick(event, parsed.pick);
+      if (!snapped) {
+        return finish({ __abstained: true, modelId: model.id, error: `off-option pick: "${parsed.pick}"`, trace: compactTrace(env.trace) });
+      }
       finish({
         modelId: model.id,
         ...parsed, // pick, confidence, rationale, analysis, marketOdds
+        pick: snapped,
         trace: compactTrace(env.trace),
         turnReason: env.turnReason,
         tokens: env.usage,

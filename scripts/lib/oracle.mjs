@@ -147,6 +147,31 @@ function numField(text, key) {
   return m ? clampConfidence(m[1]) : 0.5;
 }
 
+// Snap a model's pick to one of the event's allowed options, so an off-option
+// answer (a scoreline, a player name, prose) isn't silently miscounted. Returns
+// the canonical option string, or null if it can't be mapped (→ abstain).
+export function snapPick(event, pick) {
+  const p = String(pick || "").trim();
+  if (!p) return null;
+  let options;
+  if (event.home && event.away) {
+    const drawable = event.unit !== "winner" && event.stage !== "knockout";
+    options = drawable ? [event.home, "Draw", event.away] : [event.home, event.away];
+  } else {
+    options = event.options || [];
+  }
+  if (!options.length) return p; // open-ended event — nothing to snap to
+  const lc = p.toLowerCase();
+  let m = options.find((o) => o.toLowerCase() === lc); // exact (case-insensitive)
+  if (m) return m;
+  if (options.some((o) => o.toLowerCase() === "draw") && /\b(draw|tie|empate)\b|平局?|引き分け/i.test(p)) {
+    return options.find((o) => o.toLowerCase() === "draw");
+  }
+  // substring either direction (e.g. "Argentina win" → "Argentina")
+  m = options.find((o) => lc.includes(o.toLowerCase()) || o.toLowerCase().includes(lc));
+  return m || null;
+}
+
 export function clampConfidence(c) {
   const n = Number(c);
   if (!Number.isFinite(n)) return 0.5;
@@ -181,8 +206,13 @@ export async function askModel(client, model, event, opts = {}) {
         timeoutMs, model.id
       );
       const parsed = parseModelJSON(text);
-      if (parsed) return { modelId: model.id, ...parsed };
-      lastErr = "unparseable response";
+      if (parsed) {
+        const snapped = snapPick(event, parsed.pick);
+        if (snapped) return { modelId: model.id, ...parsed, pick: snapped };
+        lastErr = `off-option pick: "${parsed.pick}"`;
+      } else {
+        lastErr = "unparseable response";
+      }
     } catch (err) {
       lastErr = err?.message || String(err);
     }

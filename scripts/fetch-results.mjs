@@ -23,7 +23,8 @@ const ALIAS = {
   "DR Congo": "DR Congo", "Congo DR": "DR Congo", "Cabo Verde": "Cape Verde",
 };
 const norm = (s) => (ALIAS[s] || s || "").trim();
-const key = (h, a) => `${norm(h)}|${norm(a)}`;
+// Unordered pair key — the provider may list home/away in either order.
+const pairKey = (h, a) => [norm(h), norm(a)].sort().join("|");
 
 // football-data.org v4. Returns [{home, away, status, homeScore, awayScore}].
 async function fetchSource() {
@@ -50,28 +51,42 @@ async function fetchSource() {
 
 async function main() {
   const events = JSON.parse(read("data/events.json")).filter((e) => e.home && e.away);
-  const idByKey = Object.fromEntries(events.map((e) => [key(e.home, e.away), e.id]));
+  // Index our fixtures by unordered team pair; keep home/away so we can orient
+  // the provider's score to our fixture's home/away regardless of its ordering.
+  const fixtureByPair = Object.fromEntries(events.map((e) => [pairKey(e.home, e.away), e]));
 
   const source = await fetchSource();
-  const byEvent = {};
+  // Merge into existing results — never wipe a previously-finished match just
+  // because this fetch didn't include it.
+  let existing = {};
+  try { existing = JSON.parse(read("data/results.json")).byEvent || {}; } catch { /* none yet */ }
+  const byEvent = { ...existing };
+
   let matched = 0, finished = 0;
   for (const m of source) {
-    const id = idByKey[key(m.home, m.away)];
-    if (!id) continue; // not one of our fixtures (or a naming mismatch — extend ALIAS)
+    const ev = fixtureByPair[pairKey(m.home, m.away)];
+    if (!ev) continue; // not one of our fixtures (or a naming mismatch — extend ALIAS)
     matched++;
-    if (m.status === "finished" && m.homeScore != null) {
-      byEvent[id] = { status: "finished", home: m.homeScore, away: m.awayScore };
+    // Orient scores to OUR home/away (provider may have them swapped).
+    const sameOrder = norm(m.home) === ev.home;
+    const h = sameOrder ? m.homeScore : m.awayScore;
+    const a = sameOrder ? m.awayScore : m.homeScore;
+    if (m.status === "finished" && h != null && a != null) {
+      byEvent[ev.id] = { status: "finished", home: h, away: a };
       finished++;
     } else if (m.status === "live") {
-      byEvent[id] = { status: "live", home: m.homeScore ?? 0, away: m.awayScore ?? 0 };
+      byEvent[ev.id] = { status: "live", home: h ?? 0, away: a ?? 0 };
     }
     // scheduled matches are left out (the site treats absent as scheduled).
   }
 
+  if (matched === 0) {
+    console.error("⚠️ 0 fixtures matched — NOT writing (would wipe results). Check the competition code / extend the ALIAS map.");
+    process.exit(1);
+  }
   const out = { updatedAt: new Date().toISOString(), source: "football-data.org", byEvent };
   writeFileSync(join(ROOT, "data/results.json"), JSON.stringify(out, null, 2) + "\n");
-  console.log(`✓ Wrote data/results.json — matched ${matched}/${events.length} fixtures, ${finished} finished.`);
-  if (matched === 0) console.error("⚠️ 0 matched — check the competition code and extend the ALIAS map for team-name differences.");
+  console.log(`✓ Wrote data/results.json — matched ${matched}/${events.length} fixtures, ${finished} finished (merged; ${Object.keys(byEvent).length} total).`);
 }
 
 main().catch((err) => { console.error(err); process.exit(1); });

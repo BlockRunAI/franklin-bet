@@ -501,12 +501,27 @@ function updateGeneratedAt() {
   const d = new Date(STATE.preds.generatedAt);
   const date = d.toLocaleDateString(LOCALE[STATE.lang] || "en-US", { year: "numeric", month: "long", day: "numeric" });
   const sample = STATE.preds.source === "sample";
-  const agent = STATE.preds.engine === "agent";
+  // Derive the grounded share from the actual data, not a global tag — a partial
+  // agent run leaves the file mostly sample but tagged engine:"agent".
+  let grounded = 0, total = 0;
+  for (const votes of Object.values(STATE.preds.byEvent || {})) for (const v of votes) {
+    total += 1; if (Array.isArray(v.trace) && v.trace.length) grounded += 1;
+  }
+  const allGrounded = total > 0 && grounded === total;
+  const someGrounded = grounded > 0 && grounded < total;
+  // src: per-language description of where the predictions came from.
+  const SRC = {
+    en: allGrounded ? "the grounded Franklin agent" : someGrounded ? `${grounded} grounded, the rest from model training data` : "the BlockRun gateway",
+    es: allGrounded ? "el agente Franklin conectado" : someGrounded ? `${grounded} con investigación, el resto del entrenamiento del modelo` : "la pasarela BlockRun",
+    zh: allGrounded ? "联网调研的 Franklin agent" : someGrounded ? `${grounded} 条联网调研，其余来自模型训练知识` : "BlockRun 网关",
+    ja: allGrounded ? "Web 調査する Franklin エージェント" : someGrounded ? `${grounded} 件は Web 調査、残りは学習知識` : "BlockRun ゲートウェイ",
+  };
+  const src = SRC[STATE.lang] || SRC.en;
   const S = {
-    en: sample ? `Sample data, generated ${date} (run the generator for live predictions).` : `Predictions generated ${date} via the ${agent ? "grounded Franklin agent" : "BlockRun gateway"}.`,
-    es: sample ? `Datos de muestra, generados el ${date} (ejecuta el generador para pronósticos reales).` : `Pronósticos generados el ${date} con ${agent ? "el agente Franklin conectado" : "la pasarela BlockRun"}.`,
-    zh: sample ? `示例数据，生成于 ${date}（运行生成脚本即可得到真实预测）。` : `预测生成于 ${date}，来自${agent ? "联网调研的 Franklin agent" : "BlockRun 网关"}。`,
-    ja: sample ? `サンプルデータ（${date} 生成）。実際の予測はジェネレーターを実行してください。` : `予測は ${date} に${agent ? "Web 調査する Franklin エージェント" : "BlockRun ゲートウェイ"}で生成。`,
+    en: sample ? `Sample data, generated ${date} (run the generator for live predictions).` : `Predictions generated ${date} via ${src}.`,
+    es: sample ? `Datos de muestra, generados el ${date} (ejecuta el generador para pronósticos reales).` : `Pronósticos generados el ${date} con ${src}.`,
+    zh: sample ? `示例数据，生成于 ${date}（运行生成脚本即可得到真实预测）。` : `预测生成于 ${date}，来自${src}。`,
+    ja: sample ? `サンプルデータ（${date} 生成）。実際の予測はジェネレーターを実行してください。` : `予測は ${date} に${src}で生成。`,
   };
   ga.textContent = S[STATE.lang] || S.en;
 }

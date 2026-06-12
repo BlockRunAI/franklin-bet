@@ -2,7 +2,7 @@
 //   npm run dev   →   http://localhost:4173
 import { createServer } from "node:http";
 import { readFile } from "node:fs/promises";
-import { extname, join, normalize } from "node:path";
+import { extname, join, normalize, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = normalize(join(fileURLToPath(import.meta.url), "..", ".."));
@@ -22,7 +22,9 @@ const server = createServer(async (req, res) => {
     let path = decodeURIComponent((req.url || "/").split("?")[0]);
     if (path === "/" || path.endsWith("/")) path += "index.html";
     const filePath = normalize(join(ROOT, path));
-    if (!filePath.startsWith(ROOT)) { res.writeHead(403).end("Forbidden"); return; }
+    // Guard against path traversal — require the resolved path to be ROOT itself
+    // or strictly inside it (ROOT + separator), so a sibling like "<root>-x" can't pass.
+    if (filePath !== ROOT && !filePath.startsWith(ROOT + sep)) { res.writeHead(403).end("Forbidden"); return; }
     const data = await readFile(filePath);
     res.writeHead(200, { "Content-Type": TYPES[extname(filePath)] || "application/octet-stream" });
     res.end(data);
