@@ -229,11 +229,30 @@ export async function askModel(client, model, event, opts = {}) {
 export async function generateEvents(client, events, models, opts = {}, onLog = () => {}) {
   const ask = opts.ask || askModel;
   const concurrency = opts.concurrency || models.length;
+  // Models are non-deterministic: an abstain is often transient (a stream
+  // timeout, or a model — e.g. MiniMax/Kimi — that leaked native tool-call
+  // markup instead of the final JSON on one turn). Give each model one fresh
+  // attempt before recording an abstention. opts.retries=0 disables it.
+  const retries = opts.retries == null ? 1 : opts.retries;
+  const askWithRetry = async (m, ev) => {
+    let r = await ask(client, m, ev, opts);
+    for (let attempt = 0; r.__abstained && attempt < retries; attempt++) {
+      onLog("retry", `↻ ${name(models, r.modelId)} retrying — ${r.error}`);
+      r = await ask(client, m, ev, opts);
+    }
+    return r;
+  };
   const byEvent = {};
   let ok = 0, abstained = 0;
   for (const ev of events) {
+    // opts.modelFilter(ev) narrows which models run for THIS event — used by
+    // --fill-abstained to re-run only the models missing a vote. Returns the
+    // full roster by default. An event with nothing to run is skipped entirely
+    // (left out of byEvent) so the merge preserves its existing votes.
+    const evModels = opts.modelFilter ? opts.modelFilter(ev) : models;
+    if (!evModels.length) continue;
     onLog("event", `${ev.emoji || "🔮"} ${ev.title}`);
-    const results = await mapPool(models, concurrency, (m) => ask(client, m, ev, opts));
+    const results = await mapPool(evModels, concurrency, (m) => askWithRetry(m, ev));
     byEvent[ev.id] = [];
     for (const r of results) {
       if (r.__abstained) {
@@ -271,7 +290,16 @@ async function mapPool(items, limit, fn) {
 // Merge freshly generated events into an existing predictions file (incremental).
 export function mergePredictions(existing, fresh, { tier, engine = "chat" }) {
   const byEvent = { ...(existing?.byEvent || {}) };
-  for (const [id, votes] of Object.entries(fresh.byEvent)) byEvent[id] = votes;
+  for (const [id, votes] of Object.entries(fresh.byEvent)) {
+    // Union by modelId: a fresh vote replaces the same model's prior vote;
+    // models absent from this run (e.g. they abstained) keep their prior vote.
+    // Lets us regenerate just the abstained (event, model) pairs without
+    // clobbering the event's other good votes. A full-event re-run still
+    // refreshes every model that answers.
+    const merged = new Map((byEvent[id] || []).map((v) => [v.modelId, v]));
+    for (const v of votes) merged.set(v.modelId, v);
+    byEvent[id] = [...merged.values()];
+  }
   return {
     generatedAt: new Date().toISOString(),
     source: "blockrun",

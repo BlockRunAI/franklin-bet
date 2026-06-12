@@ -8,3 +8,4 @@ node_modules/
 data/predictions.sample.json
 data/predictions.chat-backup.json
 data/*.backup.json
+data/*backup*.json

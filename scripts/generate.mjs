@@ -30,6 +30,7 @@ function parseArgs(argv) {
     else if (a === "--concurrency") args.concurrency = Number(argv[++i]);
     else if (a === "--upcoming") args.upcoming = Number(argv[++i]);
     else if (a === "--skip-done") args.skipDone = true;
+    else if (a === "--fill-abstained") args.fillAbstained = true;
   }
   return args;
 }
@@ -86,11 +87,12 @@ async function main() {
   if (args.agent) {
     genOpts.ask = askModelAgent;
     genOpts.concurrency = args.concurrency ?? eng.concurrency ?? 3;
-    genOpts.maxSpend = args.maxSpend ?? eng.maxSpendPerCall ?? 1.2;
-    genOpts.maxTurns = args.maxTurns ?? eng.maxTurns ?? 6;
+    // Caps are opt-in via CLI only — no flag = uncapped (Franklin's own defaults apply).
+    genOpts.maxSpend = args.maxSpend;
+    genOpts.maxTurns = args.maxTurns;
     genOpts.franklinCmd = eng.franklinCmd;
     console.log(`Engine: AGENT (franklin predict) — grounded, tool-using. ` +
-      `concurrency=${genOpts.concurrency}, max-spend=$${genOpts.maxSpend}/call, max-turns=${genOpts.maxTurns}`);
+      `concurrency=${genOpts.concurrency}, max-spend=${genOpts.maxSpend != null ? "$" + genOpts.maxSpend : "uncapped"}/call, max-turns=${genOpts.maxTurns ?? "default"}`);
   } else {
     try {
       ({ client, how } = await resolveClient({ tier }));
@@ -102,7 +104,30 @@ async function main() {
     console.log("Engine: CHAT (single call) — fast, NOT grounded in live data.");
   }
   console.log(`Wallet: ${how}`);
-  console.log(`Generating ${events.length} event(s) × ${models.length} models…`);
+
+  // --fill-abstained: re-run ONLY the (event, model) pairs that have no vote
+  // yet in predictions.json (abstained or never run). Per-model merge keeps the
+  // event's existing good votes. Skips events that are already complete.
+  if (args.fillAbstained) {
+    const existing = await loadJSON("predictions.json").catch(() => null);
+    const votedByEvent = {};
+    for (const [id, votes] of Object.entries(existing?.byEvent || {})) {
+      votedByEvent[id] = new Set((votes || []).map((v) => v.modelId));
+    }
+    genOpts.modelFilter = (ev) => {
+      const voted = votedByEvent[ev.id];
+      // Only fill events that already have SOME votes — a zero-vote event isn't
+      // "abstained", it just hasn't been run. Scope those with --event/--upcoming.
+      if (!voted || voted.size === 0) return [];
+      return models.filter((m) => !voted.has(m.id));
+    };
+    const missing = events.reduce((n, ev) => n + genOpts.modelFilter(ev).length, 0);
+    const evWithGaps = events.filter((ev) => genOpts.modelFilter(ev).length).length;
+    console.log(`Fill mode: re-running ${missing} missing (event × model) pair(s) across ${evWithGaps} partial event(s).`);
+    if (!missing) { console.log("Nothing to fill — every event already has all models."); process.exit(0); }
+  } else {
+    console.log(`Generating ${events.length} event(s) × ${models.length} models…`);
+  }
 
   const onLog = (level, msg) => {
     if (level === "event") process.stdout.write(`\n${msg}\n`);
@@ -111,7 +136,7 @@ async function main() {
   const fresh = await generateEvents(client, events, models, genOpts, onLog);
 
   // Incremental merge when only some events were (re)generated.
-  const partial = args.events.length || args.models.length || args.upcoming != null || args.skipDone;
+  const partial = args.events.length || args.models.length || args.upcoming != null || args.skipDone || args.fillAbstained;
   const existing = partial ? await loadJSON("predictions.json").catch(() => null) : null;
   const out = mergePredictions(existing, fresh, { tier, engine: args.agent ? "agent" : "chat" });
   await writeJSON("predictions.json", out);

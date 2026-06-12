@@ -25,6 +25,22 @@ const I18N = {
   councilPick: { en: "Council pick", es: "Pronóstico IA", zh: "AI 共识", ja: "AI 予想" },
   agree: { en: "agree", es: "de acuerdo", zh: "一致", ja: "一致" },
   pending: { en: "Predictions pending", es: "Pronósticos pendientes", zh: "预测生成中", ja: "予測生成中" },
+  notPredicted: { en: "Not predicted", es: "Sin pronóstico", zh: "未预测", ja: "予測なし" },
+  linkCopied: { en: "Link copied", es: "Enlace copiado", zh: "链接已复制", ja: "リンクをコピーしました" },
+  imgSaved: { en: "Image saved", es: "Imagen guardada", zh: "图片已保存", ja: "画像を保存しました" },
+  imgFail: { en: "Could not render image", es: "No se pudo generar la imagen", zh: "图片生成失败", ja: "画像を生成できませんでした" },
+  shareLinkTitle: { en: "Share link", es: "Compartir enlace", zh: "分享链接", ja: "リンクを共有" },
+  imgPreviewTitle: { en: "Image preview", es: "Vista previa", zh: "图片预览", ja: "画像プレビュー" },
+  copy: { en: "Copy", es: "Copiar", zh: "复制", ja: "コピー" },
+  copied: { en: "Copied", es: "Copiado", zh: "已复制", ja: "コピー済み" },
+  shareVia: { en: "Share…", es: "Compartir…", zh: "系统分享…", ja: "共有…" },
+  copyImg: { en: "Copy image", es: "Copiar imagen", zh: "复制图片", ja: "画像をコピー" },
+  download: { en: "Download", es: "Descargar", zh: "下载图片", ja: "ダウンロード" },
+  rendering: { en: "Rendering…", es: "Generando…", zh: "生成中…", ja: "生成中…" },
+  predictionsMade: { en: "Predictions", es: "Pronósticos", zh: "预测数", ja: "予測数" },
+  confTrend: { en: "Confidence trend", es: "Tendencia de confianza", zh: "信心走势", ja: "確信度の推移" },
+  picksTitle: { en: "All picks", es: "Todos los pronósticos", zh: "历次预测", ja: "予測履歴" },
+  noPicksYet: { en: "No predictions yet", es: "Aún sin pronósticos", zh: "暂无预测", ja: "予測なし" },
   resolves: { en: "Resolves", es: "Se resuelve", zh: "揭晓", ja: "判明" },
   camps: { en: "camps", es: "posturas", zh: "种观点", ja: "陣営" },
   fullAgreement: { en: "full agreement", es: "acuerdo total", zh: "完全一致", ja: "全員一致" },
@@ -282,7 +298,10 @@ function matchCard(ev) {
     if (ev.venue) foot.append(el("div", "ec-venue", esc(ev.venue.split(",")[0])));
     card.append(foot);
   } else {
-    card.append(el("div", "mc-pending", t("pending")));
+    // A match that already kicked off without any prediction was never run in
+    // time — label it "Not predicted" rather than "pending" (nothing is coming).
+    const elapsed = ev.kickoff && Date.parse(ev.kickoff) < Date.now();
+    card.append(el("div", `mc-pending${elapsed ? " mc-unpredicted" : ""}`, t(elapsed ? "notPredicted" : "pending")));
   }
   return card;
 }
@@ -363,27 +382,121 @@ function renderShowdown() {
     else if (s.solo > 0) tag = `${t("independent")} · ${s.solo} ${t("soloCalls")}`;
     else if (align >= 90) tag = t("chalkEater");
     card.append(el("span", "mc-tag", tag));
+    card.classList.add("is-clickable");
+    card.onclick = () => openModelModal(m);
     grid.append(card);
+  }
+}
+
+// Per-model deep stats, computed from the current predictions (+ results when
+// matches have resolved). Ordered chronologically so we can chart a trend.
+function modelStats(model) {
+  const evs = STATE.events
+    .filter((e) => (STATE.preds.byEvent?.[e.id] || []).some((v) => v.modelId === model.id))
+    .sort((a, b) => Date.parse(a.kickoff || a.resolves || 0) - Date.parse(b.kickoff || b.resolves || 0));
+  const picks = [];
+  let confSum = 0, solo = 0, withLeader = 0, correct = 0, played = 0;
+  for (const ev of evs) {
+    const con = consensusFor(ev.id); if (!con) continue;
+    const v = con.votes.find((x) => x.modelId === model.id); if (!v) continue;
+    confSum += v.confidence || 0;
+    if (con.soloPicks.has(v.pick)) solo += 1;
+    if (v.pick === con.leaderPick) withLeader += 1;
+    const r = resultOf(ev);
+    let verdict = null;
+    if (r && r.status === "finished") { played += 1; verdict = bucketOf(ev, v.pick) === r.bucket ? "win" : "loss"; if (verdict === "win") correct += 1; }
+    picks.push({ ev, v, verdict });
+  }
+  const n = picks.length;
+  return { picks, n, avg: n ? confSum / n : 0, solo, align: n ? Math.round((withLeader / n) * 100) : 0, correct, played };
+}
+
+// Tiny inline SVG line chart for a 0..1 series.
+function sparkline(vals, w = 280, h = 46) {
+  if (!vals.length) return "";
+  if (vals.length === 1) { const y = (h - vals[0] * h).toFixed(1); return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><circle cx="${(w / 2).toFixed(1)}" cy="${y}" r="3" fill="currentColor"/></svg>`; }
+  const step = w / (vals.length - 1);
+  const pts = vals.map((v, i) => `${(i * step).toFixed(1)},${(h - Math.max(0, Math.min(1, v)) * h).toFixed(1)}`).join(" ");
+  const area = `0,${h} ${pts} ${w},${h}`;
+  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
+    <polygon points="${area}" class="spark-fill"/>
+    <polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+}
+
+function openModelModal(model) {
+  const s = modelStats(model);
+  const { box } = subOverlay(model.name);
+  box.classList.add("model-detail");
+
+  const head = el("div", "md-head");
+  const sw = el("span", "md-swatch"); sw.style.background = model.color; head.append(sw);
+  const nm = el("div"); nm.append(el("div", "md-name", esc(model.name)), el("div", "md-provider", esc(model.provider)));
+  head.append(nm); box.append(head);
+
+  // Stat tiles
+  const grid = el("div", "md-stats");
+  const tile = (val, label, dim) => { const d = el("div", "md-tile"); d.append(el("div", "md-v" + (dim ? " dim" : ""), val), el("div", "md-l", label)); return d; };
+  const wrPct = s.played ? `${Math.round((s.correct / s.played) * 100)}%` : "—";
+  grid.append(
+    tile(String(s.n), t("predictionsMade")),
+    tile(`${Math.round(s.avg * 100)}%`, t("avgConf")),
+    tile(`${s.align}%`, t("withConsensus")),
+    tile(wrPct, t("winRate"), !s.played),
+  );
+  box.append(grid);
+
+  // Confidence trend
+  const trend = el("div", "md-trend");
+  trend.append(el("div", "md-section", t("confTrend")));
+  if (s.n) {
+    const spark = el("div", "md-spark"); spark.innerHTML = sparkline(s.picks.map((p) => p.v.confidence || 0)); trend.append(spark);
+  } else trend.append(el("div", "md-empty", t("noPicksYet")));
+  box.append(trend);
+
+  // All picks
+  if (s.n) {
+    box.append(el("div", "md-section", t("picksTitle")));
+    const list = el("div", "md-picks");
+    for (const p of [...s.picks].reverse()) {
+      const row = el("div", "md-pick");
+      const title = isMatch(p.ev) ? `${p.ev.home} vs ${p.ev.away}` : titleOf(p.ev);
+      const main = el("div", "md-pick-main");
+      main.append(el("div", "md-pick-ev", esc(title)));
+      const pickLine = el("div", "md-pick-pick");
+      pickLine.append(el("span", "md-pick-name", esc(p.v.pick)));
+      if (p.verdict) pickLine.append(el("span", "md-verdict " + p.verdict, p.verdict === "win" ? "✓" : "✗"));
+      main.append(pickLine); row.append(main);
+      row.append(el("div", "md-pick-conf", `${Math.round((p.v.confidence || 0) * 100)}%`));
+      list.append(row);
+    }
+    box.append(list);
   }
 }
 
 // --- Modal ----------------------------------------------------------------
 function openModal(ev, con) {
+  currentEvent = ev;
+  setModalHash(ev.id);
   const body = $("#modal-body"); body.innerHTML = "";
   const match = isMatch(ev);
-  body.append(el("div", "m-cat", `${esc(catLabel(ev.category))}${ev.kickoff ? " · " + esc(fmtKick(ev.kickoff)) : ""}`));
+  // The whole card lives inside `cap` — that's exactly what "save as image"
+  // captures: header, question, consensus, every model's pick, and the
+  // franklin.bet watermark (appended last).
+  const cap = el("div", "share-capture"); body.append(cap);
+  cap.append(el("div", "m-cat", `${esc(catLabel(ev.category))}${ev.kickoff ? " · " + esc(fmtKick(ev.kickoff)) : ""}`));
 
   if (match) {
     const header = el("div", "m-match");
     header.innerHTML = `<span class="m-team">${esc(ev.homeFlag || "")} ${esc(ev.home)}</span><span class="m-vs">vs</span><span class="m-team">${esc(ev.away)} ${esc(ev.awayFlag || "")}</span>`;
-    body.append(header);
-    if (ev.venue) body.append(el("div", "m-title-zh", esc(ev.venue)));
+    cap.append(header);
+    if (ev.venue) cap.append(el("div", "m-title-zh", esc(ev.venue)));
   } else {
-    body.append(el("div", "m-title", `${ev.emoji || "🔮"} ${esc(titleOf(ev))}`));
+    cap.append(el("div", "m-title", `${ev.emoji || "🔮"} ${esc(titleOf(ev))}`));
   }
-  body.append(el("div", "m-question", esc(ev.question)));
+  cap.append(el("div", "m-question", esc(ev.question)));
 
-  if (!con) { body.append(el("div", "m-question", t("noPreds"))); $("#modal-overlay").hidden = false; document.body.style.overflow = "hidden"; return; }
+  if (!con) { cap.append(el("div", "m-question", t("noPreds"))); $("#modal-overlay").hidden = false; document.body.style.overflow = "hidden"; return; }
 
   if (match) {
     const buckets = matchBuckets(ev, con.votes);
@@ -391,30 +504,29 @@ function openModal(ev, con) {
     const winTxt = /draw/i.test(con.leaderPick) || con.leaderPick === t("drawPick") ? t("drawPick") : `${con.leaderPick} ${t("toWin")}`;
     left.append(el("div", "big", esc(winTxt)));
     left.append(el("div", "meta", buckets.map((b) => `${esc(b.label)} ${Math.round(b.share * 100)}%`).join(" · ") + ` · ${con.agreeCount}/${con.total} ${t("agree")} · ${t("kicksOff")} ${esc(fmtKick(ev.kickoff))}`));
-    cwrap.append(el("div", "", "⚽")); cwrap.firstChild.style.fontSize = "30px"; cwrap.append(left); body.append(cwrap);
+    cwrap.append(el("div", "", "⚽")); cwrap.firstChild.style.fontSize = "30px"; cwrap.append(left); cap.append(cwrap);
     const bar = el("div", "threeway m-threeway");
     for (const b of buckets) { const seg = el("div", `tw-seg tw-${b.key}`); seg.style.width = `${Math.max(2, Math.round(b.share * 100))}%`; bar.append(seg); }
-    body.append(bar);
+    cap.append(bar);
 
     const fin = resultOf(ev);
     if (fin && fin.status === "finished") {
       const ok = bucketOf(ev, con.leaderPick) === fin.bucket;
       const res = el("div", "m-result " + (ok ? "ok" : "no"));
       res.innerHTML = `<b>${esc(t("resultLabel"))}: ${esc(ev.home)} ${fin.home}–${fin.away} ${esc(ev.away)}</b> · ${esc(t("councilPick"))} ${ok ? "✓" : "✗"}`;
-      body.append(res);
+      cap.append(res);
     }
   } else {
     const cwrap = el("div", "m-consensus"); const left = el("div");
     left.append(el("div", "big", esc(con.leaderPick)));
     left.append(el("div", "meta", `${con.agreeCount}/${con.total} ${t("agree")} · ${con.distinctPicks} ${t("camps")} · ${t("resolves")} ${esc(ev.resolves)}`));
-    cwrap.append(el("div", "", "🔮")); cwrap.firstChild.style.fontSize = "30px"; cwrap.append(left); body.append(cwrap);
+    cwrap.append(el("div", "", "🔮")); cwrap.firstChild.style.fontSize = "30px"; cwrap.append(left); cap.append(cwrap);
   }
-
   const votes = [...con.votes].sort((a, b) => {
     const al = a.pick === con.leaderPick ? 0 : 1, bl = b.pick === con.leaderPick ? 0 : 1;
     return al - bl || (b.confidence || 0) - (a.confidence || 0);
   });
-  for (const v of votes) body.append(renderVote(ev, con, v, match));
+  for (const v of votes) cap.append(renderVote(ev, con, v, match));
 
   const voted = new Set(con.votes.map((v) => v.modelId));
   for (const m of STATE.models.filter((m) => !voted.has(m.id))) {
@@ -422,8 +534,11 @@ function openModal(ev, con) {
     const sw = el("span", "mv-swatch"); sw.style.background = m.color; sw.style.color = m.color; row.append(sw);
     const bd = el("div", "mv-body"); const head = el("div", "mv-head");
     head.append(el("span", "mv-model", esc(m.name)), el("span", "mv-abstain-tag", t("abstained")));
-    bd.append(head, el("div", "mv-rationale", t("noAnswer"))); row.append(bd); body.append(row);
+    bd.append(head, el("div", "mv-rationale", t("noAnswer"))); row.append(bd); cap.append(row);
   }
+  // Watermark closes the card — appended last so it sits below every vote in
+  // both the modal and the exported image.
+  cap.append(el("div", "share-wm", "franklin.bet · AI council"));
   $("#modal-overlay").hidden = false; document.body.style.overflow = "hidden";
 }
 
@@ -473,7 +588,133 @@ function renderVote(ev, con, v, match) {
   return row;
 }
 
-function closeModal() { $("#modal-overlay").hidden = true; document.body.style.overflow = ""; }
+function closeModal() {
+  $("#modal-overlay").hidden = true; document.body.style.overflow = "";
+  currentEvent = null;
+  if (location.hash.startsWith("#match=")) history.replaceState(null, "", location.pathname + location.search);
+}
+
+// --- Share: deep-link + native/copy + image -------------------------------
+let currentEvent = null;
+
+function setModalHash(id) {
+  if (location.hash !== `#match=${id}`) history.replaceState(null, "", `#match=${id}`);
+}
+
+function shareUrlFor(id) {
+  return `${location.origin}${location.pathname}#match=${id}`;
+}
+
+function toast(msg) {
+  const t = $("#toast");
+  t.textContent = msg; t.hidden = false; t.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => { t.classList.remove("show"); setTimeout(() => (t.hidden = true), 250); }, 1800);
+}
+
+const SVG = {
+  link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/></svg>',
+  copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
+  check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+  download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>',
+  close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+};
+
+// Lightweight overlay above the main modal (link dialog / image preview).
+function subOverlay(title) {
+  const ov = el("div", "sub-overlay");
+  const box = el("div", "sub-modal");
+  const head = el("div", "sub-head");
+  const x = el("button", "sub-x"); x.innerHTML = SVG.close; x.setAttribute("aria-label", "Close");
+  const close = () => { ov.remove(); document.removeEventListener("keydown", onEsc); };
+  x.onclick = close;
+  const onEsc = (e) => { if (e.key === "Escape") { e.stopPropagation(); close(); } };
+  head.append(el("div", "sub-title", esc(title)), x);
+  box.append(head);
+  ov.append(box);
+  ov.onclick = (e) => { if (e.target === ov) close(); };
+  document.addEventListener("keydown", onEsc);
+  document.body.append(ov);
+  return { ov, box, close };
+}
+
+function shareLink() {
+  if (!currentEvent) return;
+  const url = shareUrlFor(currentEvent.id);
+  const { box } = subOverlay(t("shareLinkTitle"));
+  const row = el("div", "sub-linkrow");
+  const input = el("input", "sub-linkinput"); input.value = url; input.readOnly = true;
+  const copy = el("button", "sub-btn is-primary"); copy.innerHTML = SVG.copy + `<span>${t("copy")}</span>`;
+  copy.onclick = async () => {
+    try { await navigator.clipboard.writeText(url); } catch { input.select(); document.execCommand && document.execCommand("copy"); }
+    copy.innerHTML = SVG.check + `<span>${t("copied")}</span>`; copy.classList.add("ok"); toast(t("linkCopied"));
+  };
+  row.append(input, copy); box.append(row);
+  if (navigator.share) {
+    const title = isMatch(currentEvent) ? `${currentEvent.home} vs ${currentEvent.away}` : titleOf(currentEvent);
+    const sh = el("button", "sub-btn sub-wide"); sh.innerHTML = SVG.link + `<span>${t("shareVia")}</span>`;
+    sh.onclick = () => navigator.share({ title: `${title} — franklin.bet`, url }).catch(() => {});
+    box.append(sh);
+  }
+  setTimeout(() => { input.focus(); input.select(); }, 30);
+}
+
+// Robust DOM→PNG: full content size, fonts ready, images decoded, canvas-limit
+// safe scale, solid (non-transparent) background. Mirrors franklin-desktop.
+async function renderCardPng(node) {
+  try { await document.fonts?.ready; } catch { /* noop */ }
+  await Promise.all([...node.querySelectorAll("img")].map((im) => (im.complete ? Promise.resolve() : im.decode().catch(() => {}))));
+  const css = getComputedStyle(document.documentElement);
+  const bg = (css.getPropertyValue("--bg-soft").trim() || "#0b0d16");
+  const w = node.offsetWidth, h = node.offsetHeight;
+  const MAX = 16000, scale = Math.max(1, Math.min(2, MAX / h, MAX / w));
+  const canvas = await window.html2canvas(node, {
+    backgroundColor: bg, scale, useCORS: true, logging: false,
+    width: w, height: h, windowWidth: document.documentElement.scrollWidth,
+  });
+  return canvas.toDataURL("image/png");
+}
+
+async function copyImageData(dataUrl) {
+  try {
+    const blob = await (await fetch(dataUrl)).blob();
+    await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+    return true;
+  } catch { return false; }
+}
+
+async function shareImage() {
+  if (!currentEvent || typeof window.html2canvas !== "function") { toast(t("imgFail")); return; }
+  const node = $("#modal-body .share-capture");
+  if (!node) { toast(t("imgFail")); return; }
+  const btn = $("#modal-image"); btn.classList.add("busy");
+  let dataUrl = null;
+  try { $("#modal").scrollTop = 0; dataUrl = await renderCardPng(node); } catch { /* noop */ }
+  btn.classList.remove("busy");
+  if (!dataUrl) { toast(t("imgFail")); return; }
+
+  const { box } = subOverlay(t("imgPreviewTitle"));
+  const wrap = el("div", "sub-imgwrap"); const img = el("img", "sub-img"); img.src = dataUrl; wrap.append(img); box.append(wrap);
+  const foot = el("div", "sub-foot");
+  const copyBtn = el("button", "sub-btn"); copyBtn.innerHTML = SVG.copy + `<span>${t("copyImg")}</span>`;
+  copyBtn.onclick = async () => {
+    const ok = await copyImageData(dataUrl);
+    copyBtn.innerHTML = (ok ? SVG.check : SVG.copy) + `<span>${t(ok ? "copied" : "imgFail")}</span>`;
+    if (ok) copyBtn.classList.add("ok");
+  };
+  const dl = el("button", "sub-btn is-primary"); dl.innerHTML = SVG.download + `<span>${t("download")}</span>`;
+  dl.onclick = () => { const a = el("a"); a.href = dataUrl; a.download = `franklin-bet-${currentEvent.id}.png`; a.click(); };
+  foot.append(copyBtn, dl); box.append(foot);
+}
+
+// Open a match/market modal directly from a #match=<id> deep link.
+function openFromHash() {
+  const m = location.hash.match(/^#match=(.+)$/);
+  if (!m) return;
+  const id = decodeURIComponent(m[1]);
+  const ev = STATE.events.find((e) => e.id === id);
+  if (ev) openModal(ev, consensusFor(ev.id));
+}
 
 // --- i18n static + language toggle ----------------------------------------
 function fillStatic() {
@@ -559,14 +800,18 @@ async function init() {
     STATE.results = await loadJSON("data/results.json").catch(() => ({ byEvent: {} }));
     await applyBranding();
     rerender();
+    openFromHash(); // deep-link: open the shared match if the URL carries #match=<id>
   } catch (err) {
     console.error(err);
     $("#events-grid").innerHTML = `<p style="color:var(--muted)">Couldn't load predictions. Run <code>npm run dev</code> to serve over HTTP.</p>`;
   }
 
   $("#modal-close").onclick = closeModal;
+  $("#modal-share").onclick = shareLink;
+  $("#modal-image").onclick = shareImage;
   $("#modal-overlay").onclick = (e) => { if (e.target.id === "modal-overlay") closeModal(); };
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+  window.addEventListener("hashchange", () => { if (location.hash.startsWith("#match=")) openFromHash(); });
   setInterval(tickCountdowns, 1000);
 }
 

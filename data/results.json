@@ -1,47 +1,5 @@
 {
-  "updatedAt": "2026-06-13T00:00:00Z",
-  "source": "sample",
-  "note": "Sample finished results for the first matchdays — replace with the automated results feed.",
-  "byEvent": {
-    "wc26-a-mx-za": {
-      "status": "finished",
-      "home": 2,
-      "away": 1
-    },
-    "wc26-a-kr-cz": {
-      "status": "finished",
-      "home": 1,
-      "away": 1
-    },
-    "wc26-b-ca-ba": {
-      "status": "finished",
-      "home": 1,
-      "away": 1
-    },
-    "wc26-d-us-py": {
-      "status": "finished",
-      "home": 2,
-      "away": 1
-    },
-    "wc26-b-qa-ch": {
-      "status": "finished",
-      "home": 1,
-      "away": 2
-    },
-    "wc26-c-br-ma": {
-      "status": "finished",
-      "home": 2,
-      "away": 1
-    },
-    "wc26-c-ht-gbs": {
-      "status": "finished",
-      "home": 1,
-      "away": 2
-    },
-    "wc26-d-au-tr": {
-      "status": "finished",
-      "home": 1,
-      "away": 1
-    }
-  }
+  "source": "football-data.org",
+  "updatedAt": null,
+  "byEvent": {}
 }
