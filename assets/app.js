@@ -18,7 +18,12 @@ const STATE = { events: [], models: [], modelById: {}, preds: {}, results: { byE
 
 // --- i18n (4 languages) ----------------------------------------------------
 // Dynamic labels live here; static markup carries data-en/data-es/data-zh/data-ja.
-const LANGS = [{ code: "en", label: "EN" }, { code: "es", label: "ES" }, { code: "zh", label: "中" }, { code: "ja", label: "日" }];
+const LANGS = [
+  { code: "en", label: "EN", name: "English" },
+  { code: "es", label: "ES", name: "Español" },
+  { code: "zh", label: "中", name: "中文" },
+  { code: "ja", label: "日", name: "日本語" },
+];
 const LOCALE = { en: "en-US", es: "es-ES", zh: "zh-CN", ja: "ja-JP" };
 const I18N = {
   all: { en: "All", es: "Todos", zh: "全部", ja: "すべて" },
@@ -727,14 +732,25 @@ function fillStatic() {
   updateGeneratedAt();
 }
 
+const GLOBE_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>';
+const CARET_SVG = '<svg class="lang-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>';
+
+// Globe icon + dropdown of the four languages.
 function buildLangSwitch() {
   const wrap = $("#lang-switch"); if (!wrap) return;
   wrap.innerHTML = "";
+  const cur = LANGS.find((l) => l.code === STATE.lang) || LANGS[0];
+  const toggle = el("button", "lang-toggle");
+  toggle.setAttribute("aria-label", "Language");
+  toggle.innerHTML = GLOBE_SVG + `<span class="lang-cur">${cur.label}</span>` + CARET_SVG;
+  toggle.onclick = (e) => { e.stopPropagation(); wrap.classList.toggle("open"); };
+  const menu = el("div", "lang-menu");
   for (const l of LANGS) {
-    const b = el("button", "lang-btn" + (l.code === STATE.lang ? " active" : ""), l.label);
-    b.onclick = () => setLang(l.code);
-    wrap.append(b);
+    const item = el("button", "lang-item" + (l.code === STATE.lang ? " active" : ""), esc(l.name));
+    item.onclick = (e) => { e.stopPropagation(); wrap.classList.remove("open"); setLang(l.code); };
+    menu.append(item);
   }
+  wrap.append(toggle, menu);
 }
 
 function updateGeneratedAt() {
@@ -810,7 +826,8 @@ async function init() {
   $("#modal-share").onclick = shareLink;
   $("#modal-image").onclick = shareImage;
   $("#modal-overlay").onclick = (e) => { if (e.target.id === "modal-overlay") closeModal(); };
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeModal(); $("#lang-switch")?.classList.remove("open"); } });
+  document.addEventListener("click", () => $("#lang-switch")?.classList.remove("open"));
   window.addEventListener("hashchange", () => { if (location.hash.startsWith("#match=")) openFromHash(); });
   setInterval(tickCountdowns, 1000);
 }

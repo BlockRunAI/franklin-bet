@@ -193,10 +193,35 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 80px; }
 .m-result.no { background: rgba(255,92,171,0.10); border-color: rgba(255,92,171,0.3); }
 
 /* Language switcher */
-.lang-switch { display: inline-flex; gap: 2px; border: 1px solid var(--border); border-radius: 999px; padding: 2px; }
-.lang-btn { font-family: inherit; font-size: 12px; font-weight: 600; padding: 4px 9px; border: none; border-radius: 999px; background: none; color: var(--muted); cursor: pointer; transition: color .15s, background .15s; line-height: 1; }
-.lang-btn:hover { color: var(--text); }
-.lang-btn.active { color: #fff; background: linear-gradient(100deg, var(--accent), var(--accent-2)); }
+/* GitHub icon link */
+.header-icon { display: inline-flex; align-items: center; color: var(--muted); transition: color .15s; }
+.header-icon:hover { color: var(--text); }
+.header-icon svg { width: 20px; height: 20px; }
+
+/* Language: globe icon + dropdown */
+.lang-switch { position: relative; }
+.lang-toggle {
+  display: inline-flex; align-items: center; gap: 5px; padding: 5px 9px; line-height: 1;
+  border: 1px solid var(--border); border-radius: 999px; background: rgba(255,255,255,0.03);
+  color: var(--muted); cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; transition: all .15s;
+}
+.lang-toggle:hover { color: var(--text); border-color: var(--border-strong); }
+.lang-toggle svg { width: 15px; height: 15px; }
+.lang-caret { width: 12px !important; height: 12px !important; transition: transform .18s; }
+.lang-switch.open .lang-caret { transform: rotate(180deg); }
+.lang-menu {
+  position: absolute; top: calc(100% + 8px); right: 0; min-width: 132px; z-index: 60;
+  display: none; flex-direction: column; padding: 6px; gap: 2px;
+  background: linear-gradient(180deg, #15171f, #0d0e15); border: 1px solid var(--border-strong);
+  border-radius: 12px; box-shadow: 0 12px 34px rgba(0,0,0,0.5);
+}
+.lang-switch.open .lang-menu { display: flex; animation: pop .16s cubic-bezier(.2,.9,.3,1.2); }
+.lang-item {
+  text-align: left; font: inherit; font-size: 13px; padding: 8px 12px; border: none; border-radius: 8px;
+  background: none; color: var(--muted); cursor: pointer; transition: all .12s; white-space: nowrap;
+}
+.lang-item:hover { background: rgba(255,255,255,0.06); color: var(--text); }
+.lang-item.active { color: #fff; background: linear-gradient(100deg, var(--accent), var(--accent-2)); }
 
 /* Section/grid headings */
 .grid-heading { font-family: "Space Grotesk", sans-serif; font-size: clamp(20px, 3vw, 28px); letter-spacing: -0.02em; margin: 6px 0 18px; }
