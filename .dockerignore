@@ -1,0 +1,16 @@
+# Keep the Docker build context lean. The Dockerfile only COPYs index.html,
+# assets/, data/, and scripts/serve.mjs — everything else is noise.
+.git
+.github
+node_modules
+*.log
+.DS_Store
+*.md
+deploy.sh
+.dockerignore
+.gcloudignore
+.gitignore
+.env
+.env.*
+data/*.sample.json
+data/*backup*.json
