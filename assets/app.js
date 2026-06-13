@@ -47,6 +47,7 @@ const I18N = {
   picksTitle: { en: "All picks", es: "Todos los pronósticos", zh: "历次预测", ja: "予測履歴" },
   noPicksYet: { en: "No predictions yet", es: "Aún sin pronósticos", zh: "暂无预测", ja: "予測なし" },
   retired: { en: "Retired", es: "Retirado", zh: "已停用", ja: "提供終了" },
+  predsLabel: { en: "predictions", es: "pronósticos", zh: "场预测", ja: "件の予測" },
   resolves: { en: "Resolves", es: "Se resuelve", zh: "揭晓", ja: "判明" },
   camps: { en: "camps", es: "posturas", zh: "种观点", ja: "陣営" },
   fullAgreement: { en: "full agreement", es: "acuerdo total", zh: "完全一致", ja: "全員一致" },
@@ -377,7 +378,10 @@ function renderShowdown() {
     const wrPct = w.played ? Math.round((w.correct / w.played) * 100) : null;
     const wrEl = el("div", "mc-winrate");
     wrEl.append(el("div", "mc-wr-val" + (wrPct === null ? " dim" : ""), wrPct === null ? "—" : `${wrPct}%`));
-    wrEl.append(el("div", "mc-wr-label", `${t("winRate")} · ${w.played ? `${w.correct}/${w.played} ${t("played")}` : t("notPlayed")}`));
+    // Total predictions made (across all matches, abstentions excluded) — context
+    // for the win rate, since some models abstain more than others.
+    const playedTxt = w.played ? `${w.correct}/${w.played} ${t("played")}` : t("notPlayed");
+    wrEl.append(el("div", "mc-wr-label", `${t("winRate")} · ${playedTxt} · ${s.n} ${t("predsLabel")}`));
     card.append(wrEl);
 
     const st = el("div", "mc-stats");
