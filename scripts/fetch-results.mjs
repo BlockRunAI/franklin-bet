@@ -15,38 +15,42 @@ import { fileURLToPath } from "node:url";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => readFileSync(join(ROOT, p), "utf8");
 
-// Provider team name → our fixture name. Extend as needed for your source.
+// Provider team name → our fixture name, for word-level differences the
+// accent/punctuation-insensitive key below can't absorb on its own.
 const ALIAS = {
   "Korea Republic": "South Korea", "Iran": "IR Iran", "Türkiye": "Turkey",
   "USA": "United States", "United States of America": "United States",
   "Côte d'Ivoire": "Ivory Coast", "Czech Republic": "Czechia",
-  "DR Congo": "DR Congo", "Congo DR": "DR Congo", "Cabo Verde": "Cape Verde",
+  "Bosnia-Herzegovina": "Bosnia and Herzegovina",
+  "Congo DR": "DR Congo", "Cabo Verde": "Cape Verde",
 };
-const norm = (s) => (ALIAS[s] || s || "").trim();
+const alias = (s) => (ALIAS[(s || "").trim()] || s || "").trim();
+// Matching key: alias, then NFD-decompose and keep only [a-z0-9] — which also
+// drops the combining accent marks, so "Curaçao"/"Curacao" collapse to one key.
+const key = (s) => alias(s).normalize("NFD").toLowerCase().replace(/[^a-z0-9]/g, "");
 // Unordered pair key — the provider may list home/away in either order.
-const pairKey = (h, a) => [norm(h), norm(a)].sort().join("|");
+const pairKey = (h, a) => [key(h), key(a)].sort().join("|");
 
-// football-data.org v4. Returns [{home, away, status, homeScore, awayScore}].
+// TheSportsDB (free, keyless). Returns [{home, away, status, homeScore, awayScore}].
+// World Cup = league 4429. Override via env if needed.
 async function fetchSource() {
-  const token = process.env.FOOTBALL_DATA_TOKEN;
-  if (!token) {
-    console.error("✗ FOOTBALL_DATA_TOKEN not set. Get a free token at https://www.football-data.org/ ,");
-    console.error("  or replace fetchSource() with your own results provider.");
-    process.exit(1);
-  }
-  const comp = process.env.FOOTBALL_DATA_COMP || "WC"; // World Cup competition code
-  const res = await fetch(`https://api.football-data.org/v4/competitions/${comp}/matches`, {
-    headers: { "X-Auth-Token": token },
-  });
-  if (!res.ok) throw new Error(`football-data ${res.status}: ${await res.text()}`);
+  const apiKey = process.env.SPORTSDB_KEY || "3";       // free public test key
+  const league = process.env.SPORTSDB_LEAGUE || "4429"; // FIFA World Cup
+  const season = process.env.SPORTSDB_SEASON || "2026";
+  const res = await fetch(`https://www.thesportsdb.com/api/v1/json/${apiKey}/eventsseason.php?id=${league}&s=${season}`);
+  if (!res.ok) throw new Error(`thesportsdb ${res.status}: ${await res.text()}`);
   const data = await res.json();
-  const STATUS = { SCHEDULED: "scheduled", TIMED: "scheduled", IN_PLAY: "live", PAUSED: "live", FINISHED: "finished" };
-  return (data.matches || []).map((m) => ({
-    home: m.homeTeam?.name, away: m.awayTeam?.name,
-    status: STATUS[m.status] || "scheduled",
-    homeScore: m.score?.fullTime?.home ?? m.score?.regularTime?.home ?? null,
-    awayScore: m.score?.fullTime?.away ?? m.score?.regularTime?.away ?? null,
-  }));
+  const DONE = /^(FT|AET|PEN|AP|Match Finished|Finished)$/i;
+  const LIVE = /^(1H|2H|HT|ET|BT|P|LIVE|Live|In Play|Playing)$/i;
+  const num = (v) => (v == null || v === "" ? null : Number(v));
+  return (data.events || []).map((m) => {
+    const st = (m.strStatus || "").trim();
+    return {
+      home: m.strHomeTeam, away: m.strAwayTeam,
+      status: DONE.test(st) ? "finished" : LIVE.test(st) ? "live" : "scheduled",
+      homeScore: num(m.intHomeScore), awayScore: num(m.intAwayScore),
+    };
+  });
 }
 
 async function main() {
@@ -68,7 +72,7 @@ async function main() {
     if (!ev) continue; // not one of our fixtures (or a naming mismatch — extend ALIAS)
     matched++;
     // Orient scores to OUR home/away (provider may have them swapped).
-    const sameOrder = norm(m.home) === ev.home;
+    const sameOrder = key(m.home) === key(ev.home);
     const h = sameOrder ? m.homeScore : m.awayScore;
     const a = sameOrder ? m.awayScore : m.homeScore;
     if (m.status === "finished" && h != null && a != null) {
@@ -84,7 +88,13 @@ async function main() {
     console.error("⚠️ 0 fixtures matched — NOT writing (would wipe results). Check the competition code / extend the ALIAS map.");
     process.exit(1);
   }
-  const out = { updatedAt: new Date().toISOString(), source: "football-data.org", byEvent };
+  // Only rewrite when the actual scores/statuses changed — otherwise the
+  // timestamp alone would churn a commit every run (the 30-min cron).
+  if (JSON.stringify(existing) === JSON.stringify(byEvent)) {
+    console.log(`No change — ${matched}/${events.length} matched, ${finished} finished. results.json left as-is.`);
+    return;
+  }
+  const out = { updatedAt: new Date().toISOString(), source: "thesportsdb", byEvent };
   writeFileSync(join(ROOT, "data/results.json"), JSON.stringify(out, null, 2) + "\n");
   console.log(`✓ Wrote data/results.json — matched ${matched}/${events.length} fixtures, ${finished} finished (merged; ${Object.keys(byEvent).length} total).`);
 }

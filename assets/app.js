@@ -102,7 +102,20 @@ function catLabel(cat) {
 }
 const titleOf = (ev) => ev[`title_${STATE.lang}`] || (STATE.lang === "zh" && ev.title_zh ? ev.title_zh : ev.title);
 
+// On the live site, read data straight from the repo's raw URL so the results
+// cron (which commits to main) shows up WITHOUT redeploying the container.
+// Falls back to the copy baked into this container if GitHub is unreachable.
+// Locally (npm run dev / file://) always read the local files.
+const LOCAL = ["localhost", "127.0.0.1", "0.0.0.0", "[::1]", ""].includes(location.hostname) || location.protocol === "file:";
+const DATA_BASE = LOCAL ? "" : "https://raw.githubusercontent.com/BlockRunAI/franklin-bet/main/";
+
 async function loadJSON(path) {
+  if (DATA_BASE) {
+    try {
+      const res = await fetch(DATA_BASE + path, { cache: "no-cache" });
+      if (res.ok) return await res.json();
+    } catch { /* GitHub unreachable — fall back to the baked-in copy */ }
+  }
   const res = await fetch(path, { cache: "no-cache" });
   if (!res.ok) throw new Error(`Failed to load ${path}: ${res.status}`);
   return res.json();

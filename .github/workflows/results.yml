@@ -2,14 +2,14 @@ name: Refresh results
 
 # Pulls live status + final scores and writes data/results.json — which drives the
 # FT scores, LIVE badges, ✓/✗ verdicts and the auto-computed World Cup win rate.
-# No wallet needed; needs a results-provider token (default football-data.org).
-#
-# Set repo secret FOOTBALL_DATA_TOKEN (free at https://www.football-data.org/).
+# Source: TheSportsDB (free, keyless) — no wallet, no secret needed.
+# The site reads data/*.json from the repo's raw URL, so a push here goes live
+# within minutes WITHOUT redeploying the container.
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: "*/30 * * * *"   # every 30 min during match days — enable for the tournament
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 min — refreshes scores during match days
 
 permissions:
   contents: write
@@ -25,8 +25,6 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - name: Fetch results
-        env:
-          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
         run: node scripts/fetch-results.mjs
       - name: Commit & push if changed
         run: |
