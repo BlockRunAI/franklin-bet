@@ -44,6 +44,7 @@ const I18N = {
   rendering: { en: "Rendering…", es: "Generando…", zh: "生成中…", ja: "生成中…" },
   predictionsMade: { en: "Predictions", es: "Pronósticos", zh: "预测数", ja: "予測数" },
   confTrend: { en: "Confidence trend", es: "Tendencia de confianza", zh: "信心走势", ja: "確信度の推移" },
+  winRateTrend: { en: "Win rate trend", es: "Tendencia de acierto", zh: "胜率走势", ja: "的中率の推移" },
   picksTitle: { en: "All picks", es: "Todos los pronósticos", zh: "历次预测", ja: "予測履歴" },
   noPicksYet: { en: "No predictions yet", es: "Aún sin pronósticos", zh: "暂无预测", ja: "予測なし" },
   retired: { en: "Retired", es: "Retirado", zh: "已停用", ja: "提供終了" },
@@ -470,12 +471,21 @@ function openModelModal(model) {
   );
   box.append(grid);
 
-  // Confidence trend
+  // Win-rate trend: cumulative World Cup win rate after each RESOLVED match,
+  // one point per finished match in kickoff order.
   const trend = el("div", "md-trend");
-  trend.append(el("div", "md-section", t("confTrend")));
-  if (s.n) {
-    const spark = el("div", "md-spark"); spark.innerHTML = sparkline(s.picks.map((p) => p.v.confidence || 0)); trend.append(spark);
-  } else trend.append(el("div", "md-empty", t("noPicksYet")));
+  trend.append(el("div", "md-section", t("winRateTrend")));
+  const series = [];
+  let cor = 0, pl = 0;
+  for (const pk of s.picks) {
+    if (pk.verdict === "win") { cor++; pl++; }
+    else if (pk.verdict === "loss") { pl++; }
+    else continue; // not played yet — no point on the curve
+    series.push(cor / pl);
+  }
+  if (series.length) {
+    const spark = el("div", "md-spark"); spark.innerHTML = sparkline(series); trend.append(spark);
+  } else trend.append(el("div", "md-empty", t("notPlayed")));
   box.append(trend);
 
   // All picks
