@@ -5,6 +5,7 @@
   "type": "module",
   "description": "Franklin.bet — the world's top AI models research the news, read the live odds, and bet on every World Cup match. Built on Franklin × BlockRun.",
   "scripts": {
+    "start": "node scripts/serve.mjs",
     "dev": "node scripts/serve.mjs",
     "build-fixtures": "node scripts/build-fixtures.mjs",
     "seed": "node scripts/seed-sample.mjs",
