@@ -54,11 +54,12 @@ function shorten(s, n) {
 // Ask one model to predict one event via Franklin prediction mode.
 // Returns a normalized prediction (+ marketOdds + trace), or { __abstained }.
 export async function askModelAgent(_client, model, event, opts = {}) {
-  const { maxTurns, maxSpend, timeoutMs = 600000, franklinCmd } = opts;
+  const { maxTurns, maxToolCalls, maxSpend, timeoutMs = 600000, franklinCmd } = opts;
   const { bin, baseArgs } = franklinInvocation(franklinCmd);
   const args = [...baseArgs, "predict", "--model", model.id, "--question", event.question];
   // Caps are opt-in: only passed when provided, so "no flag" = no cap.
   if (maxTurns != null) args.push("--max-turns", String(maxTurns));
+  if (maxToolCalls != null) args.push("--max-tool-calls", String(maxToolCalls));
   if (maxSpend != null) args.push("--max-spend", String(maxSpend));
 
   return new Promise((resolve) => {

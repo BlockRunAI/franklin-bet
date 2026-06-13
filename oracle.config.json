@@ -10,7 +10,8 @@
   "engine": {
     "mode": "agent",
     "tier": "flagship",
-    "maxTurns": 6,
+    "maxTurns": 12,
+    "maxToolCalls": 9,
     "maxSpendPerCall": 1.0,
     "concurrency": 3,
     "franklinCmd": "franklin"

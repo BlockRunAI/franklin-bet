@@ -27,6 +27,7 @@ function parseArgs(argv) {
     else if (a === "--agent") args.agent = true;
     else if (a === "--max-spend") args.maxSpend = Number(argv[++i]);
     else if (a === "--max-turns") args.maxTurns = Number(argv[++i]);
+    else if (a === "--max-tool-calls") args.maxToolCalls = Number(argv[++i]);
     else if (a === "--concurrency") args.concurrency = Number(argv[++i]);
     else if (a === "--upcoming") args.upcoming = Number(argv[++i]);
     else if (a === "--skip-done") args.skipDone = true;
@@ -78,6 +79,11 @@ async function main() {
   if (args.models.length) {
     models = models.filter((m) => args.models.includes(m.id));
     if (!models.length) { console.error("✗ No matching --model ids in data/models.json."); process.exit(1); }
+  } else {
+    // Retired models (e.g. removed from the gateway) stay in the roster for their
+    // historical votes/win-rate, but don't get asked for new predictions.
+    const retired = models.filter((m) => m.retired).map((m) => m.id);
+    if (retired.length) { models = models.filter((m) => !m.retired); console.log(`Skipping retired model(s): ${retired.join(", ")}`); }
   }
 
   // Engine: --agent routes each model through Franklin prediction mode (grounded,
@@ -87,12 +93,14 @@ async function main() {
   if (args.agent) {
     genOpts.ask = askModelAgent;
     genOpts.concurrency = args.concurrency ?? eng.concurrency ?? 3;
-    // Caps are opt-in via CLI only — no flag = uncapped (Franklin's own defaults apply).
-    genOpts.maxSpend = args.maxSpend;
-    genOpts.maxTurns = args.maxTurns;
+    // Budgets: CLI flag wins, else fall back to oracle.config.json, else Franklin's defaults.
+    genOpts.maxSpend = args.maxSpend ?? eng.maxSpendPerCall;
+    genOpts.maxTurns = args.maxTurns ?? eng.maxTurns;
+    genOpts.maxToolCalls = args.maxToolCalls ?? eng.maxToolCalls;
     genOpts.franklinCmd = eng.franklinCmd;
     console.log(`Engine: AGENT (franklin predict) — grounded, tool-using. ` +
-      `concurrency=${genOpts.concurrency}, max-spend=${genOpts.maxSpend != null ? "$" + genOpts.maxSpend : "uncapped"}/call, max-turns=${genOpts.maxTurns ?? "default"}`);
+      `concurrency=${genOpts.concurrency}, max-spend=${genOpts.maxSpend != null ? "$" + genOpts.maxSpend : "uncapped"}/call, ` +
+      `max-turns=${genOpts.maxTurns ?? "default"}, max-tool-calls=${genOpts.maxToolCalls ?? "default"}`);
   } else {
     try {
       ({ client, how } = await resolveClient({ tier }));

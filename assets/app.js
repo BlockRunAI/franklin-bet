@@ -46,6 +46,7 @@ const I18N = {
   confTrend: { en: "Confidence trend", es: "Tendencia de confianza", zh: "信心走势", ja: "確信度の推移" },
   picksTitle: { en: "All picks", es: "Todos los pronósticos", zh: "历次预测", ja: "予測履歴" },
   noPicksYet: { en: "No predictions yet", es: "Aún sin pronósticos", zh: "暂无预测", ja: "予測なし" },
+  retired: { en: "Retired", es: "Retirado", zh: "已停用", ja: "提供終了" },
   resolves: { en: "Resolves", es: "Se resuelve", zh: "揭晓", ja: "判明" },
   camps: { en: "camps", es: "posturas", zh: "种观点", ja: "陣営" },
   fullAgreement: { en: "full agreement", es: "acuerdo total", zh: "完全一致", ja: "全員一致" },
@@ -364,7 +365,8 @@ function renderShowdown() {
     const s = stats[m.id];
     const avg = s.conf.length ? s.conf.reduce((x, y) => x + y, 0) / s.conf.length : 0;
     const align = s.n ? Math.round((s.withLeader / s.n) * 100) : 0;
-    const card = el("div", "model-card");
+    const card = el("div", "model-card" + (m.retired ? " is-retired" : ""));
+    if (m.retired) card.append(el("span", "mc-retired-badge", t("retired")));
     const head = el("div", "mc-head");
     const sw = el("span", "mc-swatch"); sw.style.background = m.color; sw.style.color = m.color; head.append(sw);
     const nm = el("div"); nm.append(el("div", "mc-name", esc(m.name)), el("div", "mc-provider", esc(m.provider))); head.append(nm);
