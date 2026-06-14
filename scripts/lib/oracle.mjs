@@ -118,6 +118,9 @@ function normalize(o) {
   if (o.marketOdds != null && String(o.marketOdds).trim()) {
     out.marketOdds = String(o.marketOdds).trim();
   }
+  // Predicted final scoreline (sports). Normalize "2–1"/"2:1"/"Germany 2-1" → "2-1".
+  const sc = String(o.scoreline || "").match(/(\d+)\s*[-–:]\s*(\d+)/);
+  if (sc) out.scoreline = `${sc[1]}-${sc[2]}`;
   return out;
 }
 

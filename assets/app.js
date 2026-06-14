@@ -586,6 +586,7 @@ function renderVote(ev, con, v, match) {
   head.append(el("span", "mv-model", esc(m.name)));
   const bucketCls = match ? ` mv-pick-${bucketOf(ev, v.pick)}` : "";
   head.append(el("span", `mv-pick${bucketCls}`, `→ ${esc(v.pick)}`));
+  if (v.scoreline) head.append(el("span", "mv-score", esc(v.scoreline)));
   const fin = match ? resultOf(ev) : null;
   if (fin && fin.status === "finished") {
     const ok = bucketOf(ev, v.pick) === fin.bucket;
@@ -774,11 +775,14 @@ function buildShareCard(ev, con) {
       const m = modelMeta(v.modelId);
       const row = elS("div", "display:flex;align-items:center;gap:11px;font-size:14.5px");
       const verdict = fin && fin.status === "finished" ? (bucketOf(ev, v.pick) === fin.bucket ? " ✓" : " ✗") : "";
+      // Last column: the model's predicted scoreline (falls back to confidence
+      // for older predictions that have no scoreline).
+      const tail = v.scoreline ? esc(v.scoreline) : `${Math.round((v.confidence || 0) * 100)}%`;
       row.append(
         elS("span", `width:11px;height:11px;border-radius:50%;flex:none;background:${m.color}`),
         elS("span", "flex:1;color:#c9cfdb;font-weight:500", esc(m.name)),
         elS("span", "color:#19d3c5;font-weight:600", `${esc(v.pick)}${verdict}`),
-        elS("span", "color:#8b93a7;width:46px;text-align:right", `${Math.round((v.confidence || 0) * 100)}%`));
+        elS("span", "color:#c9cfdb;font-weight:700;width:52px;text-align:right", tail));
       grid.append(row);
     }
     card.append(grid);
