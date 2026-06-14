@@ -571,9 +571,6 @@ function openModal(ev, con) {
     head.append(el("span", "mv-model", esc(m.name)), el("span", "mv-abstain-tag", t("abstained")));
     bd.append(head, el("div", "mv-rationale", t("noAnswer"))); row.append(bd); cap.append(row);
   }
-  // Watermark closes the card — appended last so it sits below every vote in
-  // both the modal and the exported image.
-  cap.append(el("div", "share-wm", "franklin.bet · AI council"));
   $("#modal-overlay").hidden = false; document.body.style.overflow = "hidden";
 }
 
@@ -732,13 +729,61 @@ async function copyImageData(dataUrl) {
   } catch { return false; }
 }
 
+// A clean, self-contained card built JUST for the exported image — explicit
+// colors and a compact per-model pick list (no research panels), so html2canvas
+// renders it reliably and the shared image stays legible.
+function buildShareCard(ev, con) {
+  const match = isMatch(ev);
+  const card = el("div", "share-card");
+  card.append(el("div", "sc-cat", `${esc(catLabel(ev.category))}${ev.kickoff ? " · " + esc(fmtKick(ev.kickoff)) : ""}`));
+  if (match) {
+    const teams = el("div", "sc-teams");
+    teams.append(el("span", "", `${esc(ev.homeFlag || "")} ${esc(ev.home)}`), el("span", "sc-vs", "vs"), el("span", "", `${esc(ev.away)} ${esc(ev.awayFlag || "")}`));
+    card.append(teams);
+    if (ev.venue) card.append(el("div", "sc-venue", esc(ev.venue)));
+  } else {
+    card.append(el("div", "sc-teams", `${ev.emoji || "🔮"} ${esc(titleOf(ev))}`));
+  }
+  if (con) {
+    const buckets = match ? matchBuckets(ev, con.votes) : null;
+    const winTxt = match ? (/draw/i.test(con.leaderPick) || con.leaderPick === t("drawPick") ? t("drawPick") : `${con.leaderPick} ${t("toWin")}`) : con.leaderPick;
+    card.append(el("div", "sc-big", esc(winTxt)));
+    const fin = match ? resultOf(ev) : null;
+    const meta = [];
+    if (buckets) meta.push(buckets.map((b) => `${b.label} ${Math.round(b.share * 100)}%`).join(" · "));
+    meta.push(`${con.agreeCount}/${con.total} ${t("agree")}`);
+    if (fin && fin.status === "finished") meta.push(`${t("resultLabel")}: ${ev.home} ${fin.home}–${fin.away} ${ev.away}`);
+    card.append(el("div", "sc-meta", esc(meta.join("  ·  "))));
+    if (buckets) {
+      const bar = el("div", "sc-bar");
+      for (const b of buckets) { const seg = el("div", `sc-seg sc-${b.key}`); seg.style.width = `${Math.max(2, Math.round(b.share * 100))}%`; bar.append(seg); }
+      card.append(bar);
+    }
+    const votes = [...con.votes].sort((a, b) => (a.pick === con.leaderPick ? 0 : 1) - (b.pick === con.leaderPick ? 0 : 1) || (b.confidence || 0) - (a.confidence || 0));
+    const grid = el("div", "sc-picks");
+    for (const v of votes) {
+      const m = modelMeta(v.modelId);
+      const row = el("div", "sc-pick");
+      const dot = el("span", "sc-dot"); dot.style.background = m.color;
+      const verdict = fin && fin.status === "finished" ? (bucketOf(ev, v.pick) === fin.bucket ? " ✓" : " ✗") : "";
+      row.append(dot, el("span", "sc-mname", esc(m.name)), el("span", "sc-mpick", `${esc(v.pick)}${verdict}`), el("span", "sc-mconf", `${Math.round((v.confidence || 0) * 100)}%`));
+      grid.append(row);
+    }
+    card.append(grid);
+  }
+  card.append(el("div", "sc-wm", "franklin.bet · AI council"));
+  return card;
+}
+
 async function shareImage() {
   if (!currentEvent || typeof window.html2canvas !== "function") { toast(t("imgFail")); return; }
-  const node = $("#modal-body .share-capture");
-  if (!node) { toast(t("imgFail")); return; }
   const btn = $("#modal-image"); btn.classList.add("busy");
+  const holder = el("div", "share-card-holder");
+  holder.append(buildShareCard(currentEvent, consensusFor(currentEvent.id)));
+  document.body.append(holder);
   let dataUrl = null;
-  try { $("#modal").scrollTop = 0; dataUrl = await renderCardPng(node); } catch { /* noop */ }
+  try { dataUrl = await renderCardPng(holder.firstChild); } catch { /* noop */ }
+  holder.remove();
   btn.classList.remove("busy");
   if (!dataUrl) { toast(t("imgFail")); return; }
 
