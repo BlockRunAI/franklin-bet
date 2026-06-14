@@ -13,6 +13,10 @@ const el = (tag, cls, html) => {
 };
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const pad = (n) => String(n).padStart(2, "0");
+// Readable URL slugs: "Brazil vs Morocco" → "brazil-vs-morocco". Must match the
+// identical helper in scripts/serve.mjs so server meta and client routing agree.
+const slugify = (s) => String(s || "").normalize("NFKD").replace(/[^\w\s-]/g, "").toLowerCase().trim().replace(/[\s_]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+const eventSlug = (ev) => (ev.home && ev.away) ? `${slugify(ev.home)}-vs-${slugify(ev.away)}` : slugify(ev.title || ev.id);
 
 const STATE = { events: [], models: [], modelById: {}, preds: {}, results: { byEvent: {} }, filter: "All", lang: "en" };
 
@@ -512,7 +516,7 @@ function openModelModal(model) {
 // --- Modal ----------------------------------------------------------------
 function openModal(ev, con) {
   currentEvent = ev;
-  setModalHash(ev.id);
+  setModalHash(ev);
   const body = $("#modal-body"); body.innerHTML = "";
   const match = isMatch(ev);
   // The whole card lives inside `cap` — that's exactly what "save as image"
@@ -632,15 +636,15 @@ function closeModal() {
 // --- Share: deep-link + native/copy + image -------------------------------
 let currentEvent = null;
 
-// Real path-based deep link (crawlable + SEO-friendly): /m/<id>. serve.mjs
-// injects per-match <title>/OG tags for that path so shared links preview well.
-function setModalHash(id) {
-  const path = `/m/${id}`;
+// Real path-based deep link (crawlable + SEO-friendly): /m/<slug> e.g.
+// /m/brazil-vs-morocco. serve.mjs injects per-match <title>/OG for that path.
+function setModalHash(ev) {
+  const path = `/m/${eventSlug(ev)}`;
   if (location.pathname !== path) history.replaceState(null, "", path);
 }
 
-function shareUrlFor(id) {
-  return `${location.origin}/m/${id}`;
+function shareUrlFor(ev) {
+  return `${location.origin}/m/${eventSlug(ev)}`;
 }
 
 function toast(msg) {
@@ -679,7 +683,7 @@ function subOverlay(title) {
 
 function shareLink() {
   if (!currentEvent) return;
-  const url = shareUrlFor(currentEvent.id);
+  const url = shareUrlFor(currentEvent);
   const { box } = subOverlay(t("shareLinkTitle"));
   const row = el("div", "sub-linkrow");
   const input = el("input", "sub-linkinput"); input.value = url; input.readOnly = true;
@@ -801,13 +805,13 @@ async function shareImage() {
   foot.append(copyBtn, dl); box.append(foot);
 }
 
-// Open (or close) the modal to match the current URL — path /m/<id>, with a
-// fallback for the legacy #match=<id> hash links shared before the switch.
+// Open (or close) the modal to match the current URL — /m/<slug> (or the old
+// /m/<id> and #match=<id> links, resolved by id as a fallback).
 function syncModalToUrl() {
   const m = location.pathname.match(/^\/m\/([^/?#]+)/) || location.hash.match(/^#match=(.+)$/);
   if (!m) { if (!$("#modal-overlay").hidden) closeModal(); return; }
-  const id = decodeURIComponent(m[1]);
-  const ev = STATE.events.find((e) => e.id === id);
+  const key = decodeURIComponent(m[1]);
+  const ev = STATE.events.find((e) => eventSlug(e) === key) || STATE.events.find((e) => e.id === key);
   if (ev) openModal(ev, consensusFor(ev.id));
 }
 

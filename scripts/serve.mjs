@@ -24,14 +24,18 @@ const TYPES = {
 };
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const readJSON = (p) => { try { return JSON.parse(readSync(join(ROOT, p), "utf8")); } catch { return null; } };
+// Readable URL slug — MUST match slugify()/eventSlug() in assets/app.js.
+const slugify = (s) => String(s || "").normalize("NFKD").replace(/[^\w\s-]/g, "").toLowerCase().trim().replace(/[\s_]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
+const eventSlug = (ev) => (ev.home && ev.away) ? `${slugify(ev.home)}-vs-${slugify(ev.away)}` : slugify(ev.title || ev.id);
 
-// Per-match <title> + OG/Twitter meta for /m/<id>, injected into the SPA shell.
-function injectMatchMeta(html, id) {
+// Per-match <title> + OG/Twitter meta for /m/<slug>, injected into the SPA
+// shell. `key` is the slug (or, for old links, the event id).
+function injectMatchMeta(html, key) {
   const events = readJSON("data/events.json") || [];
-  const ev = events.find((e) => e.id === id);
+  const ev = events.find((e) => eventSlug(e) === key) || events.find((e) => e.id === key);
   if (!ev) return html;
-  const name = ev.home && ev.away ? `${ev.home} vs ${ev.away}` : (ev.title || id);
-  const votes = (readJSON("data/predictions.json")?.byEvent || {})[id] || [];
+  const name = ev.home && ev.away ? `${ev.home} vs ${ev.away}` : (ev.title || ev.id);
+  const votes = (readJSON("data/predictions.json")?.byEvent || {})[ev.id] || [];
   let pickLine = "";
   if (votes.length) {
     const tally = {}, weight = {};
@@ -41,7 +45,7 @@ function injectMatchMeta(html, id) {
   }
   const title = `${name} — AI World Cup prediction · Franklin.bet`;
   const desc = `${votes.length || 8} frontier AI models predict ${name}.${pickLine} Every model's pick, confidence and live research — Franklin.bet by BlockRun.ai.`;
-  const url = `${SITE}/m/${id}`;
+  const url = `${SITE}/m/${eventSlug(ev)}`;
   const extra = [
     `<meta property="og:url" content="${esc(url)}" />`,
     `<meta name="twitter:card" content="summary" />`,
@@ -60,7 +64,7 @@ function injectMatchMeta(html, id) {
 function sitemap() {
   const events = readJSON("data/events.json") || [];
   const urls = [`<url><loc>${SITE}/</loc></url>`,
-    ...events.map((e) => `<url><loc>${SITE}/m/${e.id}</loc></url>`)];
+    ...events.map((e) => `<url><loc>${SITE}/m/${eventSlug(e)}</loc></url>`)];
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
