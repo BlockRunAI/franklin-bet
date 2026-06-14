@@ -36,6 +36,11 @@
       "status": "finished",
       "home": 0,
       "away": 1
+    },
+    "wc26-d-au-tr": {
+      "status": "finished",
+      "home": 2,
+      "away": 0
     }
   }
 }
