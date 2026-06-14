@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-14T01:55:23.443Z",
+  "updatedAt": "2026-06-14T05:10:00.000Z",
   "source": "thesportsdb",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -31,6 +31,16 @@
       "status": "finished",
       "home": 1,
       "away": 1
+    },
+    "wc26-c-ht-gbs": {
+      "status": "finished",
+      "home": 0,
+      "away": 1
+    },
+    "wc26-d-au-tr": {
+      "status": "finished",
+      "home": 1,
+      "away": 0
     }
   }
 }
