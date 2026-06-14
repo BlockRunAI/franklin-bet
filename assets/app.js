@@ -738,44 +738,52 @@ async function copyImageData(dataUrl) {
 // renders it reliably and the shared image stays legible.
 function buildShareCard(ev, con) {
   const match = isMatch(ev);
-  const card = el("div", "share-card");
-  card.append(el("div", "sc-cat", `${esc(catLabel(ev.category))}${ev.kickoff ? " · " + esc(fmtKick(ev.kickoff)) : ""}`));
+  // INLINE styles only — html2canvas reliably renders inline styles, but can
+  // miss class rules for a freshly-added off-screen node (which left the image
+  // dark & unstyled). elS(tag, css, html) sets style.cssText directly.
+  const elS = (tag, css, html) => { const n = document.createElement(tag); if (css) n.style.cssText = css; if (html != null) n.innerHTML = html; return n; };
+  const BUCKET = { home: "#34d399", draw: "#6b7388", away: "#f472b6" };
+  const card = elS("div", "width:600px;box-sizing:border-box;padding:30px 32px 26px;background:#0e1119;color:#e8ecf4;font-family:Inter,system-ui,sans-serif;line-height:1.35");
+  card.append(elS("div", "font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#19d3c5", `${esc(catLabel(ev.category))}${ev.kickoff ? " · " + esc(fmtKick(ev.kickoff)) : ""}`));
   if (match) {
-    const teams = el("div", "sc-teams");
-    teams.append(el("span", "", `${esc(ev.homeFlag || "")} ${esc(ev.home)}`), el("span", "sc-vs", "vs"), el("span", "", `${esc(ev.away)} ${esc(ev.awayFlag || "")}`));
+    const teams = elS("div", "display:flex;align-items:center;gap:10px;font-size:27px;font-weight:800;color:#fff;margin:10px 0 2px");
+    teams.append(elS("span", "white-space:nowrap", `${esc(ev.homeFlag || "")} ${esc(ev.home)}`), elS("span", "color:#5b6172;font-size:18px;font-weight:600", "vs"), elS("span", "white-space:nowrap", `${esc(ev.away)} ${esc(ev.awayFlag || "")}`));
     card.append(teams);
-    if (ev.venue) card.append(el("div", "sc-venue", esc(ev.venue)));
+    if (ev.venue) card.append(elS("div", "font-size:13px;color:#8b93a7;margin-bottom:16px", esc(ev.venue)));
   } else {
-    card.append(el("div", "sc-teams", `${ev.emoji || "🔮"} ${esc(titleOf(ev))}`));
+    card.append(elS("div", "font-size:24px;font-weight:800;color:#fff;margin:10px 0 14px", `${ev.emoji || "🔮"} ${esc(titleOf(ev))}`));
   }
   if (con) {
     const buckets = match ? matchBuckets(ev, con.votes) : null;
     const winTxt = match ? (/draw/i.test(con.leaderPick) || con.leaderPick === t("drawPick") ? t("drawPick") : `${con.leaderPick} ${t("toWin")}`) : con.leaderPick;
-    card.append(el("div", "sc-big", esc(winTxt)));
+    card.append(elS("div", "font-size:32px;font-weight:800;letter-spacing:-.02em;color:#19d3c5;margin-top:12px", esc(winTxt)));
     const fin = match ? resultOf(ev) : null;
     const meta = [];
     if (buckets) meta.push(buckets.map((b) => `${b.label} ${Math.round(b.share * 100)}%`).join(" · "));
     meta.push(`${con.agreeCount}/${con.total} ${t("agree")}`);
     if (fin && fin.status === "finished") meta.push(`${t("resultLabel")}: ${ev.home} ${fin.home}–${fin.away} ${ev.away}`);
-    card.append(el("div", "sc-meta", esc(meta.join("  ·  "))));
+    card.append(elS("div", "font-size:13px;color:#8b93a7;margin:6px 0 16px", esc(meta.join("  ·  "))));
     if (buckets) {
-      const bar = el("div", "sc-bar");
-      for (const b of buckets) { const seg = el("div", `sc-seg sc-${b.key}`); seg.style.width = `${Math.max(2, Math.round(b.share * 100))}%`; bar.append(seg); }
+      const bar = elS("div", "display:flex;height:12px;border-radius:999px;overflow:hidden;margin-bottom:20px;background:#1a1e2a");
+      for (const b of buckets) bar.append(elS("div", `height:100%;width:${Math.max(2, Math.round(b.share * 100))}%;background:${BUCKET[b.key]}`));
       card.append(bar);
     }
     const votes = [...con.votes].sort((a, b) => (a.pick === con.leaderPick ? 0 : 1) - (b.pick === con.leaderPick ? 0 : 1) || (b.confidence || 0) - (a.confidence || 0));
-    const grid = el("div", "sc-picks");
+    const grid = elS("div", "display:flex;flex-direction:column;gap:9px");
     for (const v of votes) {
       const m = modelMeta(v.modelId);
-      const row = el("div", "sc-pick");
-      const dot = el("span", "sc-dot"); dot.style.background = m.color;
+      const row = elS("div", "display:flex;align-items:center;gap:11px;font-size:14.5px");
       const verdict = fin && fin.status === "finished" ? (bucketOf(ev, v.pick) === fin.bucket ? " ✓" : " ✗") : "";
-      row.append(dot, el("span", "sc-mname", esc(m.name)), el("span", "sc-mpick", `${esc(v.pick)}${verdict}`), el("span", "sc-mconf", `${Math.round((v.confidence || 0) * 100)}%`));
+      row.append(
+        elS("span", `width:11px;height:11px;border-radius:50%;flex:none;background:${m.color}`),
+        elS("span", "flex:1;color:#c9cfdb;font-weight:500", esc(m.name)),
+        elS("span", "color:#19d3c5;font-weight:600", `${esc(v.pick)}${verdict}`),
+        elS("span", "color:#8b93a7;width:46px;text-align:right", `${Math.round((v.confidence || 0) * 100)}%`));
       grid.append(row);
     }
     card.append(grid);
   }
-  card.append(el("div", "sc-wm", "franklin.bet · AI council"));
+  card.append(elS("div", "margin-top:22px;padding-top:14px;border-top:1px solid #232838;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#5b6172", "franklin.bet · AI council"));
   return card;
 }
 
