@@ -39,6 +39,7 @@ const I18N = {
   copy: { en: "Copy", es: "Copiar", zh: "复制", ja: "コピー" },
   copied: { en: "Copied", es: "Copiado", zh: "已复制", ja: "コピー済み" },
   shareVia: { en: "Share…", es: "Compartir…", zh: "系统分享…", ja: "共有…" },
+  shareX: { en: "Share on X", es: "Compartir en X", zh: "分享到 X", ja: "X で共有" },
   copyImg: { en: "Copy image", es: "Copiar imagen", zh: "复制图片", ja: "画像をコピー" },
   download: { en: "Download", es: "Descargar", zh: "下载图片", ja: "ダウンロード" },
   rendering: { en: "Rendering…", es: "Generando…", zh: "生成中…", ja: "生成中…" },
@@ -625,18 +626,24 @@ function renderVote(ev, con, v, match) {
 function closeModal() {
   $("#modal-overlay").hidden = true; document.body.style.overflow = "";
   currentEvent = null;
-  if (location.hash.startsWith("#match=")) history.replaceState(null, "", location.pathname + location.search);
+  // Restore the root URL when leaving a /m/<id> deep link.
+  if (/^\/m\//.test(location.pathname) || location.hash.startsWith("#match=")) {
+    history.replaceState(null, "", "/" + location.search);
+  }
 }
 
 // --- Share: deep-link + native/copy + image -------------------------------
 let currentEvent = null;
 
+// Real path-based deep link (crawlable + SEO-friendly): /m/<id>. serve.mjs
+// injects per-match <title>/OG tags for that path so shared links preview well.
 function setModalHash(id) {
-  if (location.hash !== `#match=${id}`) history.replaceState(null, "", `#match=${id}`);
+  const path = `/m/${id}`;
+  if (location.pathname !== path) history.replaceState(null, "", path);
 }
 
 function shareUrlFor(id) {
-  return `${location.origin}${location.pathname}#match=${id}`;
+  return `${location.origin}/m/${id}`;
 }
 
 function toast(msg) {
@@ -648,6 +655,7 @@ function toast(msg) {
 
 const SVG = {
   link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/></svg>',
+  x: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
   copy: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>',
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
   download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>',
@@ -684,10 +692,17 @@ function shareLink() {
     copy.innerHTML = SVG.check + `<span>${t("copied")}</span>`; copy.classList.add("ok"); toast(t("linkCopied"));
   };
   row.append(input, copy); box.append(row);
+  const name = isMatch(currentEvent) ? `${currentEvent.home} vs ${currentEvent.away}` : titleOf(currentEvent);
+  // Share on X (tweet intent with prefilled text + the deep link).
+  const xBtn = el("button", "sub-btn sub-wide is-x"); xBtn.innerHTML = SVG.x + `<span>${t("shareX")}</span>`;
+  xBtn.onclick = () => {
+    const text = `${name} — what do 8 AI models predict? 🔮 via @BlockRunAI`;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, "_blank", "noopener");
+  };
+  box.append(xBtn);
   if (navigator.share) {
-    const title = isMatch(currentEvent) ? `${currentEvent.home} vs ${currentEvent.away}` : titleOf(currentEvent);
     const sh = el("button", "sub-btn sub-wide"); sh.innerHTML = SVG.link + `<span>${t("shareVia")}</span>`;
-    sh.onclick = () => navigator.share({ title: `${title} — franklin.bet`, url }).catch(() => {});
+    sh.onclick = () => navigator.share({ title: `${name} — franklin.bet`, url }).catch(() => {});
     box.append(sh);
   }
   setTimeout(() => { input.focus(); input.select(); }, 30);
@@ -741,10 +756,11 @@ async function shareImage() {
   foot.append(copyBtn, dl); box.append(foot);
 }
 
-// Open a match/market modal directly from a #match=<id> deep link.
-function openFromHash() {
-  const m = location.hash.match(/^#match=(.+)$/);
-  if (!m) return;
+// Open (or close) the modal to match the current URL — path /m/<id>, with a
+// fallback for the legacy #match=<id> hash links shared before the switch.
+function syncModalToUrl() {
+  const m = location.pathname.match(/^\/m\/([^/?#]+)/) || location.hash.match(/^#match=(.+)$/);
+  if (!m) { if (!$("#modal-overlay").hidden) closeModal(); return; }
   const id = decodeURIComponent(m[1]);
   const ev = STATE.events.find((e) => e.id === id);
   if (ev) openModal(ev, consensusFor(ev.id));
@@ -845,7 +861,7 @@ async function init() {
     STATE.results = await loadJSON("data/results.json").catch(() => ({ byEvent: {} }));
     await applyBranding();
     rerender();
-    openFromHash(); // deep-link: open the shared match if the URL carries #match=<id>
+    syncModalToUrl(); // deep-link: open the shared match if the URL is /m/<id>
   } catch (err) {
     console.error(err);
     $("#events-grid").innerHTML = `<p style="color:var(--muted)">Couldn't load predictions. Run <code>npm run dev</code> to serve over HTTP.</p>`;
@@ -857,7 +873,7 @@ async function init() {
   $("#modal-overlay").onclick = (e) => { if (e.target.id === "modal-overlay") closeModal(); };
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeModal(); $("#lang-switch")?.classList.remove("open"); } });
   document.addEventListener("click", () => $("#lang-switch")?.classList.remove("open"));
-  window.addEventListener("hashchange", () => { if (location.hash.startsWith("#match=")) openFromHash(); });
+  window.addEventListener("popstate", syncModalToUrl); // back/forward navigates the modal
   setInterval(tickCountdowns, 1000);
 }
 
