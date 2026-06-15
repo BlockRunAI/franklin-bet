@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-06-14T05:10:00.000Z",
-  "source": "thesportsdb",
+  "updatedAt": "2026-06-15T20:56:06.984Z",
+  "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
       "status": "finished",
@@ -60,6 +60,16 @@
     "wc26-f-se-tn": {
       "status": "finished",
       "home": 5,
+      "away": 1
+    },
+    "wc26-h-es-cv": {
+      "status": "finished",
+      "home": 0,
+      "away": 0
+    },
+    "wc26-g-be-eg": {
+      "status": "live",
+      "home": 1,
       "away": 1
     }
   }
