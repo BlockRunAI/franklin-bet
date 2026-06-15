@@ -31,26 +31,38 @@ const key = (s) => alias(s).normalize("NFD").toLowerCase().replace(/[^a-z0-9]/g,
 // Unordered pair key — the provider may list home/away in either order.
 const pairKey = (h, a) => [key(h), key(a)].sort().join("|");
 
-// TheSportsDB (free, keyless). Returns [{home, away, status, homeScore, awayScore}].
-// World Cup = league 4429. Override via env if needed.
+// ESPN public scoreboard (free, keyless, complete + live). The board is per-day,
+// so we sweep a small window of recent UTC dates each run — enough to catch
+// just-finished and in-play matches; older results are already merged.
+// Returns [{home, away, status, homeScore, awayScore}].
 async function fetchSource() {
-  const apiKey = process.env.SPORTSDB_KEY || "3";       // free public test key
-  const league = process.env.SPORTSDB_LEAGUE || "4429"; // FIFA World Cup
-  const season = process.env.SPORTSDB_SEASON || "2026";
-  const res = await fetch(`https://www.thesportsdb.com/api/v1/json/${apiKey}/eventsseason.php?id=${league}&s=${season}`);
-  if (!res.ok) throw new Error(`thesportsdb ${res.status}: ${await res.text()}`);
-  const data = await res.json();
-  const DONE = /^(FT|AET|PEN|AP|Match Finished|Finished)$/i;
-  const LIVE = /^(1H|2H|HT|ET|BT|P|LIVE|Live|In Play|Playing)$/i;
-  const num = (v) => (v == null || v === "" ? null : Number(v));
-  return (data.events || []).map((m) => {
-    const st = (m.strStatus || "").trim();
-    return {
-      home: m.strHomeTeam, away: m.strAwayTeam,
-      status: DONE.test(st) ? "finished" : LIVE.test(st) ? "live" : "scheduled",
-      homeScore: num(m.intHomeScore), awayScore: num(m.intAwayScore),
-    };
+  const base = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard";
+  const days = Number(process.env.ESPN_DAYS || 4);
+  const now = Date.now();
+  const dates = Array.from({ length: days }, (_, i) => {
+    const d = new Date(now - i * 86400000);
+    return `${d.getUTCFullYear()}${String(d.getUTCMonth() + 1).padStart(2, "0")}${String(d.getUTCDate()).padStart(2, "0")}`;
   });
+  const FIN = /FULL_TIME|FINAL|\bFT\b/i, LIVE = /FIRST_HALF|SECOND_HALF|HALFTIME|IN_PROGRESS|\bLIVE\b|EXTRA|PENALT/i;
+  const num = (v) => (v == null || v === "" ? null : Number(v));
+  const out = [];
+  for (const date of dates) {
+    let data;
+    try { const r = await fetch(`${base}?dates=${date}`); if (!r.ok) continue; data = await r.json(); } catch { continue; }
+    for (const e of (data.events || [])) {
+      const c = (e.competitions || [])[0]; if (!c) continue;
+      const h = (c.competitors || []).find((x) => x.homeAway === "home");
+      const a = (c.competitors || []).find((x) => x.homeAway === "away");
+      if (!h || !a) continue;
+      const st = e.status?.type?.name || "";
+      out.push({
+        home: h.team?.displayName || h.team?.name, away: a.team?.displayName || a.team?.name,
+        status: FIN.test(st) ? "finished" : LIVE.test(st) ? "live" : "scheduled",
+        homeScore: num(h.score), awayScore: num(a.score),
+      });
+    }
+  }
+  return out;
 }
 
 async function main() {
@@ -94,7 +106,7 @@ async function main() {
     console.log(`No change — ${matched}/${events.length} matched, ${finished} finished. results.json left as-is.`);
     return;
   }
-  const out = { updatedAt: new Date().toISOString(), source: "thesportsdb", byEvent };
+  const out = { updatedAt: new Date().toISOString(), source: "espn", byEvent };
   writeFileSync(join(ROOT, "data/results.json"), JSON.stringify(out, null, 2) + "\n");
   console.log(`✓ Wrote data/results.json — matched ${matched}/${events.length} fixtures, ${finished} finished (merged; ${Object.keys(byEvent).length} total).`);
 }
