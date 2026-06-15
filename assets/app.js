@@ -51,6 +51,8 @@ const I18N = {
   confTrend: { en: "Confidence trend", es: "Tendencia de confianza", zh: "信心走势", ja: "確信度の推移" },
   winRateTrend: { en: "Win rate trend", es: "Tendencia de acierto", zh: "胜率走势", ja: "的中率の推移" },
   exactScores: { en: "Exact scores", es: "Marcadores exactos", zh: "精准比分", ja: "スコア的中" },
+  dailyRecap: { en: "Daily recap", es: "Resumen diario", zh: "每日战况", ja: "デイリー総括" },
+  correct: { en: "correct", es: "aciertos", zh: "命中", ja: "的中" },
   picksTitle: { en: "All picks", es: "Todos los pronósticos", zh: "历次预测", ja: "予測履歴" },
   noPicksYet: { en: "No predictions yet", es: "Aún sin pronósticos", zh: "暂无预测", ja: "予測なし" },
   retired: { en: "Retired", es: "Retirado", zh: "已停用", ja: "提供終了" },
@@ -676,6 +678,7 @@ const SVG = {
   check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
   download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>',
   close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
+  image: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>',
 };
 
 // Lightweight overlay above the main modal (link dialog / image preview).
@@ -807,18 +810,18 @@ function buildShareCard(ev, con) {
   return card;
 }
 
-async function shareImage() {
-  if (!currentEvent || typeof window.html2canvas !== "function") { toast(t("imgFail")); return; }
-  const btn = $("#modal-image"); btn.classList.add("busy");
+// Render an off-screen card element to a PNG data URL.
+async function pngFromCard(cardEl) {
   const holder = el("div", "share-card-holder");
-  holder.append(buildShareCard(currentEvent, consensusFor(currentEvent.id)));
-  document.body.append(holder);
+  holder.append(cardEl); document.body.append(holder);
   let dataUrl = null;
-  try { dataUrl = await renderCardPng(holder.firstChild); } catch { /* noop */ }
+  try { dataUrl = await renderCardPng(cardEl); } catch { /* noop */ }
   holder.remove();
-  btn.classList.remove("busy");
-  if (!dataUrl) { toast(t("imgFail")); return; }
+  return dataUrl;
+}
 
+// Image-preview dialog with copy / download (shared by match + daily share).
+function showImagePreview(dataUrl, filename) {
   const { box } = subOverlay(t("imgPreviewTitle"));
   const wrap = el("div", "sub-imgwrap"); const img = el("img", "sub-img"); img.src = dataUrl; wrap.append(img); box.append(wrap);
   const foot = el("div", "sub-foot");
@@ -829,8 +832,100 @@ async function shareImage() {
     if (ok) copyBtn.classList.add("ok");
   };
   const dl = el("button", "sub-btn is-primary"); dl.innerHTML = SVG.download + `<span>${t("download")}</span>`;
-  dl.onclick = () => { const a = el("a"); a.href = dataUrl; a.download = `franklin-bet-${currentEvent.id}.png`; a.click(); };
+  dl.onclick = () => { const a = el("a"); a.href = dataUrl; a.download = filename; a.click(); };
   foot.append(copyBtn, dl); box.append(foot);
+}
+
+async function shareImage() {
+  if (!currentEvent || typeof window.html2canvas !== "function") { toast(t("imgFail")); return; }
+  const btn = $("#modal-image"); btn.classList.add("busy");
+  const dataUrl = await pngFromCard(buildShareCard(currentEvent, consensusFor(currentEvent.id)));
+  btn.classList.remove("busy");
+  if (!dataUrl) { toast(t("imgFail")); return; }
+  showImagePreview(dataUrl, `franklin-bet-${currentEvent.id}.png`);
+}
+
+// --- Daily recap ----------------------------------------------------------
+const fmtDay = (d) => { try { return d.toLocaleDateString(LOCALE[STATE.lang] || "en-US", { month: "short", day: "numeric" }); } catch { return d.toISOString().slice(0, 10); } };
+
+// Finished matches grouped by local calendar day, newest first, with the
+// council's record and any exact-score trophies for that day.
+function dailyRecap() {
+  const byDay = {};
+  for (const ev of STATE.events) {
+    if (!isMatch(ev)) continue;
+    const r = resultOf(ev); if (!r || r.status !== "finished") continue;
+    const con = consensusFor(ev.id); if (!con) continue; // only matches the council actually predicted
+    const d = new Date(ev.kickoff);
+    const key = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+    (byDay[key] ||= { ts: new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime(), matches: [] });
+    const want = `${r.home}-${r.away}`;
+    byDay[key].matches.push({
+      ev, con, r,
+      ok: con ? bucketOf(ev, con.leaderPick) === r.bucket : false,
+      trophies: (con?.votes || []).filter((v) => v.scoreline === want).map((v) => modelMeta(v.modelId).name),
+    });
+  }
+  return Object.values(byDay).sort((a, b) => b.ts - a.ts).map((day) => {
+    day.matches.sort((a, b) => Date.parse(a.ev.kickoff) - Date.parse(b.ev.kickoff));
+    return { ...day, date: new Date(day.ts), correct: day.matches.filter((m) => m.ok).length, total: day.matches.length, trophyCount: day.matches.reduce((n, m) => n + m.trophies.length, 0) };
+  });
+}
+
+// Inline-styled daily card for the exported image.
+function buildDailyCard(day) {
+  const elS = (tag, css, html) => { const n = document.createElement(tag); if (css) n.style.cssText = css; if (html != null) n.innerHTML = html; return n; };
+  const card = elS("div", "width:600px;box-sizing:border-box;padding:28px 32px 24px;background:#0e1119;color:#e8ecf4;font-family:Inter,system-ui,sans-serif;line-height:1.3");
+  const head = elS("div", "display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px");
+  head.append(elS("div", "font-size:22px;font-weight:800;color:#fff", `${fmtDay(day.date)} — ${t("dailyRecap")}`),
+    elS("div", "font-size:15px;font-weight:700;color:#19d3c5", `${day.correct}/${day.total} ${t("correct")}${day.trophyCount ? `  ·  🏆 ${day.trophyCount}` : ""}`));
+  card.append(head);
+  const list = elS("div", "display:flex;flex-direction:column;gap:10px");
+  for (const m of day.matches) {
+    const row = elS("div", "display:flex;align-items:center;gap:11px;font-size:14.5px");
+    row.append(
+      elS("span", `width:18px;font-weight:800;color:${m.ok ? "#34d399" : "#ff6b8b"}`, m.ok ? "✓" : "✗"),
+      elS("span", "flex:1;color:#e8ecf4;font-weight:600", `${esc(m.ev.home)} ${m.r.home}-${m.r.away} ${esc(m.ev.away)}`),
+      elS("span", "color:#8b93a7", `AI: ${esc(m.con ? m.con.leaderPick : "—")}${m.trophies.length ? " 🏆" : ""}`));
+    list.append(row);
+  }
+  card.append(list);
+  card.append(elS("div", "margin-top:20px;padding-top:14px;border-top:1px solid #232838;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#5b6172", "franklin.bet · AI council"));
+  return card;
+}
+
+async function shareDailyImage(day, btn) {
+  if (typeof window.html2canvas !== "function") { toast(t("imgFail")); return; }
+  if (btn) btn.classList.add("busy");
+  const dataUrl = await pngFromCard(buildDailyCard(day));
+  if (btn) btn.classList.remove("busy");
+  if (!dataUrl) { toast(t("imgFail")); return; }
+  showImagePreview(dataUrl, `franklin-bet-${day.date.toISOString().slice(0, 10)}.png`);
+}
+
+function renderDaily() {
+  const days = dailyRecap();
+  $("#daily-section").hidden = days.length === 0;
+  const grid = $("#daily-grid"); if (!grid) return; grid.innerHTML = "";
+  for (const day of days) {
+    const card = el("div", "daily-card");
+    const head = el("div", "dc-head");
+    head.append(el("div", "dc-date", esc(fmtDay(day.date))));
+    head.append(el("div", "dc-record", `<b>${day.correct}/${day.total}</b> ${esc(t("correct"))}${day.trophyCount ? ` · 🏆 ${day.trophyCount}` : ""}`));
+    const sh = el("button", "dc-share modal-act"); sh.innerHTML = SVG.image; sh.title = t("imgPreviewTitle");
+    sh.onclick = () => shareDailyImage(day, sh);
+    head.append(sh);
+    card.append(head);
+    for (const m of day.matches) {
+      const row = el("div", "dc-row");
+      row.append(
+        el("span", `dc-verdict ${m.ok ? "ok" : "no"}`, m.ok ? "✓" : "✗"),
+        el("span", "dc-score", `${esc(m.ev.home)} <b>${m.r.home}-${m.r.away}</b> ${esc(m.ev.away)}`),
+        el("span", "dc-aipick", `${esc(m.con ? m.con.leaderPick : "—")}${m.trophies.length ? " 🏆" : ""}`));
+      card.append(row);
+    }
+    grid.append(card);
+  }
 }
 
 // Open (or close) the modal to match the current URL — /m/<slug> (or the old
@@ -906,7 +1001,7 @@ function updateGeneratedAt() {
 }
 
 function rerender() {
-  fillStatic(); renderHeroStats(); renderFilters(); renderEvents(); renderOthers(); renderShowdown();
+  fillStatic(); renderHeroStats(); renderFilters(); renderEvents(); renderOthers(); renderDaily(); renderShowdown();
 }
 
 function setLang(lang) {
