@@ -53,6 +53,12 @@ const I18N = {
   exactScores: { en: "Exact scores", es: "Marcadores exactos", zh: "精准比分", ja: "スコア的中" },
   dailyRecap: { en: "Daily recap", es: "Resumen diario", zh: "每日战况", ja: "デイリー総括" },
   correct: { en: "correct", es: "aciertos", zh: "命中", ja: "的中" },
+  accuracy: { en: "Accuracy", es: "Precisión", zh: "命中率", ja: "的中率" },
+  councilTrend: { en: "Council win-rate trend", es: "Tendencia del panel", zh: "议会胜率走势", ja: "評議会の的中率推移" },
+  byModel: { en: "By model", es: "Por modelo", zh: "各模型", ja: "モデル別" },
+  matchesLabel: { en: "Matches", es: "Partidos", zh: "比赛", ja: "試合" },
+  shareImg: { en: "Share as image", es: "Compartir imagen", zh: "导出为图片", ja: "画像で共有" },
+  expand: { en: "Expand", es: "Ampliar", zh: "放大", ja: "拡大" },
   picksTitle: { en: "All picks", es: "Todos los pronósticos", zh: "历次预测", ja: "予測履歴" },
   noPicksYet: { en: "No predictions yet", es: "Aún sin pronósticos", zh: "暂无预测", ja: "予測なし" },
   retired: { en: "Retired", es: "Retirado", zh: "已停用", ja: "提供終了" },
@@ -453,16 +459,39 @@ function modelStats(model) {
 }
 
 // Tiny inline SVG line chart for a 0..1 series.
-function sparkline(vals, w = 280, h = 46) {
+// Inline-coloured sparkline (no CSS classes) so it renders identically in the
+// live DOM and inside html2canvas exports.
+function sparkline(vals, w = 280, h = 46, stroke = "#19d3c5") {
   if (!vals.length) return "";
-  if (vals.length === 1) { const y = (h - vals[0] * h).toFixed(1); return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none"><circle cx="${(w / 2).toFixed(1)}" cy="${y}" r="3" fill="currentColor"/></svg>`; }
+  const wrap = (inner) => `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="width:100%;height:56px;display:block">${inner}</svg>`;
+  if (vals.length === 1) { const y = (h - vals[0] * h).toFixed(1); return wrap(`<circle cx="${(w / 2).toFixed(1)}" cy="${y}" r="3" fill="${stroke}"/>`); }
   const step = w / (vals.length - 1);
   const pts = vals.map((v, i) => `${(i * step).toFixed(1)},${(h - Math.max(0, Math.min(1, v)) * h).toFixed(1)}`).join(" ");
-  const area = `0,${h} ${pts} ${w},${h}`;
-  return `<svg class="spark" viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">
-    <polygon points="${area}" class="spark-fill"/>
-    <polyline points="${pts}" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`;
+  return wrap(`<polygon points="0,${h} ${pts} ${w},${h}" fill="${stroke}" fill-opacity="0.12"/><polyline points="${pts}" fill="none" stroke="${stroke}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`);
+}
+
+// Cumulative council win rate after each finished, predicted match (chronological).
+function councilTrend() {
+  const evs = STATE.events.filter((e) => isMatch(e) && resultOf(e)?.status === "finished" && consensusFor(e.id))
+    .sort((a, b) => Date.parse(a.kickoff) - Date.parse(b.kickoff));
+  const series = []; let c = 0, n = 0;
+  for (const e of evs) { n++; if (bucketOf(e, consensusFor(e.id).leaderPick) === resultOf(e).bucket) c++; series.push(c / n); }
+  return series;
+}
+
+// Per-model record for a single day's matches.
+function dayModelRecords(day) {
+  return STATE.models.map((m) => {
+    let c = 0, n = 0; const marks = [];
+    for (const mt of day.matches) {
+      const v = mt.con.votes.find((x) => x.modelId === m.id);
+      if (!v) { marks.push({ s: "–" }); continue; }
+      n++; const ok = bucketOf(mt.ev, v.pick) === mt.r.bucket; if (ok) c++;
+      const exact = v.scoreline === `${mt.r.home}-${mt.r.away}`;
+      marks.push({ s: exact ? "🏆" : ok ? "✓" : "✗", ok, exact });
+    }
+    return { m, c, n, marks };
+  }).filter((x) => x.n > 0).sort((a, b) => (b.c / b.n) - (a.c / a.n));
 }
 
 function openModelModal(model) {
@@ -679,6 +708,7 @@ const SVG = {
   download: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>',
   close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></svg>',
   image: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>',
+  expand: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M9 21H3v-6"/><path d="M21 3l-7 7"/><path d="M3 21l7-7"/></svg>',
 };
 
 // Lightweight overlay above the main modal (link dialog / image preview).
@@ -873,24 +903,54 @@ function dailyRecap() {
 }
 
 // Inline-styled daily card for the exported image.
+const markColor = (mk) => mk.exact ? "#fbbf24" : mk.ok ? "#34d399" : mk.s === "–" ? "#5b6172" : "#ff6b8b";
+
+// Rich inline-styled daily panel for the exported image: header, stat tiles,
+// council win-rate trend, matches, and a per-model day leaderboard.
 function buildDailyCard(day) {
   const elS = (tag, css, html) => { const n = document.createElement(tag); if (css) n.style.cssText = css; if (html != null) n.innerHTML = html; return n; };
-  const card = elS("div", "width:600px;box-sizing:border-box;padding:28px 32px 24px;background:#0e1119;color:#e8ecf4;font-family:Inter,system-ui,sans-serif;line-height:1.3");
-  const head = elS("div", "display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px");
-  head.append(elS("div", "font-size:22px;font-weight:800;color:#fff", `${fmtDay(day.date)} — ${t("dailyRecap")}`),
-    elS("div", "font-size:15px;font-weight:700;color:#19d3c5", `${day.correct}/${day.total} ${t("correct")}${day.trophyCount ? `  ·  🏆 ${day.trophyCount}` : ""}`));
-  card.append(head);
-  const list = elS("div", "display:flex;flex-direction:column;gap:10px");
+  const acc = day.total ? Math.round((day.correct / day.total) * 100) : 0;
+  const card = elS("div", "width:660px;box-sizing:border-box;padding:32px 36px 26px;background:#0e1119;color:#e8ecf4;font-family:Inter,system-ui,sans-serif;line-height:1.3");
+  card.append(elS("div", "font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#19d3c5", t("dailyRecap")));
+  card.append(elS("div", "font-size:27px;font-weight:800;color:#fff;margin:6px 0 18px", fmtDay(day.date)));
+  // stat tiles
+  const stats = elS("div", "display:flex;gap:10px;margin-bottom:20px");
+  const tile = (v, l, c) => elS("div", "flex:1;background:#161a24;border-radius:12px;padding:14px 8px;text-align:center", `<div style="font-size:24px;font-weight:800;color:${c || "#e8ecf4"}">${v}</div><div style="font-size:10px;color:#8b93a7;text-transform:uppercase;letter-spacing:.05em;margin-top:3px">${l}</div>`);
+  stats.append(tile(`${day.correct}/${day.total}`, t("correct"), "#34d399"), tile(`${acc}%`, t("accuracy")), tile(`🏆 ${day.trophyCount}`, t("exactScores"), "#fbbf24"));
+  card.append(stats);
+  // trend
+  const trend = councilTrend();
+  if (trend.length > 1) {
+    card.append(elS("div", "font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8b93a7;margin:2px 0 6px", t("councilTrend")));
+    card.append(elS("div", "color:#19d3c5;margin-bottom:18px", sparkline(trend, 590, 50)));
+  }
+  // matches
+  card.append(elS("div", "font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8b93a7;margin-bottom:8px", t("matchesLabel")));
+  const list = elS("div", "display:flex;flex-direction:column;gap:9px;margin-bottom:18px");
   for (const m of day.matches) {
-    const row = elS("div", "display:flex;align-items:center;gap:11px;font-size:14.5px");
+    const row = elS("div", "display:flex;align-items:center;gap:11px;font-size:14px");
     row.append(
-      elS("span", `width:18px;font-weight:800;color:${m.ok ? "#34d399" : "#ff6b8b"}`, m.ok ? "✓" : "✗"),
+      elS("span", `width:16px;font-weight:800;color:${m.ok ? "#34d399" : "#ff6b8b"}`, m.ok ? "✓" : "✗"),
       elS("span", "flex:1;color:#e8ecf4;font-weight:600", `${esc(m.ev.home)} ${m.r.home}-${m.r.away} ${esc(m.ev.away)}`),
-      elS("span", "color:#8b93a7", `AI: ${esc(m.con ? m.con.leaderPick : "—")}${m.trophies.length ? " 🏆" : ""}`));
+      elS("span", "color:#8b93a7", `AI: ${esc(m.con.leaderPick)}${m.trophies.length ? " 🏆" : ""}`));
     list.append(row);
   }
   card.append(list);
-  card.append(elS("div", "margin-top:20px;padding-top:14px;border-top:1px solid #232838;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#5b6172", "franklin.bet · AI council"));
+  // per-model leaderboard for the day
+  card.append(elS("div", "font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8b93a7;margin-bottom:8px", t("byModel")));
+  const bm = elS("div", "display:flex;flex-direction:column;gap:7px");
+  for (const rec of dayModelRecords(day)) {
+    const row = elS("div", "display:flex;align-items:center;gap:10px;font-size:13.5px");
+    const marks = rec.marks.map((mk) => `<span style="color:${markColor(mk)}">${mk.s}</span>`).join("<span style='display:inline-block;width:5px'></span>");
+    row.append(
+      elS("span", `width:9px;height:9px;border-radius:50%;flex:none;background:${rec.m.color}`),
+      elS("span", "flex:1;color:#c9cfdb;font-weight:500", esc(rec.m.name)),
+      elS("span", "", marks),
+      elS("span", "color:#8b93a7;width:36px;text-align:right;font-weight:700", `${rec.c}/${rec.n}`));
+    bm.append(row);
+  }
+  card.append(bm);
+  card.append(elS("div", "margin-top:22px;padding-top:14px;border-top:1px solid #232838;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#5b6172", "franklin.bet · AI council"));
   return card;
 }
 
@@ -903,6 +963,43 @@ async function shareDailyImage(day, btn) {
   showImagePreview(dataUrl, `franklin-bet-${day.date.toISOString().slice(0, 10)}.png`);
 }
 
+// Expanded daily panel — the richer view (+ what the share image captures).
+function openDailyModal(day) {
+  const { box } = subOverlay(`${fmtDay(day.date)} · ${t("dailyRecap")}`);
+  box.classList.add("daily-detail");
+  const acc = day.total ? Math.round((day.correct / day.total) * 100) : 0;
+  const grid = el("div", "md-stats");
+  const tile = (v, l, dim) => { const d = el("div", "md-tile"); d.append(el("div", "md-v" + (dim ? " dim" : ""), v), el("div", "md-l", l)); return d; };
+  grid.append(tile(`${day.correct}/${day.total}`, t("correct")), tile(`${acc}%`, t("accuracy")), tile(`🏆 ${day.trophyCount}`, t("exactScores"), !day.trophyCount));
+  box.append(grid);
+  const trend = councilTrend();
+  if (trend.length > 1) {
+    box.append(el("div", "md-section", t("councilTrend")));
+    const sp = el("div", "md-spark"); sp.innerHTML = sparkline(trend, 560, 50); box.append(sp);
+  }
+  box.append(el("div", "md-section", t("matchesLabel")));
+  for (const m of day.matches) {
+    const row = el("div", "dc-row");
+    row.append(
+      el("span", `dc-verdict ${m.ok ? "ok" : "no"}`, m.ok ? "✓" : "✗"),
+      el("span", "dc-score", `${esc(m.ev.home)} <b>${m.r.home}-${m.r.away}</b> ${esc(m.ev.away)}`),
+      el("span", "dc-aipick", `${esc(m.con.leaderPick)}${m.trophies.length ? " 🏆" : ""}`));
+    box.append(row);
+  }
+  box.append(el("div", "md-section", t("byModel")));
+  for (const rec of dayModelRecords(day)) {
+    const row = el("div", "dd-model");
+    const sw = el("span", "dd-dot"); sw.style.background = rec.m.color;
+    const marks = el("span", "dd-marks");
+    marks.innerHTML = rec.marks.map((mk) => `<span style="color:${markColor(mk)}">${mk.s}</span>`).join("");
+    row.append(sw, el("span", "dd-name", esc(rec.m.name)), marks, el("span", "dd-rec", `${rec.c}/${rec.n}`));
+    box.append(row);
+  }
+  const sh = el("button", "sub-btn sub-wide"); sh.innerHTML = SVG.image + `<span>${t("shareImg")}</span>`;
+  sh.onclick = () => shareDailyImage(day, sh);
+  box.append(sh);
+}
+
 function renderDaily() {
   const days = dailyRecap();
   $("#daily-section").hidden = days.length === 0;
@@ -912,18 +1009,20 @@ function renderDaily() {
     const head = el("div", "dc-head");
     head.append(el("div", "dc-date", esc(fmtDay(day.date))));
     head.append(el("div", "dc-record", `<b>${day.correct}/${day.total}</b> ${esc(t("correct"))}${day.trophyCount ? ` · 🏆 ${day.trophyCount}` : ""}`));
-    const sh = el("button", "dc-share modal-act"); sh.innerHTML = SVG.image; sh.title = t("imgPreviewTitle");
-    sh.onclick = () => shareDailyImage(day, sh);
-    head.append(sh);
+    const ex = el("button", "dc-share modal-act"); ex.innerHTML = SVG.expand; ex.title = t("expand");
+    ex.onclick = () => openDailyModal(day);
+    head.append(ex);
     card.append(head);
     for (const m of day.matches) {
       const row = el("div", "dc-row");
       row.append(
         el("span", `dc-verdict ${m.ok ? "ok" : "no"}`, m.ok ? "✓" : "✗"),
         el("span", "dc-score", `${esc(m.ev.home)} <b>${m.r.home}-${m.r.away}</b> ${esc(m.ev.away)}`),
-        el("span", "dc-aipick", `${esc(m.con ? m.con.leaderPick : "—")}${m.trophies.length ? " 🏆" : ""}`));
+        el("span", "dc-aipick", `${esc(m.con.leaderPick)}${m.trophies.length ? " 🏆" : ""}`));
       card.append(row);
     }
+    card.onclick = (e) => { if (!e.target.closest("button")) openDailyModal(day); };
+    card.style.cursor = "pointer";
     grid.append(card);
   }
 }

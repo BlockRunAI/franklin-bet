@@ -374,6 +374,17 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 80px; }
 .dc-score { flex: 1; color: var(--text); }
 .dc-score b { font-weight: 700; }
 .dc-aipick { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.daily-card.is-clickable, .daily-card { transition: border-color .15s; }
+.daily-card:hover { border-color: var(--border-strong); }
+/* Expanded daily detail */
+.sub-modal.daily-detail { max-width: 600px; }
+.daily-detail .dc-row { padding: 7px 0; }
+.dd-model { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-top: 1px solid var(--border); font-size: 13.5px; }
+.dd-model:first-of-type { border-top: none; }
+.dd-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.dd-name { flex: 1; color: var(--text); font-weight: 500; }
+.dd-marks { letter-spacing: 4px; font-weight: 700; }
+.dd-rec { color: var(--muted); font-weight: 700; width: 36px; text-align: right; }
 
 /* Dedicated card rendered off-screen for the exported share image.
    Explicit hex colors (no CSS vars) so html2canvas renders it reliably. */
