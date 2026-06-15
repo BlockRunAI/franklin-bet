@@ -54,7 +54,7 @@ const I18N = {
   dailyRecap: { en: "Daily recap", es: "Resumen diario", zh: "每日战况", ja: "デイリー総括" },
   correct: { en: "correct", es: "aciertos", zh: "命中", ja: "的中" },
   accuracy: { en: "Accuracy", es: "Precisión", zh: "命中率", ja: "的中率" },
-  councilTrend: { en: "Council win-rate trend", es: "Tendencia del panel", zh: "议会胜率走势", ja: "評議会の的中率推移" },
+  councilTrend: { en: "Win-rate trends · by model", es: "Tendencias por modelo", zh: "各模型胜率走势", ja: "モデル別 的中率推移" },
   byModel: { en: "By model", es: "Por modelo", zh: "各模型", ja: "モデル別" },
   matchesLabel: { en: "Matches", es: "Partidos", zh: "比赛", ja: "試合" },
   shareImg: { en: "Share as image", es: "Compartir imagen", zh: "导出为图片", ja: "画像で共有" },
@@ -477,6 +477,46 @@ function councilTrend() {
   const series = []; let c = 0, n = 0;
   for (const e of evs) { n++; if (bucketOf(e, consensusFor(e.id).leaderPick) === resultOf(e).bucket) c++; series.push(c / n); }
   return series;
+}
+
+// Per-model cumulative win-rate over the shared finished-match timeline, for the
+// multi-line trend chart. Each series carries the model's own colour.
+function modelTrends() {
+  const evs = STATE.events.filter((e) => isMatch(e) && resultOf(e)?.status === "finished" && consensusFor(e.id))
+    .sort((a, b) => Date.parse(a.kickoff) - Date.parse(b.kickoff));
+  const N = evs.length;
+  const series = [];
+  for (const m of STATE.models) {
+    if (m.retired) continue;
+    let c = 0, n = 0; const pts = [];
+    evs.forEach((e, i) => {
+      const v = consensusFor(e.id).votes.find((x) => x.modelId === m.id);
+      if (!v) return; // abstained — no point on its line
+      n++; if (bucketOf(e, v.pick) === resultOf(e).bucket) c++;
+      pts.push({ i, y: c / n });
+    });
+    if (pts.length) series.push({ model: m, pts, final: pts[pts.length - 1].y });
+  }
+  return { N, series };
+}
+
+// Multi-line win-rate chart (one coloured line per model) + legend, as an inline
+// HTML string (works in the live DOM and in html2canvas exports).
+function trendBlock(w = 590) {
+  const { N, series } = modelTrends();
+  if (N < 2 || !series.length) return "";
+  const h = 130, X = (i) => (i / (N - 1)) * w, Y = (y) => h - y * h;
+  let s = `<line x1="0" y1="${(h / 2).toFixed(1)}" x2="${w}" y2="${(h / 2).toFixed(1)}" stroke="#232838" stroke-width="1" stroke-dasharray="4 4"/>`;
+  for (const ser of series) {
+    const pts = ser.pts.map((p) => `${X(p.i).toFixed(1)},${Y(p.y).toFixed(1)}`).join(" ");
+    const last = ser.pts[ser.pts.length - 1];
+    s += `<polyline points="${pts}" fill="none" stroke="${ser.model.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><circle cx="${X(last.i).toFixed(1)}" cy="${Y(last.y).toFixed(1)}" r="3.2" fill="${ser.model.color}"/>`;
+  }
+  const svg = `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="width:100%;height:130px;display:block">${s}</svg>`;
+  const legend = `<div style="display:flex;flex-wrap:wrap;gap:7px 14px;margin-top:11px">` +
+    series.map((ser) => `<span style="display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:#c9cfdb"><span style="width:9px;height:9px;border-radius:50%;background:${ser.model.color};display:inline-block"></span>${esc(ser.model.name)} ${Math.round(ser.final * 100)}%</span>`).join("") +
+    `</div>`;
+  return svg + legend;
 }
 
 // Per-model record for a single day's matches.
@@ -919,10 +959,10 @@ function buildDailyCard(day) {
   stats.append(tile(`${day.correct}/${day.total}`, t("correct"), "#34d399"), tile(`${acc}%`, t("accuracy")), tile(`🏆 ${day.trophyCount}`, t("exactScores"), "#fbbf24"));
   card.append(stats);
   // trend
-  const trend = councilTrend();
-  if (trend.length > 1) {
+  const tb = trendBlock(590);
+  if (tb) {
     card.append(elS("div", "font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8b93a7;margin:2px 0 6px", t("councilTrend")));
-    card.append(elS("div", "color:#19d3c5;margin-bottom:18px", sparkline(trend, 590, 50)));
+    card.append(elS("div", "margin-bottom:18px", tb));
   }
   // matches
   card.append(elS("div", "font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8b93a7;margin-bottom:8px", t("matchesLabel")));
@@ -972,10 +1012,10 @@ function openDailyModal(day) {
   const tile = (v, l, dim) => { const d = el("div", "md-tile"); d.append(el("div", "md-v" + (dim ? " dim" : ""), v), el("div", "md-l", l)); return d; };
   grid.append(tile(`${day.correct}/${day.total}`, t("correct")), tile(`${acc}%`, t("accuracy")), tile(`🏆 ${day.trophyCount}`, t("exactScores"), !day.trophyCount));
   box.append(grid);
-  const trend = councilTrend();
-  if (trend.length > 1) {
+  const tb = trendBlock(560);
+  if (tb) {
     box.append(el("div", "md-section", t("councilTrend")));
-    const sp = el("div", "md-spark"); sp.innerHTML = sparkline(trend, 560, 50); box.append(sp);
+    const c = el("div"); c.innerHTML = tb; box.append(c);
   }
   box.append(el("div", "md-section", t("matchesLabel")));
   for (const m of day.matches) {
