@@ -41,6 +41,26 @@
       "status": "finished",
       "home": 2,
       "away": 0
+    },
+    "wc26-e-de-cw": {
+      "status": "finished",
+      "home": 7,
+      "away": 1
+    },
+    "wc26-f-nl-jp": {
+      "status": "finished",
+      "home": 2,
+      "away": 2
+    },
+    "wc26-e-ci-ec": {
+      "status": "finished",
+      "home": 1,
+      "away": 0
+    },
+    "wc26-f-se-tn": {
+      "status": "finished",
+      "home": 5,
+      "away": 1
     }
   }
 }
