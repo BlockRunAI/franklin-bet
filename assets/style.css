@@ -385,6 +385,7 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 80px; }
 .dd-name { flex: 1; color: var(--text); font-weight: 500; }
 .dd-marks { letter-spacing: 4px; font-weight: 700; }
 .dd-rec { color: var(--muted); font-weight: 700; width: 36px; text-align: right; }
+.dd-overall { color: var(--accent-2); font-weight: 800; width: 44px; }
 
 /* Dedicated card rendered off-screen for the exported share image.
    Explicit hex colors (no CSS vars) so html2canvas renders it reliably. */

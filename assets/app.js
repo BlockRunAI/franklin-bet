@@ -979,14 +979,17 @@ function buildDailyCard(day) {
   // per-model leaderboard for the day
   card.append(elS("div", "font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#8b93a7;margin-bottom:8px", t("byModel")));
   const bm = elS("div", "display:flex;flex-direction:column;gap:7px");
+  const wrAll = winRates();
   for (const rec of dayModelRecords(day)) {
+    const w = wrAll[rec.m.id];
+    const ov = w && w.played ? `${Math.round((w.correct / w.played) * 100)}%` : "—";
     const row = elS("div", "display:flex;align-items:center;gap:10px;font-size:13.5px");
     const marks = rec.marks.map((mk) => `<span style="color:${markColor(mk)}">${mk.s}</span>`).join("<span style='display:inline-block;width:5px'></span>");
     row.append(
       elS("span", `width:9px;height:9px;border-radius:50%;flex:none;background:${rec.m.color}`),
       elS("span", "flex:1;color:#c9cfdb;font-weight:500", esc(rec.m.name)),
       elS("span", "", marks),
-      elS("span", "color:#8b93a7;width:36px;text-align:right;font-weight:700", `${rec.c}/${rec.n}`));
+      elS("span", "color:#19d3c5;width:42px;text-align:right;font-weight:800", ov));
     bm.append(row);
   }
   card.append(bm);
@@ -1027,12 +1030,16 @@ function openDailyModal(day) {
     box.append(row);
   }
   box.append(el("div", "md-section", t("byModel")));
+  const wrAll = winRates();
   for (const rec of dayModelRecords(day)) {
+    const w = wrAll[rec.m.id];
+    const ov = w && w.played ? `${Math.round((w.correct / w.played) * 100)}%` : "—";
     const row = el("div", "dd-model");
     const sw = el("span", "dd-dot"); sw.style.background = rec.m.color;
     const marks = el("span", "dd-marks");
     marks.innerHTML = rec.marks.map((mk) => `<span style="color:${markColor(mk)}">${mk.s}</span>`).join("");
-    row.append(sw, el("span", "dd-name", esc(rec.m.name)), marks, el("span", "dd-rec", `${rec.c}/${rec.n}`));
+    // overall win rate so far (accent-coloured) after the day's ✓/✗ marks
+    row.append(sw, el("span", "dd-name", esc(rec.m.name)), marks, el("span", "dd-rec dd-overall", ov));
     box.append(row);
   }
   const sh = el("button", "sub-btn sub-wide"); sh.innerHTML = SVG.image + `<span>${t("shareImg")}</span>`;
