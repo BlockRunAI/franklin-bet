@@ -369,14 +369,17 @@ function genericCard(ev) {
 
 function renderShowdown() {
   const stats = {};
-  for (const m of STATE.models) stats[m.id] = { conf: [], solo: 0, withLeader: 0, n: 0 };
+  for (const m of STATE.models) stats[m.id] = { conf: [], solo: 0, withLeader: 0, n: 0, exact: 0 };
   for (const ev of STATE.events) {
     const con = consensusFor(ev.id); if (!con) continue;
+    const r = resultOf(ev);
+    const want = r && r.status === "finished" ? `${r.home}-${r.away}` : null;
     for (const v of con.votes) {
       const s = stats[v.modelId]; if (!s) continue;
       s.n += 1; s.conf.push(v.confidence || 0);
       if (con.soloPicks.has(v.pick)) s.solo += 1;
       if (v.pick === con.leaderPick) s.withLeader += 1;
+      if (want && v.scoreline === want) s.exact += 1;
     }
   }
   const wr = winRates();
@@ -388,6 +391,8 @@ function renderShowdown() {
     const align = s.n ? Math.round((s.withLeader / s.n) * 100) : 0;
     const card = el("div", "model-card" + (m.retired ? " is-retired" : ""));
     if (m.retired) card.append(el("span", "mc-retired-badge", t("retired")));
+    if (s.exact > 0) card.append(el("span", "mc-trophy-badge", `🏆 ${s.exact}`)); // exact-scoreline hits
+
     const head = el("div", "mc-head");
     const sw = el("span", "mc-swatch"); sw.style.background = m.color; sw.style.color = m.color; head.append(sw);
     const nm = el("div"); nm.append(el("div", "mc-name", esc(m.name)), el("div", "mc-provider", esc(m.provider))); head.append(nm);

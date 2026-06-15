@@ -253,6 +253,11 @@ main { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 80px; }
   padding: 3px 7px; border-radius: 999px; color: var(--muted);
   background: rgba(255,255,255,0.06); border: 1px solid var(--border-strong);
 }
+.mc-trophy-badge {
+  position: absolute; top: 12px; right: 12px; z-index: 2;
+  font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 999px;
+  color: #fbbf24; background: rgba(251,191,36,0.13); border: 1px solid rgba(251,191,36,0.4);
+}
 .mc-head { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
 .mc-swatch { width: 12px; height: 12px; border-radius: 50%; flex: 0 0 auto; box-shadow: 0 0 12px currentColor; }
 .mc-name { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 17px; }
