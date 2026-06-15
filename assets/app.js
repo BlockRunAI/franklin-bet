@@ -50,6 +50,7 @@ const I18N = {
   predictionsMade: { en: "Predictions", es: "Pronósticos", zh: "预测数", ja: "予測数" },
   confTrend: { en: "Confidence trend", es: "Tendencia de confianza", zh: "信心走势", ja: "確信度の推移" },
   winRateTrend: { en: "Win rate trend", es: "Tendencia de acierto", zh: "胜率走势", ja: "的中率の推移" },
+  exactScores: { en: "Exact scores", es: "Marcadores exactos", zh: "精准比分", ja: "スコア的中" },
   picksTitle: { en: "All picks", es: "Todos los pronósticos", zh: "历次预测", ja: "予測履歴" },
   noPicksYet: { en: "No predictions yet", es: "Aún sin pronósticos", zh: "暂无预测", ja: "予測なし" },
   retired: { en: "Retired", es: "Retirado", zh: "已停用", ja: "提供終了" },
@@ -425,7 +426,7 @@ function modelStats(model) {
     .filter((e) => (STATE.preds.byEvent?.[e.id] || []).some((v) => v.modelId === model.id))
     .sort((a, b) => Date.parse(a.kickoff || a.resolves || 0) - Date.parse(b.kickoff || b.resolves || 0));
   const picks = [];
-  let confSum = 0, solo = 0, withLeader = 0, correct = 0, played = 0;
+  let confSum = 0, solo = 0, withLeader = 0, correct = 0, played = 0, exactN = 0;
   for (const ev of evs) {
     const con = consensusFor(ev.id); if (!con) continue;
     const v = con.votes.find((x) => x.modelId === model.id); if (!v) continue;
@@ -433,12 +434,15 @@ function modelStats(model) {
     if (con.soloPicks.has(v.pick)) solo += 1;
     if (v.pick === con.leaderPick) withLeader += 1;
     const r = resultOf(ev);
-    let verdict = null;
-    if (r && r.status === "finished") { played += 1; verdict = bucketOf(ev, v.pick) === r.bucket ? "win" : "loss"; if (verdict === "win") correct += 1; }
-    picks.push({ ev, v, verdict });
+    let verdict = null, exact = false;
+    if (r && r.status === "finished") {
+      played += 1; verdict = bucketOf(ev, v.pick) === r.bucket ? "win" : "loss"; if (verdict === "win") correct += 1;
+      exact = !!(v.scoreline && v.scoreline === `${r.home}-${r.away}`); if (exact) exactN += 1;
+    }
+    picks.push({ ev, v, verdict, exact });
   }
   const n = picks.length;
-  return { picks, n, avg: n ? confSum / n : 0, solo, align: n ? Math.round((withLeader / n) * 100) : 0, correct, played };
+  return { picks, n, avg: n ? confSum / n : 0, solo, align: n ? Math.round((withLeader / n) * 100) : 0, correct, played, exactN };
 }
 
 // Tiny inline SVG line chart for a 0..1 series.
@@ -474,6 +478,7 @@ function openModelModal(model) {
     tile(`${s.align}%`, t("withConsensus")),
     tile(wrPct, t("winRate"), !s.played),
   );
+  if (s.exactN > 0) grid.append(tile(`🏆 ${s.exactN}`, t("exactScores")));
   box.append(grid);
 
   // Win-rate trend: cumulative World Cup win rate after each RESOLVED match,
@@ -504,7 +509,9 @@ function openModelModal(model) {
       main.append(el("div", "md-pick-ev", esc(title)));
       const pickLine = el("div", "md-pick-pick");
       pickLine.append(el("span", "md-pick-name", esc(p.v.pick)));
-      if (p.verdict) pickLine.append(el("span", "md-verdict " + p.verdict, p.verdict === "win" ? "✓" : "✗"));
+      if (p.v.scoreline) pickLine.append(el("span", "md-pick-score" + (p.exact ? " hit" : ""), esc(p.v.scoreline)));
+      if (p.exact) pickLine.append(el("span", "md-verdict", "🏆"));
+      else if (p.verdict) pickLine.append(el("span", "md-verdict " + p.verdict, p.verdict === "win" ? "✓" : "✗"));
       main.append(pickLine); row.append(main);
       row.append(el("div", "md-pick-conf", `${Math.round((p.v.confidence || 0) * 100)}%`));
       list.append(row);
@@ -586,11 +593,13 @@ function renderVote(ev, con, v, match) {
   head.append(el("span", "mv-model", esc(m.name)));
   const bucketCls = match ? ` mv-pick-${bucketOf(ev, v.pick)}` : "";
   head.append(el("span", `mv-pick${bucketCls}`, `→ ${esc(v.pick)}`));
-  if (v.scoreline) head.append(el("span", "mv-score", esc(v.scoreline)));
   const fin = match ? resultOf(ev) : null;
+  const exact = !!(fin && fin.status === "finished" && v.scoreline && v.scoreline === `${fin.home}-${fin.away}`);
+  if (v.scoreline) head.append(el("span", "mv-score" + (exact ? " hit" : ""), esc(v.scoreline)));
   if (fin && fin.status === "finished") {
     const ok = bucketOf(ev, v.pick) === fin.bucket;
     head.append(el("span", `mv-verdict ${ok ? "ok" : "no"}`, ok ? "✓" : "✗"));
+    if (exact) head.append(el("span", "mv-trophy", "🏆")); // nailed the exact score
   }
   if (v.pick === con.leaderPick && con.agreeCount > 1) head.append(el("span", "mv-lead-tag", t("consensusTag")));
   else if (con.soloPicks.has(v.pick)) head.append(el("span", "mv-contrarian-tag", t("soloTag")));
@@ -774,7 +783,9 @@ function buildShareCard(ev, con) {
     for (const v of votes) {
       const m = modelMeta(v.modelId);
       const row = elS("div", "display:flex;align-items:center;gap:11px;font-size:14.5px");
-      const verdict = fin && fin.status === "finished" ? (bucketOf(ev, v.pick) === fin.bucket ? " ✓" : " ✗") : "";
+      const done = fin && fin.status === "finished";
+      const exact = !!(done && v.scoreline && v.scoreline === `${fin.home}-${fin.away}`);
+      const verdict = done ? (exact ? " 🏆" : bucketOf(ev, v.pick) === fin.bucket ? " ✓" : " ✗") : "";
       // Last column: the model's predicted scoreline (falls back to confidence
       // for older predictions that have no scoreline).
       const tail = v.scoreline ? esc(v.scoreline) : `${Math.round((v.confidence || 0) * 100)}%`;
@@ -782,7 +793,7 @@ function buildShareCard(ev, con) {
         elS("span", `width:11px;height:11px;border-radius:50%;flex:none;background:${m.color}`),
         elS("span", "flex:1;color:#c9cfdb;font-weight:500", esc(m.name)),
         elS("span", "color:#19d3c5;font-weight:600", `${esc(v.pick)}${verdict}`),
-        elS("span", "color:#c9cfdb;font-weight:700;width:52px;text-align:right", tail));
+        elS("span", `font-weight:700;width:52px;text-align:right;color:${exact ? "#fbbf24" : "#c9cfdb"}`, tail));
       grid.append(row);
     }
     card.append(grid);
