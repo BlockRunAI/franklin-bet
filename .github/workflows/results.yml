@@ -8,8 +8,10 @@ name: Refresh results
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/30 * * * *"   # every 30 min — refreshes scores during match days
+  # schedule disabled while the org's GitHub Actions are locked by a billing
+  # issue — re-enable once billing is resolved.
+  # schedule:
+  #   - cron: "*/30 * * * *"   # every 30 min — refreshes scores during match days
 
 permissions:
   contents: write
