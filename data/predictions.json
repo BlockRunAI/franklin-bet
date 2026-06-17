@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-15T07:16:30.624Z",
+  "generatedAt": "2026-06-17T09:45:52.003Z",
   "source": "blockrun",
   "engine": "agent",
   "tier": "flagship",
@@ -5872,6 +5872,1439 @@
         "tokens": {
           "inputTokens": 1635,
           "outputTokens": 189
+        }
+      }
+    ],
+    "wc26-k-pt-cd": [
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Portugal",
+        "confidence": 0.74,
+        "rationale": "Portugal's elite squad heavily outclasses DR Congo despite typical opening-match unpredictability.",
+        "analysis": "FanDuel lists Portugal at -360 (~78% implied) on the 90-minute moneyline, DR Congo at +1000 (~9%), and the draw at +460 (~18%), making this one of the most one-sided group fixtures. Portugal field a top-5 FIFA side with elite depth (Bruno Fernandes, Vitinha, Leão, Ronaldo) under Roberto Martinez. DR Congo are an improving, physical African side but are clear underdogs with far less individual quality. The strongest counter is opening-match nerves and World Cup upset variance, but the talent gulf and bookmaker consensus justify backing Portugal. I shade slightly below the implied 78% to account for draw-bias and early-tournament caution.",
+        "marketOdds": "FanDuel: Portugal -360 (~78%), Draw +460 (~18%), DR Congo +1000 (~9%); no prediction-market match found",
+        "scoreline": "2-0",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 World Cup Group K Portugal DR Congo June 17 NRG Stadium",
+            "summary": "Search results for \"2026 World Cup Group K Portugal DR Congo June 17 NRG Stadium\": 1. Portugal vs. Congo DR - NRG Park https://www.nrgpark.com/event/portugal-vs-congo-dr/ Event Details FIFA World Cup 2026™ Group K - Match 23 This event will be held in Houston Stadium Heading to …",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal DR Congo World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Portugal vs DR Congo World Cup 2026 betting odds prediction",
+            "summary": "Search results for \"Portugal vs DR Congo World Cup 2026 betting odds prediction\": 1. Portugal vs DR Congo: World Cup 2026 Odds & Predictions https://worldfootball26.com/portugal-vs-dr-congo-world-cup-2026-odds-predictions/ Portugal vs DR Congo World Cup 2026 preview, odds, predi…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · Portugal World Cup winner",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2,
+          "outputTokens": 618
+        }
+      },
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Portugal",
+        "confidence": 0.78,
+        "rationale": "Portugal’s elite attacking depth and squad quality should overwhelm a disciplined but lower-ceiling DR Congo side.",
+        "analysis": "Current previews and team-news pages list Portugal as clear favorites for the Group K opener, with no major squad signal strong enough to downgrade them materially. DR Congo have athleticism and tournament uncertainty on their side, and opening matches can be tighter than ratings suggest. Still, Portugal’s talent edge, experience, and multiple match-winners make the win the decisive side rather than a draw upset.",
+        "marketOdds": "n/a",
+        "scoreline": "2-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal DR Congo World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "DR Congo national team injuries squad World Cup June 2026 Portugal",
+            "summary": "Search results for \"DR Congo national team injuries squad World Cup June 2026 Portugal\": 1. DR Congo World Cup Squad 2026: Full 26-Player Roster https://worldcuppass.com/dr-congo-world-cup-squad-2026/ Ranked 46th by FIFA in June 2026, the Leopards open Group K against Portugal, …",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · World Cup Group K Portugal Congo",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal win World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Portugal World Cup 2026 squad injuries DR Congo June 17 2026",
+            "summary": "Search results for \"Portugal World Cup 2026 squad injuries DR Congo June 17 2026\": 1. Team News: Portugal vs. Congo DR injury, suspension list, predicted XIs https://www.sportsmole.co.uk/football/portugal/world-cup-2026/team-news/portugal-vs-congo-dr-injury-suspension-list-predi…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Portugal vs DR Congo odds June 17 2026 World Cup betting odds",
+            "summary": "Search results for \"Portugal vs DR Congo odds June 17 2026 World Cup betting odds\": 1. Portugal vs. Congo DR (Jun 17, 2026) Odds and Spread - ESPN https://www.espn.com/soccer/odds/_/gameId/760435 Find the latest odds, spread and score prediction for the Portugal vs. Congo DR Fif…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.espn.com/soccer/odds/_/gameId/760435",
+            "summary": "URL: https://www.espn.com/soccer/odds/_/gameId/760435 Status: 200 Content-Type: text/html; charset=utf-8 Portugal vs. Congo DR (Jun 17, 2026) Odds and Spread - ESPN div.HeaderScoreboardContainer, div.Ad, div.sponsored-content { display: none !important; } .page-container, .Nav__…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsmole.co.uk/football/portugal/world-cup-2026/team-news/portugal-vs-congo-dr-injury-suspension-list-predicted-xis_599290.html",
+            "summary": "URL: https://www.sportsmole.co.uk/football/portugal/world-cup-2026/team-news/portugal-vs-congo-dr-injury-suspension-list-predicted-xis_599290.html Status: 200 Content-Type: text/html Team News: Portugal vs. Congo DR injury, suspension list, predicted XIs - Sports Mole Menu Loadi…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Sports Mole Portugal Congo DR prediction World Cup 2026 team news June 17 2026",
+            "summary": "Search results for \"Sports Mole Portugal Congo DR prediction World Cup 2026 team news June 17 2026\": 1. Preview: Portugal vs Congo DR - prediction, team news, lineups https://www.sportsmole.co.uk/football/portugal/world-cup-2026/preview/portugal-vs-congo-dr-prediction-team-news-…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2846,
+          "outputTokens": 307
+        }
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Portugal",
+        "confidence": 0.85,
+        "rationale": "Portugal's overwhelming talent, midfield creativity, and tournament experience will prove too much for a resilient but overmatched DR Congo side.",
+        "analysis": "Portugal enters this match with a deeply talented roster, featuring global stars alongside a highly motivated Cristiano Ronaldo in his sixth World Cup. While DR Congo's qualification shows they are a capable side with physical resilience, they lack the top-level international experience to effectively contain Portugal's multi-faceted attack. Even if DR Congo successfully defends in a low block initially, Portugal's midfield creativity and bench depth provide too many avenues to eventually break them down, leading to a comfortable win.",
+        "marketOdds": "n/a",
+        "scoreline": "2-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal DR Congo",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Portugal\" \"DR Congo\" match 2026 World Cup",
+            "summary": "Search results for \"\"Portugal\" \"DR Congo\" match 2026 World Cup\": 1. Portugal vs DR Congo Preview, Starting XI & Prediction - 2026 World Cup https://www.fifaworldcupnews.com/portugal-vs-dr-congo-2026-fifa-world-cup/ Portugal should get the job done comfortably after a strong perf…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Portugal vs DR Congo odds 2026 World Cup",
+            "summary": "Search results for \"Portugal vs DR Congo odds 2026 World Cup\": 1. Portugal vs DR Congo: World Cup 2026 Odds & Predictions https://worldfootball26.com/portugal-vs-dr-congo-world-cup-2026-odds-predictions/ Portugal vs DR Congo World Cup 2026 preview, odds, predictions, betting tip…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 4560,
+          "outputTokens": 1326
+        }
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Portugal",
+        "confidence": 0.88,
+        "rationale": "Portugal vastly superior in talent, ranking and form vs DR Congo.",
+        "analysis": "Portugal ranked ~7th globally with stars like Ronaldo; DR Congo ~60th with far less depth. Previews label Portugal heavy favorites expected to win comfortably at NRG Stadium. DR Congo competitive in Africa but unlikely to trouble elite European sides in World Cup group stage. No markets pricing this yet but consensus clear.",
+        "marketOdds": "n/a",
+        "scoreline": "3-0",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "Portugal vs DR Congo 2026 World Cup prediction odds",
+            "summary": "Search results for \"Portugal vs DR Congo 2026 World Cup prediction odds\": 1. Portugal vs DR Congo: World Cup 2026 Odds & Predictions https://worldfootball26.com/portugal-vs-dr-congo-world-cup-2026-odds-predictions/ Portugal vs DR Congo World Cup 2026 preview, odds, predictions, …",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal DR Congo World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "ExaSearch",
+            "query": "Portugal vs DR Congo 2026 FIFA World Cup preview prediction expected result",
+            "summary": "No Exa results for \"Portugal vs DR Congo 2026 FIFA World Cup preview prediction expected result\".",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Portugal\" \"DR Congo\" FIFA ranking OR strength",
+            "summary": "Search results for \"\"Portugal\" \"DR Congo\" FIFA ranking OR strength\": 1. Portugal vs DR Congo Preview, Starting XI & Prediction - FIFA World Cup ... https://www.fifaworldcupnews.com/portugal-vs-dr-congo-2026-fifa-world-cup/ Full Portugal vs DR Congo 2026 FIFA World Cup preview wi…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.fifaworldcupnews.com/portugal-vs-dr-congo-2026-fifa-world-cup/",
+            "summary": "URL: https://www.fifaworldcupnews.com/portugal-vs-dr-congo-2026-fifa-world-cup/ Status: 200 Content-Type: text/html; charset=UTF-8 Portugal vs DR Congo Preview, Starting XI & Prediction - 2026 World Cup ... (content truncated)",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1212,
+          "outputTokens": 116
+        }
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Portugal",
+        "confidence": 0.85,
+        "rationale": "Portugal's attacking depth overwhelms an industrious but outmatched DR Congo side returning to the World Cup after 52 years.",
+        "analysis": "Portugal enters Group K as a heavy favorite with world-class talent across all lines including Bruno Fernandes, Bernardo Silva, Rafael Leão, and a resolute defense. DR Congo achieved a monumental feat qualifying via intercontinental playoffs after a half-century absence, but their squad — built around the likes of Chancel Mbemba and Yoane Wissa — lacks the elite experience needed at this level. The Leopards' best counter-argument is their physicality and disciplined 4-2-3-1 block, but Portugal's ability to stretch play wide and exploit set-pieces makes a clean sheet for DR Congo unlikely. The Houston humidity could narrow the gap slightly, yet Portugal's superior depth and tournament pedigree easily carry them to three points in this opener.",
+        "marketOdds": "n/a",
+        "scoreline": "3-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal DR Congo World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal DR Congo",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "DR Congo football team recent results 2025 2026",
+            "summary": "Search results for \"DR Congo football team recent results 2025 2026\": 1. Congo DR 2026 Results - ESPN https://www.espn.com/soccer/team/results/_/id/2850/rdc Get all the Congo DR results for the 2026 season on ESPN. Includes all the Congo DR results from all national and internat…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "DR Congo World Cup 2026 Africa qualifiers results group",
+            "summary": "Search results for \"DR Congo World Cup 2026 Africa qualifiers results group\": 1. African results and fixtures | FIFA World Cup 2026 qualifying https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/african-qualifying-results-fixtures-fifa-world-cup-26 Fin…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "DR Congo World Cup 2026 CAF qualification standing group points",
+            "summary": "Search results for \"DR Congo World Cup 2026 CAF qualification standing group points\": 1. CAF Standings | FIFA World Cup 26™ Qualifiers https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/qualifiers/caf/standings View the current standings of the FIFA World Cup …",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Portugal national team results 2025 2026 World Cup qualifiers UEFA",
+            "summary": "Search results for \"Portugal national team results 2025 2026 World Cup qualifiers UEFA\": 1. Portugal 2025 FIFA World Cup Qualifying - UEFA Results - ESPN https://www.espn.com/soccer/team/results/_/id/482/league/FIFA.WORLDQ.UEFA Get all the Portugal results for the 2025 FIFA Worl…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "DR Congo qualify World Cup 2026 group stage draw",
+            "summary": "Search results for \"DR Congo qualify World Cup 2026 group stage draw\": 1. DR Congo & Iraq Qualify for 2026 World Cup: Final Playoff Results ... https://www.archysport.com/2026/04/dr-congo-iraq-qualify-for-2026-world-cup-final-playoff-results-group-stage-draw/ The 2026 FIFA World…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "2026 World Cup Group K Portugal DR Congo match preview June 17",
+            "summary": "Search results for \"2026 World Cup Group K Portugal DR Congo match preview June 17\": 1. Portugal vs DR Congo Preview, Starting XI & Prediction - 2026 World Cup https://www.fifaworldcupnews.com/portugal-vs-dr-congo-2026-fifa-world-cup/ Full Portugal vs DR Congo 2026 FIFA World Cu…",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 3 URL(s).",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2941,
+          "outputTokens": 105
+        }
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Portugal",
+        "confidence": 0.78,
+        "rationale": "Portugal heavily favored (-360 ML); DR Congo ranked much lower with limited World Cup pedigree.",
+        "analysis": "FanDuel lists Portugal as -360 moneyline favorites (≈78% implied), with DR Congo at +1000 and draw at +460. Portugal's squad depth with Ronaldo, Fernandes, and Dias far exceeds DR Congo's, who qualified via playoffs but lack elite-level starters. The lone counter-argument is opening-match nerves and potential Group K banana skin, but the talent gap is too wide. The one-sided fixture should resolve comfortably in regulation. Predict 2-0 with Portugal controlling possession and converting chances.",
+        "marketOdds": "FanDuel: Portugal -360 (≈78%), Draw +460 (≈18%), DR Congo +1000 (≈9%)",
+        "scoreline": "2-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal DR Congo 2026 World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup draw group stage fixtures Group K",
+            "summary": "Search results for \"2026 FIFA World Cup draw group stage fixtures Group K\": 1. World Cup 2026 Group K draw: Match schedule and fixtures for Portugal ... https://www.sportingnews.com/us/soccer/news/world-cup-2026-group-k-draw-teams-schedule-fixtures/e10475b7c39b489bb79bd58c Here&…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Portugal vs DR Congo World Cup 2026 prediction odds",
+            "summary": "Search results for \"Portugal vs DR Congo World Cup 2026 prediction odds\": 1. Portugal vs DR Congo: World Cup 2026 Odds & Predictions https://worldfootball26.com/portugal-vs-dr-congo-world-cup-2026-odds-predictions/ Portugal vs DR Congo World Cup 2026 preview, odds, predictions, …",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2146,
+          "outputTokens": 21
+        }
+      },
+      {
+        "modelId": "moonshot/kimi-k2.7",
+        "pick": "Portugal",
+        "confidence": 0.84,
+        "rationale": "Portugal's elite squad and depth heavily outweigh a World Cup debutant DR Congo side.",
+        "analysis": "The 2026 World Cup expanded format placed Portugal, Colombia, DR Congo, and Uzbekistan in Group K, with markets pricing Portugal as the clear favorite to advance. Portugal fields a top-five FIFA-ranked roster led by world-class attacking talent and Champions League regulars, while DR Congo is making its first World Cup appearance and lacks comparable depth. Prediction markets give Portugal roughly a 63% chance to advance from the group and price DR Congo near the bottom, so a Portugal win is strongly implied. The main counterargument is that DR Congo's athletic, physical style and low expectations could produce a defensive upset in a single match, but the talent gap plus opening-match motivation make Portugal the sound bet.",
+        "marketOdds": "Polymarket/Kalshi: Group K last-place heavily favored for DR Congo/Uzbekistan; Portugal 62.7% to advance",
+        "scoreline": "2-0",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group K Portugal DR Congo NRG Stadium June 17 2026 schedule",
+            "summary": "Search results for \"2026 FIFA World Cup Group K Portugal DR Congo NRG Stadium June 17 2026 schedule\": 1. Group K World Cup 2026: Schedule, Teams, Standings & Results https://worldcuppass.com/group-k-world-cup-2026/ Group K World Cup 2026: see the full schedule, teams, live stand…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Portugal vs DR Congo World Cup 2026 odds prediction moneyline",
+            "summary": "Search results for \"Portugal vs DR Congo World Cup 2026 odds prediction moneyline\": 1. Portugal vs DR Congo: World Cup 2026 Odds & Prediction https://www.oddsshopper.com/articles/expert-picks/portugal-vs-dr-congo-world-cup Portugal vs DR Congo odds and prediction for the 2026 Wo…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Portugal vs DR Congo 2026 World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Polymarket Portugal DR Congo 2026 World Cup Group K",
+            "summary": "Search results for \"Polymarket Portugal DR Congo 2026 World Cup Group K\": 1. World Cup: Group K Second Place Predictions & Odds 2026 | Polymarket https://polymarket.com/event/world-cup-group-k-second-place-20260605153109381 Magic \"World Cup: Group K Second Place\" is a prediction…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Portugal DR Congo football rankings head to head squad form 2026",
+            "summary": "Search results for \"Portugal DR Congo football rankings head to head squad form 2026\": 1. Portugal vs Congo DR Stats, H2H, xG | FootyStats https://footystats.org/international/portugal-national-team-vs-congo-dr-national-team-h2h-stats Head to Head, live stats, live scores, and p…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2695,
+          "outputTokens": 227
+        }
+      }
+    ],
+    "wc26-l-gbe-hr": [
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "England",
+        "confidence": 0.5,
+        "rationale": "England's elite qualifying form and depth edge an aging, resilient Croatia in the opener.",
+        "analysis": "England qualified with a perfect 8-0 record and 8 clean sheets, the first UEFA nation to book a 2026 spot, and have lost only one of their last eight World Cup openers. They dispatched Costa Rica comfortably in their final warm-up, though March friendly stumbles against Uruguay and Japan exposed some cracks. Croatia remain a battle-hardened tournament side that habitually outperforms expectations, so a cagey opener and a draw are genuine risks against an aging but disciplined squad. No prediction markets were live for this fixture yet, but bookmaker previews favor England to edge it; I land on a narrow England win with modest confidence given opening-match unpredictability and Croatia's resilience.",
+        "marketOdds": "n/a",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 World Cup England Croatia June 17 Group L preview",
+            "summary": "Search results for \"2026 World Cup England Croatia June 17 Group L preview\": 1. Preview: England vs Croatia - prediction, team news, lineups | World ... https://www.sportsmole.co.uk/football/england/world-cup-2026/preview/england-vs-croatia-prediction-team-news-lineups_599262.ht…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England Croatia World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.forebet.com/en/football-match-previews/28618-england-backed-to-edge-croatia-in-group-l-test",
+            "summary": "HTTP 403 Forbidden for https://www.forebet.com/en/football-match-previews/28618-england-backed-to-edge-croatia-in-group-l-test — www.forebet.com likely blocks automated fetch. Try WebSearch for the same query, or fetch a different domain that publishes the same data.",
+            "isError": true
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · England Croatia",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsmole.co.uk/football/england/world-cup-2026/preview/england-vs-croatia-prediction-team-news-lineups_599262.html",
+            "summary": "URL: https://www.sportsmole.co.uk/football/england/world-cup-2026/preview/england-vs-croatia-prediction-team-news-lineups_599262.html Status: 200 Content-Type: text/html Preview: England vs Croatia - prediction, team news, lineups | World Cup 2026 - Sports Mole Menu Loading... W…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2,
+          "outputTokens": 451
+        }
+      },
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "England",
+        "confidence": 0.55,
+        "rationale": "England’s deeper attacking squad and market favoritism outweigh Croatia’s tournament pedigree and midfield control.",
+        "analysis": "Current sportsbook listings and previews place England as the clear favorite for the June 17 Group L match at AT&T Stadium. England project to have more prime-age attacking depth, while Croatia remain dangerous but are more dependent on an aging core and lower-margin midfield control. The strongest counter-argument is Croatia’s proven ability to frustrate elite opponents in major tournaments, including past success against England. I still land on England because their squad ceiling, depth, and likely chance creation are superior over 90 minutes.",
+        "marketOdds": "Prediction markets: no liquid direct market found; sportsbook odds broadly imply England ~52-56%, Draw ~25-28%, Croatia ~19-22%",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England Croatia World Cup 2026 Group L",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England vs Croatia",
+            "summary": "## Cross-platform market search · \"England vs Croatia\" _Searched Polymarket, Kalshi, Limitless, Opinion, Predict.Fun in one call._ 1. **[unknown]** Will the announcers say \"Goal\" 20+ times during the England vs Croatia FIFA World Cup Match? 2. **[unknown]** England vs Croatia Wi…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · England vs Croatia Winner",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England Croatia Winner",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "England national team Croatia injuries lineup June 2026 World Cup",
+            "summary": "Search results for \"England national team Croatia injuries lineup June 2026 World Cup\": 1. England vs. Croatia injury suspension list and return dates for World ... https://www.sportsmole.co.uk/football/england/world-cup-2026/injuries-and-suspensions/rice-saka-latest-england-vs-…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.standard.co.uk/sport/football/england-xi-vs-croatia-confirmed-team-news-predicted-lineup-injury-latest-world-cup-2026-b1286032.html",
+            "summary": "URL: https://www.standard.co.uk/sport/football/england-xi-vs-croatia-confirmed-team-news-predicted-lineup-injury-latest-world-cup-2026-b1286032.html Status: 200 Content-Type: text/html; charset=utf-8 England XI vs Croatia: Predicted lineup, confirmed team news, injury latest for…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "England vs Croatia odds World Cup 2026 June 17 2026",
+            "summary": "Search results for \"England vs Croatia odds World Cup 2026 June 17 2026\": 1. England vs. Croatia (Jun 17, 2026) Odds and Spread - ESPN https://www.espn.com/soccer/odds/_/gameId/760437 Find the latest odds, spread and score prediction for the England vs. Croatia Fifa World Cup ga…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.cbssports.com/soccer/news/england-vs-croatia-odds-picks-prediction-betting-preview-start-time-for-2026-world-cup-match-on-wednesday/",
+            "summary": "URL: https://www.cbssports.com/soccer/news/england-vs-croatia-odds-picks-prediction-betting-preview-start-time-for-2026-world-cup-match-on-wednesday/ Status: 200 Content-Type: text/html; charset=UTF-8 England vs. Croatia odds, picks, prediction, betting preview, start time for 2…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.espn.com/soccer/odds/_/gameId/760437",
+            "summary": "URL: https://www.espn.com/soccer/odds/_/gameId/760437 Status: 200 Content-Type: text/html; charset=utf-8 England vs. Croatia (Jun 17, 2026) Odds and Spread - ESPN .page-container, .Nav__Primary__Menu, .Nav__Secondary__Menu, .NavSecondary--GamePackage, .SoccerPerformers--gamepack…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2834,
+          "outputTokens": 176
+        }
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "England",
+        "confidence": 0.6,
+        "rationale": "England's flawless 8-0-0 qualifying campaign under Thomas Tuchel makes them strong favorites against an aging Croatian side.",
+        "analysis": "England arrives at the 2026 World Cup in formidable form, having won all eight of their qualifying matches with a 22-0 goal difference under Thomas Tuchel. While Croatia boasts impressive tournament pedigree and tactical resilience, their transitional squad is likely to struggle against England's dynamic attack and ironclad defense. Sportsbooks currently list England at 4/5 to win this Group L opener, reflecting strong consensus confidence in a clean-sheet victory for the Three Lions.",
+        "marketOdds": "Sportsbooks: England 4/5 (55.6%)",
+        "scoreline": "2-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England Croatia",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"England vs Croatia\" 2026 World Cup Group L preview odds predictions",
+            "summary": "Search results for \"\"England vs Croatia\" 2026 World Cup Group L preview odds predictions\": 1. England vs Croatia World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/england-v-croatia-predictions England won all eight qualif…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 3976,
+          "outputTokens": 1465
+        }
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "England",
+        "confidence": 0.73,
+        "rationale": "England's superior squad depth and attacking quality outweigh Croatia's experience in this mismatch.",
+        "analysis": "England hold a strong historical edge over Croatia and enter with far greater individual talent. Croatia's core is aging rapidly after their 2022 peak with limited reinforcements evident in 2025-26 form. No live betting markets yet but preview odds universally favor England heavily at home in Texas. Strongest counter is Croatia's set-piece organization but unlikely to offset England's overall superiority.",
+        "marketOdds": "n/a",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "England vs Croatia 2026 FIFA World Cup prediction odds",
+            "summary": "Search results for \"England vs Croatia 2026 FIFA World Cup prediction odds\": 1. England vs. Croatia 2026 World Cup predictions, odds, pick https://clutchpoints.com/soccer/england-vs-croatia-2026-world-cup-predictions-odds-pick The 2026 World Cup Group L starts with England vs. C…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"England\" \"Croatia\" \"win probability\" OR odds 2026 World Cup",
+            "summary": "No results found for: \"England\" \"Croatia\" \"win probability\" OR odds 2026 World Cup",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England Croatia 2026 World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "current form England Croatia 2026",
+            "summary": "Search results for \"current form England Croatia 2026\": 1. England vs Croatia Prediction & Odds | 2026 World Cup Betting Preview https://spookyexpress.com/soccer/england-vs-croatia-prediction-2026-world-cup/ England face Croatia in a highly anticipated 2026 World Cup Group L cla…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "England vs Croatia head to head recent results",
+            "summary": "Search results for \"England vs Croatia head to head recent results\": 1. England vs Croatia Head to Head History - AiScore https://www.aiscore.com/head-to-head/soccer-croatia-vs-england England vs Croatia Head to Head results record history. H2H stats and prediction, goals, past …",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1553,
+          "outputTokens": 130
+        }
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "England",
+        "confidence": 0.6,
+        "rationale": "England's superior squad depth and perfect qualifying campaign (8 wins, 22-0 GD) outweigh Croatia's aging golden generation fading by 2026.",
+        "analysis": "Market pricing from Bet365 gives England a 56% implied probability (odds ~1.74), which aligns with FootballExplorer's AI model. England won all eight qualifying matches with a perfect 22-0 goal differential, showcasing defensive solidity and attacking firepower. Croatia's 2018 and 2022 tournament overachievement relied on a now-aging core (Modric will be 40 by kickoff), while England's young stars (Bellingham, Saka, Foden) will be entering their prime years. The strongest counter-argument is Croatia's historical resilience in big matches, but the talent gap has widened significantly by 2026. I lean slightly above market consensus at 60% given the timeline tilting decisively toward England's next generation.",
+        "marketOdds": "Bet365 implied: England 56%, Draw 25%, Croatia 20%",
+        "scoreline": "2-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England Croatia World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchKalshi · England Croatia",
+            "summary": "No Kalshi markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "2026 World Cup England Croatia Group L odds prediction",
+            "summary": "Search results for \"2026 World Cup England Croatia Group L odds prediction\": 1. England vs. Croatia 2026 World Cup predictions, odds, pick https://clutchpoints.com/soccer/england-vs-croatia-2026-world-cup-predictions-odds-pick The 2026 World Cup Group L starts with England vs. C…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.rotowire.com/soccer/article/england-vs-croatia-picks-tips-odds-best-bets-2026-world-cup-group-l-118497",
+            "summary": "URL: https://www.rotowire.com/soccer/article/england-vs-croatia-picks-tips-odds-best-bets-2026-world-cup-group-l-118497 Status: 200 Content-Type: text/html; charset=UTF-8 England vs Croatia Picks, Tips, Odds & Best Bets | RotoWire window.__RW_NAV_DATA__ = {\"menus\":[{\"sectionID\":…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://worldfootball26.com/england-vs-croatia-world-cup-2026-odds-predictions/",
+            "summary": "URL: https://worldfootball26.com/england-vs-croatia-world-cup-2026-odds-predictions/ Status: 200 Content-Type: text/html; charset=UTF-8 England Vs Croatia: World Cup 2026 Odds & Predictions, - World Football26 .wp-block-image>a,.wp-block-image>figure>a{display:inline-block}.wp-b…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/england-v-croatia-predictions",
+            "summary": "URL: https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/england-v-croatia-predictions Status: 200 Content-Type: text/html; charset=UTF-8 England vs Croatia World Cup 2026 Predictions and Best Bets {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"NewsArticle…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"England vs Croatia\" \"World Cup 2026\" prediction pick odds June 2026",
+            "summary": "Search results for \"\"England vs Croatia\" \"World Cup 2026\" prediction pick odds June 2026\": 1. England vs Croatia World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/england-v-croatia-predictions England won all eight qualif…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://sports.yahoo.com/articles/england-vs-croatia-prediction-world-100000619.html",
+            "summary": "URL: https://sports.yahoo.com/articles/england-vs-croatia-prediction-world-100000619.html Status: 200 Content-Type: text/html; charset=utf-8 England vs Croatia Prediction: World Cup 2026 Preview & Best Bets - Yahoo Sports (self.__next_s=self.__next_s||[]).push([0,{\"children\":\"!f…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.footballexplorer.com/en/world-cup-2026/matches/england-vs-croatia",
+            "summary": "URL: https://www.footballexplorer.com/en/world-cup-2026/matches/england-vs-croatia Status: 200 Content-Type: text/html; charset=utf-8 England vs Croatia Prediction & Odds — World Cup 2026 | FootballExplorer Group L · FIFA World Cup 2026 England vs Croatia Wed, 17 June 2026 AT&T …",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 4474,
+          "outputTokens": 244
+        }
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "England",
+        "confidence": 0.55,
+        "rationale": "England dominated qualifying 22-0 and beat Croatia in recent H2H; favored at ~4/5.",
+        "analysis": "England enter as clear Group L favorites after winning all eight qualifiers with a 22-0 aggregate, and bookmakers list them around 4/5 (~55%) implying a tight but real edge. Croatia's core (Modric-era) has aged and they lack a comparable striker to Kane, while England have recent H2H wins including Euro 2020 and Nations League. The strongest counter is Croatia's knockout pedigree against England (2018 WC semifinal, Euro 2008 qualifiers), and a tense opener at AT&T Stadium could go either way, but squad depth and form favor the Three Lions. Market agrees England are favorites but the line is short, so I'm sizing accordingly.",
+        "marketOdds": "England ~55%, Draw ~25%, Croatia ~20% (bookmaker consensus)",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England vs Croatia 2026 FIFA World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "England vs Croatia 2026 FIFA World Cup Group L prediction",
+            "summary": "Search results for \"England vs Croatia 2026 FIFA World Cup Group L prediction\": 1. England vs. Croatia 2026 World Cup predictions, odds, pick https://clutchpoints.com/soccer/england-vs-croatia-2026-world-cup-predictions-odds-pick The 2026 World Cup Group L starts with England vs…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://clutchpoints.com/soccer/england-vs-croatia-2026-world-cup-predictions-odds-pick",
+            "summary": "URL: https://clutchpoints.com/soccer/england-vs-croatia-2026-world-cup-predictions-odds-pick Status: 200 Content-Type: text/html; charset=utf-8 England vs. Croatia 2026 World Cup predictions, odds, pick NBA Eastern Atlantic Boston Celtics Brooklyn Nets New York Knicks Philadelph…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2277,
+          "outputTokens": 21
+        }
+      },
+      {
+        "modelId": "moonshot/kimi-k2.7",
+        "pick": "England",
+        "confidence": 0.58,
+        "rationale": "England's deeper, younger attacking talent outweighs Croatia's ageing core in hot opener.",
+        "analysis": "England enter the match as Group L favorites with a strong 2026 squad under Thomas Tuchel led by Kane, Bellingham and Foden, while Croatia relies heavily on 40-year-old Luka Modric and an aging spine. Croatia's 2018 semifinal revenge and tournament resilience is the main counter, but their legs and squad depth are weaker in a Texas heat opener. The most likely outcome is a narrow England win after Croatia's organized defending is eventually broken.",
+        "marketOdds": "No dedicated England vs Croatia match market found on prediction platforms",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · England Croatia 2026 World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group L England Croatia AT&T Stadium June 17",
+            "summary": "Search results for \"2026 FIFA World Cup Group L England Croatia AT&T Stadium June 17\": 1. FIFA World Cup 26 Group Stage Match: England v Croatia https://attstadium.com/events/fifa-world-cup-group-2/ FIFA World Cup 26 Group Stage Match: England v Croatia June 17, 2026 FIFA World …",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "England national team form 2026 World Cup squad Croatia 2026 form",
+            "summary": "Search results for \"England national team form 2026 World Cup squad Croatia 2026 form\": 1. Meet England&#x27;s 2026 World Cup squad: All 26 players picked by ... - ESPN https://www.espn.com/football/story/_/id/48823863/meet-england-2026-world-cup-squad-26-players-picked-thomas-t…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Croatia World Cup 2026 squad Modric retire national team form June 2026",
+            "summary": "Search results for \"Croatia World Cup 2026 squad Modric retire national team form June 2026\": 1. Croatia World Cup 2026 Squad: Modric&#x27;s Fifth World Cup, Full Official ... https://sportsoctagon.com/croatia-world-cup-2026-squad-modrics-fifth-world-cup-full-official-player-lis…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "England vs Croatia head to history 2018 World Cup semi final Nations League",
+            "summary": "Search results for \"England vs Croatia head to history 2018 World Cup semi final Nations League\": 1. World Cup semi-final: England lose 2-1 to Croatia in extra time https://www.bbc.co.uk/sport/football/44706648 England&#x27;s bid to reach a first World Cup final since 1966 ends …",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 3237,
+          "outputTokens": 155
+        }
+      }
+    ],
+    "wc26-l-gh-pa": [
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Ghana",
+        "confidence": 0.42,
+        "rationale": "Ghana modestly favored as higher-talent side under Queiroz, but Panama's organization keeps it close.",
+        "analysis": "Multiple previews (Yahoo, Squawka, OddsShopper) install Ghana as slight favorites in this Group L opener at BMO Field, citing Carlos Queiroz's experienced setup and superior attacking talent. However, several models flag a low-scoring 1-1 script, with the draw and Under 2.5 cited as the value plays, reflecting Panama's defensive organization and resilience as a CONCACAF side. No prediction market is live for this match. I land on Ghana because the books favor them and their individual quality edge should tell over 90 minutes, but confidence stays low given the genuine three-way uncertainty and draw value.",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "Ghana vs Panama 2026 World Cup Group L June 17 preview",
+            "summary": "Search results for \"Ghana vs Panama 2026 World Cup Group L June 17 preview\": 1. Ghana vs Panama World Cup 2026: Preview, Prediction & Analysis https://worldcupwiki.com/ghana-vs-panama-world-cup-2026/ Ghana vs Panama World Cup 2026 preview and prediction. Group L opener at Toront…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Ghana Panama World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://sports.yahoo.com/articles/ghana-vs-panama-prediction-world-100000852.html",
+            "summary": "URL: https://sports.yahoo.com/articles/ghana-vs-panama-prediction-world-100000852.html Status: 200 Content-Type: text/html; charset=utf-8 Ghana vs Panama Prediction: World Cup 2026 Preview & Best Bets - Yahoo Sports (self.__next_s=self.__next_s||[]).push([0,{\"children\":\"!functio…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Ghana Panama World Cup 2026 betting odds favorite win prediction",
+            "summary": "Search results for \"Ghana Panama World Cup 2026 betting odds favorite win prediction\": 1. Ghana vs Panama Picks, Predictions & Betting Odds: World Cup 2026 ... https://sports.yahoo.com/articles/ghana-vs-panama-picks-predictions-095640854.html Ghana vs Panama: Preview, Picks & Be…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2,
+          "outputTokens": 494
+        }
+      },
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Ghana",
+        "confidence": 0.45,
+        "rationale": "Ghana’s superior squad depth narrowly outweighs injury-hit attack and Panama’s organization.",
+        "analysis": "Current search results point to Ghana entering with notable injury issues, including reports that Mohammed Kudus and Mohammed Salisu are out, which materially lowers their ceiling. Still, Ghana retain more top-level individual quality than Panama and should control more territory at BMO Field. The strongest counter is that Panama are disciplined, CONCACAF-hardened, and well suited to turning this into a low-event draw. I still land on Ghana because their midfield and forward depth give them the likelier single breakthrough in a tight opener.",
+        "marketOdds": "No matching open Polymarket or Kalshi market found for Ghana vs Panama / World Cup.",
+        "scoreline": "1-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Ghana Panama 2026 World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · World Cup Ghana Panama",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Panama national football team latest form injuries 2026 June World Cup Ghana preview",
+            "summary": "Search results for \"Panama national football team latest form injuries 2026 June World Cup Ghana preview\": 1. Ghana vs Panama - World Cup - June 17, 2026 - Match Guide, Data ... https://www.sportsmole.co.uk/football/world-cup/ghana-vs-panama_game_248750.html The match Team News …",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Ghana vs Panama",
+            "summary": "## Cross-platform market search · \"Ghana vs Panama\" _Searched Polymarket, Kalshi, Limitless, Opinion, Predict.Fun in one call._ 1. **[unknown]** Ghana vs Panama Winner? 2. **[unknown]** Ghana vs Panama Winner? 3. **[unknown]** Ghana vs Panama Winner? _$0.005 paid via x402._",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Ghana national team latest form injuries 2026 June World Cup Panama preview",
+            "summary": "Search results for \"Ghana national team latest form injuries 2026 June World Cup Panama preview\": 1. Ghana 2026 World Cup Squad: Full List & Key Injuries https://www.newkerala.com/news/a/fifa-world-cup-ghana-unveils-26-member-squad-831.htm Accra, June 2 Ghana finally unveiled th…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · Ghana vs Panama Winner",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchKalshi · Ghana Panama World Cup",
+            "summary": "No Kalshi markets matched the filters.",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1876,
+          "outputTokens": 167
+        }
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Draw",
+        "confidence": 0.35,
+        "rationale": "With both sides prioritizing defensive stability to avoid an opening defeat, a tightly contested match is highly likely.",
+        "analysis": "Ghana and Panama face off in their Group L opener at BMO Field, where avoiding an early loss will be paramount for both teams. Betting trends strongly lean toward a low-scoring affair, with under 2.5 goals heavily favored. Neither side boasts an overwhelming attacking threat capable of easily dominating possession, suggesting a conservative tactical battle. Analysts project a stalemate as the most logical outcome given the evenly matched squads and the high stakes of a World Cup opener.",
+        "marketOdds": "Sportsbooks: Draw +240 to +253; Prediction Markets: n/a",
+        "scoreline": "1-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Ghana Panama",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Ghana\" \"Panama\" World Cup 2026 predictions odds",
+            "summary": "Search results for \"\"Ghana\" \"Panama\" World Cup 2026 predictions odds\": 1. Ghana vs Panama Prediction & Odds — World Cup 2026 | FootballExplorer https://www.footballexplorer.com/en/world-cup-2026/matches/ghana-vs-panama AI predictions and odds for Ghana vs Panama at the FIFA Worl…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Ghana national football team recent form 2026",
+            "summary": "Search results for \"Ghana national football team recent form 2026\": 1. Ghana World Cup Squad 2026: Full 26-Player Roster https://worldcuppass.com/ghana-world-cup-squad-2026/ Ghana World Cup 2026 Squad. Carlos Queiroz&#x27;s full 26-player roster, schedule, key players, and Group…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Panama national football team recent form 2026",
+            "summary": "No results found for: Panama national football team recent form 2026",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://winnersandwhiners.com/free-picks/world-cup/ghana-vs-panama-predictions-odds-and-line-movement-june-17-2026",
+            "summary": "URL: https://winnersandwhiners.com/free-picks/world-cup/ghana-vs-panama-predictions-odds-and-line-movement-june-17-2026 Status: 200 Content-Type: text/html; charset=UTF-8 Ghana vs Panama Predictions, Odds, and Line Movement — June 17, 2026 Tuesday, June 16, 2026 Customer Support…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://worldcuppass.com/ghana-world-cup-squad-2026/",
+            "summary": "URL: https://worldcuppass.com/ghana-world-cup-squad-2026/ Status: 200 Content-Type: text/html; charset=UTF-8 Ghana World Cup Squad 2026: Full 26-Player Roster .wp-block-image>a,.wp-block-image>figure>a{display:inline-block}.wp-block-image img{box-sizing:border-box;height:auto;ma…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 6491,
+          "outputTokens": 2532
+        }
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Ghana",
+        "confidence": 0.68,
+        "rationale": "Ghana outranks and outclasses Panama with superior squad and experience.",
+        "analysis": "FIFA rankings favor Ghana heavily (~65 vs ~125). Previews and betting odds consistently list Ghana as strong favorites for this Group L opener. Panama can frustrate but lacks attacking threat to hold Ghana. Strongest counter is Panama's compact defending in past tournaments but insufficient vs Ghana's athleticism and set-piece edge. No live markets contradict this.",
+        "marketOdds": "n/a",
+        "scoreline": "2-0",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "Ghana vs Panama 2026 FIFA World Cup prediction odds",
+            "summary": "Search results for \"Ghana vs Panama 2026 FIFA World Cup prediction odds\": 1. Ghana vs Panama Prediction & Odds — World Cup 2026 | FootballExplorer https://www.footballexplorer.com/en/world-cup-2026/matches/ghana-vs-panama AI predictions and odds for Ghana vs Panama at the FIFA W…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Ghana Panama World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Ghana vs Panama who is favorite 2026 World Cup",
+            "summary": "Search results for \"Ghana vs Panama who is favorite 2026 World Cup\": 1. Ghana vs Panama World Cup 2026: Preview, Prediction & Analysis https://worldcupwiki.com/ghana-vs-panama-world-cup-2026/ Ghana vs Panama World Cup 2026 preview and prediction. Group L opener at Toronto Stadiu…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.footballexplorer.com/en/world-cup-2026/matches/ghana-vs-panama",
+            "summary": "URL: https://www.footballexplorer.com/en/world-cup-2026/matches/ghana-vs-panama Status: 200 Content-Type: text/html; charset=utf-8 Ghana vs Panama Prediction & Odds — World Cup 2026 | FootballExplorer ... (content truncated)",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"FIFA ranking\" Ghana Panama 2026",
+            "summary": "Search results for \"\"FIFA ranking\" Ghana Panama 2026\": 1. FIFA World Rankings 2026, FIFA Ranking, Football World Rankings https://www.whereig.com/football/fifa-world-rankings.html FIFA World Rankings 2026 List - Check Latest the FIFA Men&#x27;s ranking as of 11 June 2026, team r…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://worldcupwiki.com/ghana-vs-panama-world-cup-2026/",
+            "summary": "URL: https://worldcupwiki.com/ghana-vs-panama-world-cup-2026/ Status: 200 Content-Type: text/html; charset=UTF-8 Ghana vs Panama World Cup 2026: Preview, Prediction & Analysis img.wp-smiley, img.emoji { display: inline !impor ... (content truncated)",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · Ghana Panama",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1279,
+          "outputTokens": 126
+        }
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Ghana",
+        "confidence": 0.48,
+        "rationale": "Ghana's superior World Cup pedigree, deeper squad with top-league talent, and higher FIFA ranking give them a clear edge over Panama in a neutral-site opener.",
+        "analysis": "Ghana enters as the stronger side, routinely qualifying for World Cups and boasting Premier League/La Liga regulars like Mohammed Kudus, Thomas Partey, and Inaki Williams, while Panama's squad relies heavily on MLS and lower-tier leagues. Historically, Ghana has reached a World Cup quarterfinal (2010), whereas Panama has never won a World Cup match. The neutral venue at BMO Field in Toronto removes CONCACAF home advantage Panama sometimes enjoys. The main counter-argument is that Panama is defensively organized and could frustrate Ghana to a low-scoring draw, especially in a cagey Group L opener where both teams fear losing. Still, Ghana's individual quality in attack should eventually break through, making a narrow win the most likely outcome.",
+        "marketOdds": "n/a",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "ExaSearch",
+            "query": "Ghana vs Panama World Cup 2026 preview odds prediction June 2026",
+            "summary": "No Exa results for \"Ghana vs Panama World Cup 2026 preview odds prediction June 2026\".",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Ghana Panama World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · World Cup 2026 Ghana Panama",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "2026 World Cup Group L Ghana Panama match prediction odds",
+            "summary": "No results found for: 2026 World Cup Group L Ghana Panama match prediction odds",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "FIFA rankings Ghana Panama May 2026",
+            "summary": "Search results for \"FIFA rankings Ghana Panama May 2026\": 1. FIFA/Coca-Cola World Rankings https://www.fifa.com/en/world-rankings Explore the official men&#x27;s and women&#x27;s FIFA/Coca-Cola World Ranking and the latest ranking news. 2. FIFA World Rankings 2026, Latest FIFA M…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Ghana Panama World Cup 2026 June 17 Group L preview",
+            "summary": "Search results for \"Ghana Panama World Cup 2026 June 17 Group L preview\": 1. Ghana vs Panama World Cup 2026: Preview, Prediction & Analysis https://worldcupwiki.com/ghana-vs-panama-world-cup-2026/ Ghana vs Panama World Cup 2026 preview and prediction. Group L opener at Toronto S…",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 3 URL(s).",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://worldcupwiki.com/ghana-vs-panama-world-cup-2026/",
+            "summary": "URL: https://worldcupwiki.com/ghana-vs-panama-world-cup-2026/ Status: 200 Content-Type: text/html; charset=UTF-8 Ghana vs Panama World Cup 2026: Preview, Prediction & Analysis .wp-block-table{overflow-x:auto}.wp-block-table table{border-collap ... (content truncated)",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.rotowire.com/soccer/article/ghana-vs-panama-preview-predicted-lineups-team-news-tactical-analysis-2026-world-cup-group-l-118362",
+            "summary": "URL: https://www.rotowire.com/soccer/article/ghana-vs-panama-preview-predicted-lineups-team-news-tactical-analysis-2026-world-cup-group-l-118362 Status: 200 Content-Type: text/html; charset=UTF-8 Ghana vs Panama Lineups, Team News & Preview | RotoWire window.__RW_NAV_DATA__ = {\"…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 11871,
+          "outputTokens": 125
+        }
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Ghana",
+        "confidence": 0.45,
+        "rationale": "Ghana slight favorite vs Panama but tight Group L opener often ends level.",
+        "analysis": "Search confirms Ghana vs Panama kicks off Group L at BMO Field in Toronto on June 17, 2026. Preview coverage characterizes this as a tight opener with both sides evenly matched. Ghana enters with stronger tournament pedigree (2010 quarterfinalist, 2022 group stage) but Panama qualified via the intercontinental playoff and has shown resilience. The consensus among previews leans toward a low-scoring contest, with several tipping either a narrow Ghana win or a draw. No Polymarket or Kalshi market is currently available on this exact fixture, so I'm pricing off expert previews and FIFA rankings. My scoreline reflects caution — under 2.5 goals is the modal pick, and a 1-1 feels more likely than a clean win for either side given the pressure of an opener.",
+        "marketOdds": "n/a",
+        "scoreline": "1-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Ghana Panama 2026 World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Ghana Panama football friendly 2026 recent form",
+            "summary": "Search results for \"Ghana Panama football friendly 2026 recent form\": 1. Ghana 2026 International Friendly Results - ESPN https://www.espn.com/soccer/team/results/_/id/4469/league/FIFA.FRIENDLY Get all the Ghana results for the 2026 International Friendly season on ESPN. Include…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1092,
+          "outputTokens": 24
+        }
+      },
+      {
+        "modelId": "moonshot/kimi-k2.7",
+        "pick": "Ghana",
+        "confidence": 0.52,
+        "rationale": "Ghana's superior athleticism and World Cup pedigree tilt this even opener, despite missing Kudus.",
+        "analysis": "Ghana arrives as the higher-ranked African side with considerably more World Cup experience than Panama; Panama's recent form is patchy and their defense can be vulnerable to physical front lines. The loss of Mohammed Kudus is a real blow and makes this tighter than expected, but Ghana still has more danger across the pitch. Panama will sit deep and could draw if Ghana fails to finish, yet the Black Stars' pressure should eventually tell. No liquid prediction market for this exact match was found.",
+        "marketOdds": "n/a",
+        "scoreline": "1-0",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group L Ghana vs Panama BMO Field June 17 2026 schedule",
+            "summary": "Search results for \"2026 FIFA World Cup Group L Ghana vs Panama BMO Field June 17 2026 schedule\": 1. Ghana vs Panama | First Stage | FIFA World Cup 2026™ | FIFA https://www.fifa.com/en/match-centre/match/17/285023/289273/400021510 23:00 Panama 17 Jun 2026 FIFA World Cup 2026™ To…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Ghana vs Panama World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.fifa.com/en/match-centre/match/17/285023/289273/400021510",
+            "summary": "URL: https://www.fifa.com/en/match-centre/match/17/285023/289273/400021510 Status: 200 Content-Type: text/html; charset=utf-8",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Ghana vs Panama head to head national team football",
+            "summary": "Search results for \"Ghana vs Panama head to head national team football\": 1. Ghana vs Panama Head to Head History - AiScore https://www.aiscore.com/head-to-head/soccer-ghana-vs-panama This page lists the head-to-head record of Ghana vs Panama including biggest victories and defe…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Ghana national team form 2026 World Cup qualifiers squad",
+            "summary": "Search results for \"Ghana national team form 2026 World Cup qualifiers squad\": 1. Ghana World Cup Squad 2026: Full 26-Player Roster https://worldcuppass.com/ghana-world-cup-squad-2026/ Ghana World Cup 2026 Squad. Carlos Queiroz&#x27;s full 26-player roster, schedule, key players…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2269,
+          "outputTokens": 159
+        }
+      }
+    ],
+    "wc26-k-uz-co": [
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Colombia",
+        "confidence": 0.62,
+        "rationale": "Colombia's top-tier talent and pedigree heavily outclass World Cup debutant Uzbekistan.",
+        "analysis": "Colombia is an established top-15 FIFA side with elite attackers (Luis Díaz, James Rodríguez) and recent Copa América final pedigree, while Uzbekistan is a disciplined but lower-quality World Cup debutant. Bookmaker and preview lines uniformly make Colombia a heavy favorite, roughly 60-65% to win versus ~15% for Uzbekistan and ~22% for a draw. The strongest counter is opener nerves, Azteca's altitude, and Uzbekistan's organized defense potentially grinding out a low-scoring frustration. I still land on Colombia because individual quality and squad depth decide most such mismatches; a clean, controlled 2-0 type win is the most likely path.",
+        "marketOdds": "Bookmakers imply Colombia ~62%, Draw ~22%, Uzbekistan ~16%",
+        "scoreline": "0-2",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 World Cup Group K Uzbekistan Colombia match preview odds",
+            "summary": "Search results for \"2026 World Cup Group K Uzbekistan Colombia match preview odds\": 1. Uzbekistan vs. Colombia World Cup Picks, Odds for Wednesday - Lineups https://www.lineups.com/betting/uzbekistan-vs-colombia-world-cup-match-preview-picks-odds-for-wednesday-june-17-2026/ Chec…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Uzbekistan Colombia World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.compare.bet/news/uzbekistan-vs-colombia-betting-preview-predictions-tips-and-live-odds",
+            "summary": "URL: https://www.compare.bet/news/uzbekistan-vs-colombia-betting-preview-predictions-tips-and-live-odds Status: 200 Content-Type: text/html; charset=UTF-8 !function(r){var n={};function o(e){if(n[e])return n[e].exports;var t=n[e]={i:e,l:!1,exports:{}};return r[e].call(t.exports,…",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 2 URL(s).",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Uzbekistan vs Colombia prediction June 17 2026 World Cup betting odds favorite",
+            "summary": "Search results for \"Uzbekistan vs Colombia prediction June 17 2026 World Cup betting odds favorite\": 1. Uzbekistan vs Colombia: World Cup 2026 Prediction | Squawka https://www.squawka.com/us/news/world-cup/match-preview-uzbekistan-vs-colombia-06-17-26-world-cup-2026/ Our Uzbekis…",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 2 URL(s).",
+            "isError": false
+          },
+          {
+            "tool": "ExaAnswer",
+            "query": "Uzbekistan vs Colombia World Cup 2026 betting odds favorite implied probability …",
+            "summary": "",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2,
+          "outputTokens": 684
+        }
+      },
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Colombia",
+        "confidence": 0.68,
+        "rationale": "Colombia’s attacking quality and market pricing are too strong for debutant Uzbekistan’s mostly domestic squad.",
+        "analysis": "Current odds/prediction coverage I found has Colombia as a clear favorite, around -250 to -270 on the moneyline. Uzbekistan’s listed squad profile appears heavily domestic-based, with far less top-league attacking depth than Colombia. The strongest counterargument is that Uzbekistan are organized, may defend deep, and Estadio Azteca conditions can compress favorites’ edges. I still land on Colombia because their talent advantage and tournament experience should translate into more chances and a controlled win.",
+        "marketOdds": "n/a (prediction-market search found Uzbekistan vs Colombia winner listings but returned no usable prices); sportsbooks cited Colombia around -250 to -270",
+        "scoreline": "0-2",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Uzbekistan Colombia World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · World Cup Uzbekistan Colombia",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Colombia national football team 2026 World Cup squad form injuries June 2026",
+            "summary": "Search results for \"Colombia national football team 2026 World Cup squad form injuries June 2026\": 1. World Cup 2026 Injury List: Every Player Out or in Doubt https://worldcupwiki.com/world-cup-2026-injury-list/ The FIFA World Cup 2026 group stage is underway, having opened on J…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Uzbekistan national football team 2026 World Cup squad form injuries June 2026",
+            "summary": "Search results for \"Uzbekistan national football team 2026 World Cup squad form injuries June 2026\": 1. Uzbekistan World Cup Squad 2026: Full 26-Player Roster https://worldcuppass.com/uzbekistan-world-cup-squad-2026/ The Uzbekistan World Cup Squad 2026 leans on the home league, …",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Uzbekistan vs Colombia prediction odds 17 June 2026 World Cup",
+            "summary": "Search results for \"Uzbekistan vs Colombia prediction odds 17 June 2026 World Cup\": 1. Uzbekistan vs. Colombia (Jun 17, 2026) Odds and Spread - ESPN https://www.espn.com/soccer/odds/_/gameId/760436 Find the latest odds, spread and score prediction for the Uzbekistan vs. Colombia…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Uzbekistan vs Colombia",
+            "summary": "## Cross-platform market search · \"Uzbekistan vs Colombia\" _Searched Polymarket, Kalshi, Limitless, Opinion, Predict.Fun in one call._ 1. **[unknown]** Uzbekistan vs Colombia Winner? 2. **[unknown]** Uzbekistan vs Colombia Winner? 3. **[unknown]** Uzbekistan vs Colombia Winner? …",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2775,
+          "outputTokens": 171
+        }
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Colombia",
+        "confidence": 0.85,
+        "rationale": "Colombia's vast international experience and superior squad depth should easily overcome World Cup debutants Uzbekistan.",
+        "analysis": "Uzbekistan has finally reached the World Cup but faces a steep learning curve under new coach Fabio Cannavaro. Their recent warm-up losses to Canada (2-0) and the Netherlands (2-1) demonstrate vulnerability against experienced sides. Colombia, featuring a seasoned squad built for tournament runs, presents a massive mismatch for the Central Asian debutants. Despite Uzbekistan's strong AFC qualifying campaign, the jump in quality to face a South American powerhouse will likely prove too much.",
+        "marketOdds": "n/a",
+        "scoreline": "0-2",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Uzbekistan Colombia World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Uzbekistan\" \"Colombia\" World Cup 2026 odds prediction",
+            "summary": "Search results for \"\"Uzbekistan\" \"Colombia\" World Cup 2026 odds prediction\": 1. Uzbekistan vs Colombia: World Cup 2026 Odds & Prediction https://www.oddsshopper.com/articles/expert-picks/uzbekistan-vs-colombia-world-cup Uzbekistan vs Colombia odds and prediction for the 2026 Wor…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsmole.co.uk/football/uzbekistan/world-cup-2026/preview/uzbekistan-vs-colombia-prediction-team-news-lineups_599296.html",
+            "summary": "URL: https://www.sportsmole.co.uk/football/uzbekistan/world-cup-2026/preview/uzbekistan-vs-colombia-prediction-team-news-lineups_599296.html Status: 200 Content-Type: text/html Preview: Uzbekistan vs Colombia - prediction, team news, lineups | World Cup 2026 - Sports Mole Menu L…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://worldcupwiki.com/uzbekistan-vs-colombia-world-cup-2026/",
+            "summary": "URL: https://worldcupwiki.com/uzbekistan-vs-colombia-world-cup-2026/ Status: 200 Content-Type: text/html; charset=UTF-8 Uzbekistan vs Colombia World Cup 2026: Preview, Prediction & Analysis .wp-block-image>a,.wp-block-image>figure>a{display:inline-block}.wp-block-image img{box-s…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 6723,
+          "outputTokens": 816
+        }
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Colombia",
+        "confidence": 0.78,
+        "rationale": "Colombia far stronger on paper and in recent form than debutants Uzbekistan.",
+        "analysis": "Group K features Portugal, Colombia, Uzbekistan, DR Congo. Colombia have superior squad depth, experience and FIFA ranking. Uzbekistan are organized but lack the quality to beat South Americans regularly. Historical results and continental gaps point to away win at Azteca. Markets would heavily favor Colombia if listed.",
+        "marketOdds": "n/a",
+        "scoreline": "1-2",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "Uzbekistan vs Colombia 2026 World Cup prediction odds preview",
+            "summary": "Search results for \"Uzbekistan vs Colombia 2026 World Cup prediction odds preview\": 1. Uzbekistan vs Colombia World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/uzbekistan-v-colombia-predictions The 2026 FIFA World Cup bri…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Uzbekistan Colombia World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Uzbekistan\" \"Colombia\" preview OR prediction OR odds site:espn.com OR site:bbc.com OR \"betting odds\"",
+            "summary": "Search results for \"\"Uzbekistan\" \"Colombia\" preview OR prediction OR odds site:espn.com OR site:bbc.com OR \"betting odds\"\": 1. Uzbekistan vs Colombia - Betting Odds - Oddschecker https://www.oddschecker.com/football/world-cup/uzbekistan-v-colombia/winner Compare odds across 24 U…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/uzbekistan-v-colombia-predictions",
+            "summary": "URL: https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/uzbekistan-v-colombia-predictions Status: 200 Content-Type: text/html; charset=UTF-8 Uzbekistan vs Colombia World Cup 2026 Predictions and Best Bets ... (content truncated)",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "FIFA World Cup 2026 Group K standings predictions Colombia Uzbekistan",
+            "summary": "Search results for \"FIFA World Cup 2026 Group K standings predictions Colombia Uzbekistan\": 1. 2026 FIFA World Cup Group K: Schedule, Standings & Prediction https://worldcupwiki.com/group-k/ 2026 FIFA World Cup Group K: Portugal, Colombia, Uzbekistan and DR Congo. Full match sch…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://worldcupwiki.com/uzbekistan-vs-colombia-world-cup-2026/",
+            "summary": "URL: https://worldcupwiki.com/uzbekistan-vs-colombia-world-cup-2026/ Status: 200 Content-Type: text/html; charset=UTF-8 Uzbekistan vs Colombia World Cup 2026: Preview, Prediction & Analysis :root{--wp-block-synced-color:#7a00df;--wp-block-synced-color--rgb:122,0,223;--wp-bound-b…",
+            "isError": false
+          },
+          {
+            "tool": "ExaSearch",
+            "query": "Uzbekistan vs Colombia 2026 World Cup preview prediction who wins",
+            "summary": "No Exa results for \"Uzbekistan vs Colombia 2026 World Cup preview prediction who wins\".",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1806,
+          "outputTokens": 111
+        }
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Colombia",
+        "confidence": 0.72,
+        "rationale": "Colombia's superior talent and World Cup pedigree should overwhelm debutant Uzbekistan at the Azteca.",
+        "analysis": "Colombia enters as a battle-tested CONMEBOL side with stars like Luis Díaz and James Rodríguez, while Uzbekistan makes its first-ever World Cup appearance. The betting markets (Odds1x2, Unibet) strongly favor Colombia in the 1X2 market, reflecting the massive gulf in squad quality and tournament experience. Uzbekistan's Asian qualification campaign was respectable but they lack the high-level club experience that Colombia's squad possesses across Europe's top leagues. The neutral venue at Estadio Azteca may introduce altitude factors, but Colombia's core players are accustomed to South American high-altitude venues. The primary risk is that World Cup debutants can be unpredictable and Colombia sometimes struggles to break down compact defenses early in tournaments. Still, the talent gap is too wide to ignore.",
+        "marketOdds": "Odds1x2/Unibet: Colombia clear 1X2 favorite (exact implied probability unavailable due to truncated data).",
+        "scoreline": "0-2",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Uzbekistan Colombia World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · Uzbekistan Colombia",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Uzbekistan football team World Cup 2026 squad form",
+            "summary": "Search results for \"Uzbekistan football team World Cup 2026 squad form\": 1. Uzbekistan World Cup Squad 2026: Full 26-Player Roster https://worldcuppass.com/uzbekistan-world-cup-squad-2026/ The Uzbekistan World Cup Squad 2026 leans on the home league, with 15 of the 26 players ba…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Uzbekistan vs Colombia World Cup 2026 preview prediction",
+            "summary": "Search results for \"Uzbekistan vs Colombia World Cup 2026 preview prediction\": 1. Uzbekistan vs Colombia World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/uzbekistan-v-colombia-predictions The 2026 FIFA World Cup brings t…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsmole.co.uk/football/uzbekistan/world-cup-2026/preview/uzbekistan-vs-colombia-prediction-team-news-lineups_599296.html",
+            "summary": "URL: https://www.sportsmole.co.uk/football/uzbekistan/world-cup-2026/preview/uzbekistan-vs-colombia-prediction-team-news-lineups_599296.html Status: 200 Content-Type: text/html Preview: Uzbekistan vs Colombia - prediction, team news, lineups | World Cup 2026 - Sports Mole Menu L…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/uzbekistan-v-colombia-predictions",
+            "summary": "URL: https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/uzbekistan-v-colombia-predictions Status: 200 Content-Type: text/html; charset=UTF-8 Uzbekistan vs Colombia World Cup 2026 Predictions and Best Bets {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"New…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · Colombia World Cup 2026 Group K",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Uzbekistan Colombia World Cup 2026 betting odds 1X2",
+            "summary": "Search results for \"Uzbekistan Colombia World Cup 2026 betting odds 1X2\": 1. Uzbekistan v Colombia Betting Odds Comparison | Winner 1X2 | World Cup 2026 https://www.odds1x2.com/football/world-cup-2026/odds/uzbekistan-vs-colombia/ Uzbekistan v Colombia Winner 1X2 betting odds com…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.odds1x2.com/football/world-cup-2026/odds/uzbekistan-vs-colombia/",
+            "summary": "URL: https://www.odds1x2.com/football/world-cup-2026/odds/uzbekistan-vs-colombia/ Status: 200 Content-Type: text/html; charset=utf-8 Uzbekistan v Colombia Betting Odds Comparison | Winner 1X2 | World Cup 2026 Menu SINCE 2004 Football Tennis Basketball American Football Ice Hocke…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.oddsshopper.com/articles/expert-picks/uzbekistan-vs-colombia-world-cup",
+            "summary": "URL: https://www.oddsshopper.com/articles/expert-picks/uzbekistan-vs-colombia-world-cup Status: 200 Content-Type: text/html; charset=utf-8 Uzbekistan vs Colombia: World Cup 2026 Odds & Prediction | OddsShopper Join the ranks of the OddsShopper Hall of Fame .css-18wy9hh{margin:0;…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2921,
+          "outputTokens": 139
+        }
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Colombia",
+        "confidence": 0.7,
+        "rationale": "Colombia heavy favorites (-260 ML) over World Cup debutants Uzbekistan with elite attack.",
+        "analysis": "Bookmakers have Colombia around -260 to win outright, the clearest edge on the board. Colombia are ranked inside the FIFA top 20 with Luis Díaz and James Rodríguez, and they return after missing Qatar 2022 with motivation. Uzbekistan are tournament debutants ranked ~50th and lost recent friendlies to Netherlands (2-1) and Canada (2-0), suggesting they're competitive but a tier below top South American sides. The counter-argument is altitude/heat at Estadio Azteca plus Uzbekistan's compact defensive shape could squeeze a draw; however, Colombia's individual quality in attack should produce at least one goal. Projected score 2-1 Colombia reflects the consensus.",
+        "marketOdds": "Betting: Colombia -260 to -265 (implied ~73%)",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Uzbekistan Colombia World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Colombia squad World Cup 2026 preview Uzbekistan match",
+            "summary": "Search results for \"Colombia squad World Cup 2026 preview Uzbekistan match\": 1. Uzbekistan vs. Colombia projected lineups, starting 11 for World Cup ... https://www.sportingnews.com/us/soccer/news/uzbekistan-colombia-lineup-starting-11-world-cup-2026/57cf89adaf36f917b61e58f0 MOR…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportingnews.com/us/soccer/news/uzbekistan-colombia-lineup-starting-11-world-cup-2026/57cf89adaf36f917b61e58f0",
+            "summary": "URL: https://www.sportingnews.com/us/soccer/news/uzbekistan-colombia-lineup-starting-11-world-cup-2026/57cf89adaf36f917b61e58f0 Status: 200 Content-Type: text/html; charset=utf-8 Uzbekistan vs. Colombia projected lineups, starting 11 for World Cup 2026 Group K game in Mexico Cit…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsmole.co.uk/football/uzbekistan/world-cup-2026/preview/uzbekistan-vs-colombia-prediction-team-news-lineups_599296.html",
+            "summary": "URL: https://www.sportsmole.co.uk/football/uzbekistan/world-cup-2026/preview/uzbekistan-vs-colombia-prediction-team-news-lineups_599296.html Status: 200 Content-Type: text/html Preview: Uzbekistan vs Colombia - prediction, team news, lineups | World Cup 2026 - Sports Mole Menu L…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Colombia vs Uzbekistan prediction odds betting World Cup June 17",
+            "summary": "Search results for \"Colombia vs Uzbekistan prediction odds betting World Cup June 17\": 1. Uzbekistan vs Colombia Prediction, Betting Tips, Lineups & Odds | 17 ... https://www.sportsgambler.com/betting-tips/football/uzbekistan-vs-colombia-prediction-lineups-odds-2026-06-17/ FIFA …",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsgambler.com/betting-tips/football/uzbekistan-vs-colombia-prediction-lineups-odds-2026-06-17/",
+            "summary": "URL: https://www.sportsgambler.com/betting-tips/football/uzbekistan-vs-colombia-prediction-lineups-odds-2026-06-17/ Status: 200 Content-Type: text/html; charset=UTF-8 Uzbekistan vs Colombia Prediction, Betting Tips, Lineups & Odds | 17 Jun 2026 --> Predictions Football Predictio…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Uzbekistan\" \"Colombia\" World Cup 2026 score prediction result",
+            "summary": "Search results for \"\"Uzbekistan\" \"Colombia\" World Cup 2026 score prediction result\": 1. Uzbekistan vs. Colombia (Jun 17, 2026) Live Score - ESPN https://www.espn.com/soccer/match/_/gameId/760436 Live coverage of the Uzbekistan vs. Colombia Fifa World Cup game on ESPN, including …",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://winnersandwhiners.com/free-picks/world-cup/uzbekistan-vs-colombia-predictions-odds-and-line-movement-june-17-2026",
+            "summary": "URL: https://winnersandwhiners.com/free-picks/world-cup/uzbekistan-vs-colombia-predictions-odds-and-line-movement-june-17-2026 Status: 200 Content-Type: text/html; charset=UTF-8 Uzbekistan vs Colombia Predictions, Odds, and Line Movement — June 17, 2026 Tuesday, June 16, 2026 Cu…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 4778,
+          "outputTokens": 26
+        }
+      },
+      {
+        "modelId": "moonshot/kimi-k2.7",
+        "pick": "Colombia",
+        "confidence": 0.64,
+        "rationale": "Colombia's quality, experience, and form edge Uzbekistan's compact debut in the Azteca opener.",
+        "analysis": "Colombia are ranked 13th to Uzbekistan's 50th and arrive off June friendly wins over Costa Rica and Jordan, while Uzbekistan lost both June tune-ups. Luis Díaz, James Rodríguez and Jhon Arias give Colombia the individual class to break down a deep block, and Néstor Lorenzo's side has Copa América final experience. Uzbekistan will sit deep and counter through Eldor Shomurodov, who could punish one lapse, but the gap in pedigree and tournament composure favors Colombia. The main counter is altitude and Uzbekistan discipline making it tight, yet Colombia's pressing and wide threat should still create enough chances.",
+        "marketOdds": "n/a",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "ActivateTool",
+            "query": "",
+            "summary": "Available on-demand tools (2). Activate with ActivateTool({ \"names\": [\"<name>\", ...] }): - DeFiLlamaPrice: Token price lookup via DefiLlama (covers thousands of tokens — anything DEX-listed) - SearchX: The ONLY tool that can access X (Twitter)",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · 2026 World Cup Uzbekistan vs Colombia",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Uzbekistan vs Colombia 2026 World Cup Group K preview odds prediction June 17",
+            "summary": "Search results for \"Uzbekistan vs Colombia 2026 World Cup Group K preview odds prediction June 17\": 1. Uzbekistan vs Colombia World Cup 2026: Preview, Prediction & Analysis https://worldcupwiki.com/uzbekistan-vs-colombia-world-cup-2026/ Uzbekistan vs Colombia World Cup 2026 prev…",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 3 URL(s).",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://worldcupwiki.com/uzbekistan-vs-colombia-world-cup-2026/",
+            "summary": "URL: https://worldcupwiki.com/uzbekistan-vs-colombia-world-cup-2026/ Status: 200 Content-Type: text/html; charset=UTF-8 Uzbekistan vs Colombia World Cup 2026: Preview, Prediction & Analysis Skip to content Uzbekistan vs Colombia World Cup 2026 kicks off Group K on Wednesday, Jun…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 8120,
+          "outputTokens": 213
         }
       }
     ]
