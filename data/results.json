@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-18T01:49:54.456Z",
+  "updatedAt": "2026-06-18T03:05:05.298Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -116,6 +116,11 @@
       "status": "finished",
       "home": 1,
       "away": 0
+    },
+    "wc26-k-uz-co": {
+      "status": "live",
+      "home": 0,
+      "away": 1
     }
   }
 }
