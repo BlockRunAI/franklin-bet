@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-17T09:45:52.003Z",
+  "generatedAt": "2026-06-19T07:31:00.059Z",
   "source": "blockrun",
   "engine": "agent",
   "tier": "flagship",
@@ -7305,6 +7305,1147 @@
         "tokens": {
           "inputTokens": 8120,
           "outputTokens": 213
+        }
+      }
+    ],
+    "wc26-d-us-au": [
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "United States",
+        "confidence": 0.6,
+        "rationale": "Home favorites with stronger squad and in-form attack edge out a cautious Australia in a group-decider.",
+        "analysis": "Both teams won their openers, making this a likely Group D decider at Lumen Field where the USA host. The USMNT impressed in a win over Paraguay (Balogun brace) and are priced at -172 moneyline (~63% implied), versus Draw +340 and Australia +415. The chief counter-argument is Christian Pulisic's calf injury keeping him day-to-day, plus a disciplined Australia possibly parking the bus for a point that nearly guarantees advancement. Even so, home advantage, squad depth, and attacking form make the USA the clear pick, with draw the most plausible upset path.",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group D United States vs Australia June 19 preview",
+            "summary": "Search results for \"2026 FIFA World Cup Group D United States vs Australia June 19 preview\": 1. USA vs Australia World Cup 2026: Preview, Prediction & Analysis https://worldcupwiki.com/usa-vs-australia-world-cup-2026/ USA vs Australia FIFA World Cup 2026 preview, prediction and …",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · United States Australia World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://sports.yahoo.com/articles/united-states-vs-australia-picks-143315416.html",
+            "summary": "URL: https://sports.yahoo.com/articles/united-states-vs-australia-picks-143315416.html Status: 200 Content-Type: text/html; charset=utf-8 United States vs Australia Picks, Predictions & Betting Odds: World Cup 2026 Preview - Yahoo Sports ... (content truncated)",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.bettingnews.com/articles/soccer/united-states-australia-picks-predictions-2026-06-19/",
+            "summary": "URL: https://www.bettingnews.com/articles/soccer/united-states-australia-picks-predictions-2026-06-19/ Status: 200 Content-Type: text/html; charset=utf-8 United States vs. Australia Picks and Predictions: June 19, 2026 | Betting News United States vs. Australia Picks and Predict…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2,
+          "outputTokens": 545
+        }
+      },
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "United States",
+        "confidence": 0.52,
+        "rationale": "Home-field advantage in Seattle and deeper attacking talent make the U.S. the narrow most likely winner.",
+        "analysis": "Current listings confirm the match is United States vs Australia at Lumen Field on June 19, with sportsbook preview pages treating the U.S. as the favorite rather than a toss-up. The decisive factor is venue: this is effectively a home World Cup match in Seattle, which should boost pressing intensity and crowd advantage. Australia’s counter-argument is real: the Socceroos are organized, physical, and live for set pieces, making a draw very plausible. Still, over 90 minutes the U.S. has more high-end attacking options and should create enough chances to edge it.",
+        "marketOdds": "n/a (no active exact Polymarket/Kalshi market found)",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · United States Australia 2026 World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchKalshi · United States Australia soccer World Cup 2026",
+            "summary": "No Kalshi markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group D United States Australia Lumen Field June 19 2026",
+            "summary": "Search results for \"2026 FIFA World Cup Group D United States Australia Lumen Field June 19 2026\": 1. United States vs Australia - World Cup - Group D (Match 32 ... - StubHub https://www.stubhub.com/world-cup-seattle-tickets-6-19-2026/event/153020544/ See United States vs Austra…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "United States national soccer team 2026 World Cup squad form Pochettino Australia Socceroos 2026 World Cup qualification form",
+            "summary": "Search results for \"United States national soccer team 2026 World Cup squad form Pochettino Australia Socceroos 2026 World Cup qualification form\": 1. USA squad announcement | FIFA World Cup 2026 https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/usa-…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "USA vs Australia World Cup 2026 odds United States Australia draw betting odds",
+            "summary": "Search results for \"USA vs Australia World Cup 2026 odds United States Australia draw betting odds\": 1. World Cup: USA vs. Australia Odds, Lines, Betting Trends https://www.vegasinsider.com/soccer/usa-australia-odds-world-cup-2026/ Everything you need to know about World Cup USA…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://sportsbookwire.usatoday.com/story/sports/soccer/2026/06/18/united-states-vs-australia-odds-picks-and-predictions/90607834007/",
+            "summary": "URL: https://sportsbookwire.usatoday.com/story/sports/soccer/2026/06/18/united-states-vs-australia-odds-picks-and-predictions/90607834007/ Status: 200 Content-Type: text/html; charset=utf-8 United States vs. Australia World Cup odds, picks and predictions \"use strict\";if(window.…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · USA Australia World Cup",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 8269,
+          "outputTokens": 181
+        }
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "United States",
+        "confidence": 0.62,
+        "rationale": "The USMNT possesses superior attacking depth, strong current form, and significant home-field advantage in Seattle.",
+        "analysis": "The USMNT enters this match as clear favorites at -165 odds, reflecting strong form after an impressive 4-1 victory over Paraguay in their opening game. Playing on home soil at Lumen Field provides a massive environmental advantage against a resilient Australian side. While the Socceroos also won their opener and can frustrate opponents with a disciplined defensive block, the USA's attacking depth should eventually break them down. Expect the United States to secure all three points and take definitive control of Group D.",
+        "marketOdds": "USA -165, Australia +410 (FanDuel)",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "USA vs Australia 2026 World Cup Group D predictions",
+            "summary": "Search results for \"USA vs Australia 2026 World Cup Group D predictions\": 1. USA vs Australia Prediction & Odds - World Cup 2026 Group D Preview https://spookyexpress.com/soccer/usa-vs-australia-prediction-world-cup-2026/ USA take on Australia in a key 2026 World Cup Group D cla…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · United States Australia 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "USMNT vs Australia 2026 World Cup predictions odds",
+            "summary": "Search results for \"USMNT vs Australia 2026 World Cup predictions odds\": 1. USA vs. Australia prediction: World Cup odds, best bets, sportsbook ... https://www.sportingnews.com/us/betting/news/usa-vs-australia-prediction-world-cup-odds-best-bets-picks-usmnt/d7cc03b7d80aab1f5b131…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 4584,
+          "outputTokens": 1379
+        }
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "United States",
+        "confidence": 0.82,
+        "rationale": "USMNT superior squad + home advantage should overpower Socceroos in Seattle.",
+        "analysis": "Recent previews (NYT Athletic, USA Today, Fox) list US as heavy odds-on favorites after strong group opener vs Paraguay. FIFA rankings and squad depth give sizable edge despite Socceroos competitiveness in past friendlies. Seattle home support and recent form tilt heavily toward comfortable US win. No prediction markets uncovered for the tie, consistent with consensus US dominance.",
+        "marketOdds": "n/a",
+        "scoreline": "3-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "FIFA rankings USA Australia 2026",
+            "summary": "Search results for \"FIFA rankings USA Australia 2026\": 1. FIFA/Coca-Cola World Rankings https://www.fifa.com/en/world-rankings Explore the official men&#x27;s and women&#x27;s FIFA/Coca-Cola World Ranking and the latest ranking news. 2. Standings | FIFA World Cup 2026™ https://w…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · USMNT Australia World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "ExaSearch",
+            "query": "preview or betting odds US vs Australia 2026 World Cup",
+            "summary": "No Exa results for \"preview or betting odds US vs Australia 2026 World Cup\".",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"United States\" Australia preview World Cup 2026 odds OR prediction",
+            "summary": "Search results for \"\"United States\" Australia preview World Cup 2026 odds OR prediction\": 1. United States vs Australia World Cup 2026 Predictions https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/united-states-v-australia-predictions This article covers our Uni…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "United States vs Australia betting odds World Cup 2026",
+            "summary": "Search results for \"United States vs Australia betting odds World Cup 2026\": 1. United States vs Australia World Cup 2026 Predictions https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/united-states-v-australia-predictions This article covers our United States vs…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1861,
+          "outputTokens": 130
+        }
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "United States",
+        "confidence": 0.61,
+        "rationale": "Polymarket prices USA at 61% vs Australia 18% (draw ~21%), home advantage at Lumen Field tilts it.",
+        "analysis": "Polymarket's real-money line shows USA 61¢, Australia 18¢, implying roughly 21% on the draw — a clear favorite for the Stars and Stripes. The US is hosting the tournament and plays at Lumen Field in Seattle, a near home crowd of ~70,000. Recent form: the USMNT beat Australia 2-1 in a 2025 friendly, while Australia is competitive but typically a tier below the top-ranked hosts (USMNT 13th, Socceroos ~24th in FIFA rankings as of early 2026). Group D also includes Paraguay and a UEFA playoff team, so this opener is critical and the US will press. Counter-argument: Australia is physical and counter-attacks well, and the draw is realistic at ~21%, but the pricing offers no edge on either upset or draw. I'm taking USA to win, modeled around 2-1.",
+        "marketOdds": "Polymarket: USA 61%, Draw ~21%, Australia 18%",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group D USA vs Australia prediction odds June 19",
+            "summary": "Search results for \"2026 FIFA World Cup Group D USA vs Australia prediction odds June 19\": 1. USA vs Australia Prediction & Odds 2026 | USA - Topend Sports https://www.topendsports.com/en-us/sports-betting/soccer/world-cup/predictions/usa-vs-australia/ Get our USA vs Australia W…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchPolymarket · USA vs Australia World Cup 2026",
+            "summary": "No Polymarket markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.topendsports.com/en-us/sports-betting/soccer/world-cup/predictions/usa-vs-australia/",
+            "summary": "URL: https://www.topendsports.com/en-us/sports-betting/soccer/world-cup/predictions/usa-vs-australia/ Status: 200 Content-Type: text/html; charset=UTF-8 USA vs Australia Prediction & Odds 2026 | USA :root{--jeux-header-height:78px;--jeux-header-height-tablet:60px;--us-header-hei…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://polymarket.com/sports/world-cup/fifwc-usa-aus-2026-06-19",
+            "summary": "URL: https://polymarket.com/sports/world-cup/fifwc-usa-aus-2026-06-19 Status: 200 Content-Type: text/html; charset=utf-8 United States vs. Australia Odds & Predictions (Jun. 19, 2026) | Polymarket {\"@context\":\"https://schema.org\",\"@type\":\"FAQPage\",\"mainEntity\":[{\"@type\":\"Questio…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 5186,
+          "outputTokens": 22
+        }
+      },
+      {
+        "modelId": "moonshot/kimi-k2.7",
+        "pick": "United States",
+        "confidence": 0.58,
+        "rationale": "Home-field advantage in Seattle and a deeper squad give the US the narrow edge over Australia.",
+        "analysis": "Bookmakers and preview outlets list the U.S. as a slight favorite, with typical moneyline odds around +145/+150 for an American win and Australia as a small underdog. The Socceroos are viewed as well-organized and dangerous on the counter, so an upset or draw is plausible, especially if the U.S. struggles to finish chances. I still lean United States because they play on home soil (Lumen Field/Seattle), likely carry stronger individual talent, and need a strong Group D opener to set the tone for a likely knockout push.",
+        "marketOdds": "n/a",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · 2026 World Cup United States Australia",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group D United States vs Australia Lumen Field June 19 prediction odds",
+            "summary": "Search results for \"2026 FIFA World Cup Group D United States vs Australia Lumen Field June 19 prediction odds\": 1. United States vs. Australia Picks and Predictions: June 19, 2026 https://www.bettingnews.com/articles/soccer/united-states-australia-picks-predictions-2026-06-19/ …",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 3 URL(s).",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.squawka.com/ca/news/world-cup/match-preview-united-states-vs-australia-06-19-26-world-cup-2026/",
+            "summary": "HTTP 403 Forbidden for https://www.squawka.com/ca/news/world-cup/match-preview-united-states-vs-australia-06-19-26-world-cup-2026/ — www.squawka.com likely blocks automated fetch. Try WebSearch for the same query, or fetch a different domain that publishes the same data.",
+            "isError": true
+          },
+          {
+            "tool": "WebSearch",
+            "query": "USA vs Australia World Cup 2026 prediction lineups odds betting tips result",
+            "summary": "Search results for \"USA vs Australia World Cup 2026 prediction lineups odds betting tips result\": 1. USA vs Australia Prediction, Betting Tips, Lineups & Odds | 19 Jun 2026 https://www.sportsgambler.com/betting-tips/football/usa-vs-australia-prediction-lineups-odds-2026-06-19/ U…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://therealefl.co.uk/2026/06/16/usa-vs-australia-world-cup-prediction-odds-lineups-betting-tips-19-06-2026/",
+            "summary": "HTTP 403 Forbidden for https://therealefl.co.uk/2026/06/16/usa-vs-australia-world-cup-prediction-odds-lineups-betting-tips-19-06-2026/ — therealefl.co.uk likely blocks automated fetch. Try WebSearch for the same query, or fetch a different domain that publishes the same data.",
+            "isError": true
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://sportsbookwire.usatoday.com/story/sports/soccer/2026/06/18/united-states-vs-australia-odds-picks-and-predictions/90607834007/",
+            "summary": "URL: https://sportsbookwire.usatoday.com/story/sports/soccer/2026/06/18/united-states-vs-australia-odds-picks-and-predictions/90607834007/ Status: 200 Content-Type: text/html; charset=utf-8 United States vs. Australia World Cup odds, picks and predictions \"use strict\";if(window.…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"USA\" \"Australia\" \"Lumen Field\" \"World Cup 2026\" prediction winner odds",
+            "summary": "No results found for: \"USA\" \"Australia\" \"Lumen Field\" \"World Cup 2026\" prediction winner odds",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Squawka United States vs Australia World Cup 2026",
+            "summary": "Search results for \"Squawka United States vs Australia World Cup 2026\": 1. World Cup 2026: Schedule, Odds, Predictions & Teams - Squawka https://www.squawka.com/us/world-cup-2026/ World Cup 2026 · Tournament Hub World Cup 2026 Your complete guide to the first 48-team finals — sc…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 8714,
+          "outputTokens": 208
+        }
+      }
+    ],
+    "wc26-c-gbs-ma": [
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Morocco",
+        "confidence": 0.5,
+        "rationale": "Superior squad quality and World Cup pedigree make Morocco favorites over a game but limited Scotland.",
+        "analysis": "Bookmakers price Morocco as clear favorites (~4/5, ~55% implied) after they impressed in the buildup, reportedly holding Brazil, and carry 2022 semifinal pedigree plus talents like Hakimi and Diaz. Scotland are at their first World Cup since 1998 and ride genuine emotional momentum under Steve Clarke, but their individual quality lags. The strongest counter is that Scotland are organized and hard to break down, making a low-scoring draw very plausible in a cagey group match. I still land on a narrow Morocco win on superior attacking quality and ability to punish on the counter, though confidence is capped given how tight and low-scoring this fixture projects.",
+        "scoreline": "0-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 World Cup Group C Scotland Morocco June 19 preview form",
+            "summary": "Search results for \"2026 World Cup Group C Scotland Morocco June 19 preview form\": 1. Scotland vs Morocco World Cup 2026: Preview, Prediction & Analysis https://worldcupwiki.com/scotland-vs-morocco-world-cup-2026/ Scotland vs Morocco FIFA World Cup 2026 preview, prediction and a…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Scotland Morocco World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/scotland-v-morocco-predictions",
+            "summary": "URL: https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/scotland-v-morocco-predictions Status: 200 Content-Type: text/html; charset=UTF-8 Scotland vs Morocco World Cup 2026 Predictions and Best Bets :root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect…",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 2 URL(s).",
+            "isError": false
+          },
+          {
+            "tool": "ExaAnswer",
+            "query": "Scotland vs Morocco 2026 World Cup Group C match June 19 betting odds prediction…",
+            "summary": "",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Scotland Morocco World Cup 2026 betting odds favourite prediction Hakimi",
+            "summary": "Search results for \"Scotland Morocco World Cup 2026 betting odds favourite prediction Hakimi\": 1. Scotland vs Morocco World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/scotland-v-morocco-predictions Scotland lead Group C …",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://sports.yahoo.com/articles/scotland-vs-morocco-picks-predictions-140309697.html",
+            "summary": "URL: https://sports.yahoo.com/articles/scotland-vs-morocco-picks-predictions-140309697.html Status: 200 Content-Type: text/html; charset=utf-8 Scotland vs Morocco Picks, Predictions & Betting Odds: World Cup 2026 Preview - Yahoo Sports ... (content truncated)",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2,
+          "outputTokens": 647
+        }
+      },
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Morocco",
+        "confidence": 0.45,
+        "rationale": "Morocco’s higher-end attacking talent and recent tournament pedigree narrowly outweigh Scotland’s physical, organized setup.",
+        "analysis": "Market pricing I found had Morocco as a modest favorite, with draw next and Scotland slightly longer, which broadly matches team-strength priors. Morocco’s recent international profile remains stronger, built around players from top European leagues and a more dynamic transition attack than Scotland typically offers. Scotland’s counter-case is real: they are compact, dangerous on set pieces, and a neutral-site World Cup opener can become cautious and draw-heavy. I still land on Morocco because their chance creation and individual match-winners give them the best single-outcome probability in a low-margin game.",
+        "marketOdds": "Polymarket/related market consensus: Morocco ~44%, Draw ~28%, Scotland ~28%",
+        "scoreline": "1-2",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Scotland Morocco World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchKalshi · World Cup Scotland Morocco",
+            "summary": "No Kalshi markets matched the filters.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Scotland national team squad injuries June 2026 Morocco squad injuries World Cup",
+            "summary": "Search results for \"Scotland national team squad injuries June 2026 Morocco squad injuries World Cup\": 1. Team News: Scotland vs. Morocco injury, suspension list, predicted XIs https://www.sportsmole.co.uk/football/scotland/world-cup-2026/team-news/scotland-vs-morocco-injury-sus…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Scotland Morocco odds World Cup 2026 June 19 betting odds",
+            "summary": "Search results for \"Scotland Morocco odds World Cup 2026 June 19 betting odds\": 1. Scotland vs. Morocco - Odds - June 19, 2026 | FOX Sports https://www.foxsports.com/soccer/fifa-world-cup-men-scotland-vs-morocco-jun-19-2026-game-boxscore-647646?tab=odds View the latest odds for …",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsmole.co.uk/football/scotland/world-cup-2026/team-news/scotland-vs-morocco-injury-suspension-list-predicted-xis_599455.html",
+            "summary": "URL: https://www.sportsmole.co.uk/football/scotland/world-cup-2026/team-news/scotland-vs-morocco-injury-suspension-list-predicted-xis_599455.html Status: 200 Content-Type: text/html Team News: Scotland vs. Morocco injury, suspension list, predicted XIs - Sports Mole Menu Loading…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsgambler.com/betting-tips/football/scotland-vs-morocco-prediction-lineups-odds-2026-06-19/",
+            "summary": "URL: https://www.sportsgambler.com/betting-tips/football/scotland-vs-morocco-prediction-lineups-odds-2026-06-19/ Status: 200 Content-Type: text/html; charset=UTF-8 Scotland vs Morocco Prediction, Betting Tips, Lineups & Odds | 19 Jun 2026 --> Predictions Football Predictions Pre…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://polymarket.com/sports/world-cup/fifwc-sco-mar-2026-06-19",
+            "summary": "URL: https://polymarket.com/sports/world-cup/fifwc-sco-mar-2026-06-19 Status: 200 Content-Type: text/html; charset=utf-8 Scotland vs. Morocco Odds & Predictions (Jun. 19, 2026) | Polymarket {\"@context\":\"https://schema.org\",\"@type\":\"SportsEvent\",\"name\":\"Morocco vs Scotland\",\"desc…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "site:polymarket.com/sports/world-cup/fifwc-sco-mar-2026-06-19 Scotland Morocco Polymarket odds",
+            "summary": "No results found for: site:polymarket.com/sports/world-cup/fifwc-sco-mar-2026-06-19 Scotland Morocco Polymarket odds",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://polymarket.com/sports/world-cup/fifwc-sco-mar-2026-06-19",
+            "summary": "URL: https://polymarket.com/sports/world-cup/fifwc-sco-mar-2026-06-19 Status: 200 Content-Type: text/html; charset=utf-8 Scotland vs. Morocco Odds & Predictions (Jun. 19, 2026) | Polymarket Skip to main content Polymarket ... (content truncated)",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1796,
+          "outputTokens": 179
+        }
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Morocco",
+        "confidence": 0.65,
+        "rationale": "Morocco's superior squad depth and tournament experience should overpower Scotland's spirited return.",
+        "analysis": "Scotland is making its first World Cup appearance since 1998 and enjoys passionate traveling support at Gillette Stadium. However, they face a seasoned Moroccan side that reached the semi-finals in 2022 and boasts elite tactical discipline under Mohamed Ouahbi. Match previews indicate that while Scotland's grit is commendable, the step up in quality will likely result in a 'bump back down to earth.' Morocco's attacking options and sturdy defense make them clear favorites to secure all three points in this Group C clash.",
+        "marketOdds": "n/a",
+        "scoreline": "1-2",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Scotland Morocco",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Scotland vs Morocco\" World Cup 2026 June 19 Gillette Stadium prediction odds",
+            "summary": "No results found for: \"Scotland vs Morocco\" World Cup 2026 June 19 Gillette Stadium prediction odds",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Scotland national football team preview form June 2026 World Cup",
+            "summary": "Search results for \"Scotland national football team preview form June 2026 World Cup\": 1. Scotland World Cup 2026 Preview: Squad, Predicted Lineup and Knockout ... https://www.futbolupdate.com/scotland-world-cup-2026-preview/ Scotland return to the FIFA World Cup for the first t…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Morocco national football team preview form June 2026 World Cup",
+            "summary": "Search results for \"Morocco national football team preview form June 2026 World Cup\": 1. Morocco 2026 World Cup: Team Analysis, Roster Projection & Preview https://esosoccer.com/2026-world-cup/morocco-2026-world-cup-team-analysis-roster-projection-preview/ Morocco enters the 202…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Scotland Morocco 2026 World Cup match preview",
+            "summary": "Search results for \"Scotland Morocco 2026 World Cup match preview\": 1. Scotland v Morocco: World Cup 2026 line-ups, stats and preview, TV ... https://www.101greatgoals.com/match-previews/world-cup-matches/scotland-v-morocco-line-ups-stats-tv-channel-live-online-stream-prediction…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 5183,
+          "outputTokens": 2398
+        }
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Morocco",
+        "confidence": 0.62,
+        "rationale": "Morocco ranked ~15 spots above Scotland and has far superior squad depth/form.",
+        "analysis": "Live FIFA rankings and tournament context have Morocco as clear favorites against a Scotland side returning after long absence. Previews uniformly list Morocco win or draw as the two likeliest outcomes, with experts giving Morocco the edge due to experience from 2022. Scotland's defensive record offers some draw hope yet the gap in individual quality tilts strongly the other way. No prediction market liquidity found on this fixture.",
+        "marketOdds": "n/a",
+        "scoreline": "0-2",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Scotland Morocco World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Scotland\" \"Morocco\" preview OR betting OR odds",
+            "summary": "Search results for \"\"Scotland\" \"Morocco\" preview OR betting OR odds\": 1. Scotland vs Morocco predictions, tips, best bets and World Cup preview https://www.sportinglife.com/football/news/scotland-vs-morocco-predictions-tips-best-bets-and-world-cup-preview/232713 Football betting…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "current FIFA ranking Scotland Morocco 2026",
+            "summary": "Search results for \"current FIFA ranking Scotland Morocco 2026\": 1. FIFA/Coca-Cola World Rankings https://www.fifa.com/en/world-rankings Explore the official men&#x27;s and women&#x27;s FIFA/Coca-Cola World Ranking and the latest ranking news. 2. FIFA World Rankings 2026, Latest…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Scotland FIFA ranking June 2026",
+            "summary": "Search results for \"Scotland FIFA ranking June 2026\": 1. FIFA/Coca-Cola World Rankings https://www.fifa.com/en/world-rankings Explore the official men&#x27;s and women&#x27;s FIFA/Coca-Cola World Ranking and the latest ranking news. 2. FIFA Rankings https://ipt.fifa.com/fifa-ran…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2082,
+          "outputTokens": 137
+        }
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Morocco",
+        "confidence": 0.55,
+        "rationale": "Morocco favored at ~-130 with superior FIFA ranking and 2022 semifinal pedigree.",
+        "analysis": "Sportsbooks and tipsters lean Morocco at around -130 (roughly 56% implied) to win outright. The Atlas Lions reached the 2022 WC semifinal and are ranked ~13th globally, well above Scotland. Scotland's main appeal is pace and home support via UK diaspora, but they have less tournament pedigree. Strongest counter: a flat-track 1-1 or low-scoring Scotland draw is a realistic upset outcome, especially if Scotland presses early. I still take Morocco given the consistent market pricing and squad quality advantage in midfield. Exact score 1-2 reflects Morocco winning by one, consistent with tight knockout-style margins expected in this fixture.",
+        "marketOdds": "Sportsbooks: Morocco ~56%, Scotland ~26%, Draw ~18%",
+        "scoreline": "1-2",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "Scotland vs Morocco 2026 World Cup Group C prediction odds",
+            "summary": "Search results for \"Scotland vs Morocco 2026 World Cup Group C prediction odds\": 1. Scotland vs Morocco World Cup 2026 Predictions and Picks https://thesportsrush.com/scotland-v-morocco-predictions/ Scotland lead Group C but Morocco&#x27;s Atlas Lions are our pick at -130. Previ…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1079,
+          "outputTokens": 20
+        }
+      },
+      {
+        "modelId": "moonshot/kimi-k2.7",
+        "pick": "Morocco",
+        "confidence": 0.48,
+        "rationale": "Morocco's superior FIFA ranking, World Cup pedigree, and individual quality give them the edge over Scotland in a one-off group game.",
+        "analysis": "I could not verify this exact fixture via official FIFA sources or locate prediction-market odds, so the forecast rests on team-strength estimates. Morocco enters as the stronger side on paper—2022 World Cup semifinalists with stars such as Achraf Hakimi and a higher historical FIFA ranking—while Scotland, though organized under Steve Clarke, generally lacks comparable individual talent. Scotland's main hope lies in set-piece physicality and defensive discipline against Morocco's technical attackers. The counterargument is that tournament football has high variance, and heat/travel in North America could blunt Morocco. Still, the talent gap points to Morocco.",
+        "marketOdds": "n/a",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group C Scotland vs Morocco Gillette Stadium June 19 schedule",
+            "summary": "Search results for \"2026 FIFA World Cup Group C Scotland vs Morocco Gillette Stadium June 19 schedule\": 1. 2026 World Cup: Scotland v Morocco - Gillette Stadium https://www.gillettestadium.com/events/2026-world-cup-group-stage-match-580/ Gillette Stadium will be hosting a world …",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Morocco national team 2026 World Cup squad form recent results 2025 2026 Achraf Hakimi Ziyech",
+            "summary": "Search results for \"Morocco national team 2026 World Cup squad form recent results 2025 2026 Achraf Hakimi Ziyech\": 1. Morocco World Cup Squad 2026: Full 26-Player Roster https://worldcuppass.com/morocco-world-cup-squad-2026/ Morocco arrive ranked eighth in the world as of April…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Scotland national team 2026 World Cup squad roster form recent results Clarke McTominay",
+            "summary": "Search results for \"Scotland national team 2026 World Cup squad roster form recent results Clarke McTominay\": 1. Scotland&#x27;s 2026 World Cup squad: All 26 players picked by Steve Clarke ... https://www.espn.com/soccer/story/_/id/48769157/all-26-players-picked-steve-clarke-why…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Scotland vs Morocco 2026 World Cup Group C result",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Scotland vs Morocco\" \"Gillette Stadium\" \"June 19 2026\"",
+            "summary": "No results found for: \"Scotland vs Morocco\" \"Gillette Stadium\" \"June 19 2026\"",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Morocco vs Scotland 2026 World Cup match prediction preview odds",
+            "summary": "Search results for \"Morocco vs Scotland 2026 World Cup match prediction preview odds\": 1. Scotland vs Morocco World Cup 2026 Predictions and Picks https://thesportsrush.com/scotland-v-morocco-predictions/ Scotland lead Group C but Morocco&#x27;s Atlas Lions are our pick at -130.…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://thesportsrush.com/scotland-v-morocco-predictions/",
+            "summary": "URL: https://thesportsrush.com/scotland-v-morocco-predictions/ Status: 200 Content-Type: text/html; charset=UTF-8 Scotland vs Morocco World Cup 2026 Predictions and Picks :root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio-…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 6544,
+          "outputTokens": 151
+        }
+      }
+    ],
+    "wc26-c-br-ht": [
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Brazil",
+        "confidence": 0.94,
+        "rationale": "Five-time champions vastly outclass debutant-level Haiti; comfortable Brazil win is overwhelmingly likely.",
+        "analysis": "Match previews uniformly frame this as Brazil (heavy favorites) versus 'minnows' Haiti in Philadelphia. The talent and ranking gap is enormous — Brazil field elite attackers while Haiti sit far down the FIFA rankings, with history including a 7-1 Brazil rout in 2016. The only realistic counter-argument is complacency or heavy rotation after an unconvincing opener, but Brazil's depth means even a B-team should win comfortably. No prediction market was found for this specific match, but bookmakers would price Brazil around 95%+ to win.",
+        "scoreline": "3-0",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 World Cup Group C Brazil Haiti June 19 preview",
+            "summary": "Search results for \"2026 World Cup Group C Brazil Haiti June 19 preview\": 1. Brazil vs Haiti World Cup 2026: Preview, Prediction & Analysis https://worldcupwiki.com/brazil-vs-haiti-world-cup-2026/ Brazil vs Haiti FIFA World Cup 2026 preview, prediction and analysis. Group C clas…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Brazil Haiti World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2,
+          "outputTokens": 551
+        }
+      },
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Brazil",
+        "confidence": 0.94,
+        "rationale": "Brazil’s talent gap and market/bookmaker consensus make anything but a comfortable win a major upset.",
+        "analysis": "Live research found ESPN has a dedicated odds page for Brazil-Haiti and betting-preview coverage frames Brazil as the overwhelming favorite. The gap in squad quality, depth, and tournament pedigree is extreme, while Haiti’s plausible path is a low block hoping to keep the game close. The main counter-argument is Brazil rotating or underperforming in a group match, but even a rotated Brazil side should create enough chances to win decisively. I project Brazil to control possession and eventually break Haiti down multiple times.",
+        "marketOdds": "No active Polymarket/Kalshi market found via searchAll; sportsbook/preview consensus heavily favors Brazil.",
+        "scoreline": "4-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Brazil Haiti World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · 2026 FIFA World Cup Brazil Haiti",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Brazil FIFA ranking Haiti FIFA ranking 2026 World Cup Haiti squad Brazil squad June 2026",
+            "summary": "Search results for \"Brazil FIFA ranking Haiti FIFA ranking 2026 World Cup Haiti squad Brazil squad June 2026\": 1. Haiti&#x27;s FIFA ranking at the 2026 World Cup: More about Scotland, Brazil ... https://bolavip.com/en/world-cup/haitis-fifa-ranking-at-the-2026-world-cup-more-abou…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Brazil vs Haiti odds June 19 2026 World Cup betting odds",
+            "summary": "Search results for \"Brazil vs Haiti odds June 19 2026 World Cup betting odds\": 1. Brazil vs. Haiti World Cup Picks & Odds for Friday, June 19 https://www.lineups.com/betting/brazil-vs-haiti-world-cup-match-preview-picks-odds-for-friday-june-19-2026/ Check out the 2026 World Cup …",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.espn.com/soccer/odds/_/gameId/760444",
+            "summary": "URL: https://www.espn.com/soccer/odds/_/gameId/760444 Status: 200 Content-Type: text/html; charset=utf-8 Brazil vs. Haiti (Jun 19, 2026) Odds and Spread - ESPN Skip to main content Skip to navigation ... (content truncated)",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.lineups.com/betting/brazil-vs-haiti-world-cup-match-preview-picks-odds-for-friday-june-19-2026/",
+            "summary": "HTTP 403 Forbidden for https://www.lineups.com/betting/brazil-vs-haiti-world-cup-match-preview-picks-odds-for-friday-june-19-2026/ — www.lineups.com likely blocks automated fetch. Try WebSearch for the same query, or fetch a different domain that publishes the same data.",
+            "isError": true
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsgambler.com/betting-tips/football/brazil-vs-haiti-prediction-lineups-odds-2026-06-19/",
+            "summary": "URL: https://www.sportsgambler.com/betting-tips/football/brazil-vs-haiti-prediction-lineups-odds-2026-06-19/ Status: 200 Content-Type: text/html; charset=UTF-8 Brazil vs Haiti Prediction, Betting Tips, Lineups & Odds | 19 Jun 2026 --> Predictions Football Predictions Premier Lea…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 3987,
+          "outputTokens": 168
+        }
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Brazil",
+        "confidence": 0.89,
+        "rationale": "Brazil's overwhelming squad depth and elite attacking quality make them massive favorites against a vastly less experienced Haiti side.",
+        "analysis": "Traditional sportsbooks heavily favor Brazil with odds around -800 (roughly 89% implied probability) to 1.08, reflecting the massive disparity in global standing and talent. While Haiti may employ a low defensive block, hoping to keep the match under 3.5 goals, Brazil's firepower should comfortably break them down over 90 minutes. A massive upset or draw is highly improbable given Brazil's historic dominance in early World Cup group stage fixtures.",
+        "marketOdds": "Sportsbooks: Brazil -800 (89% implied); Prediction Markets: n/a",
+        "scoreline": "3-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Brazil Haiti World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Brazil vs Haiti\" World Cup 2026 odds prediction",
+            "summary": "Search results for \"\"Brazil vs Haiti\" World Cup 2026 odds prediction\": 1. Brazil vs Haiti Prediction, Odds & Betting Tips | 20.06.2026 | World Cup https://www.mightytips.com/football-predictions/brazil-vs-haiti-prediction-20-06-2026/ Best ⭐️Brazil vs Haiti prediction 20.06.2026⭐…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 3975,
+          "outputTokens": 1487
+        }
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Brazil",
+        "confidence": 0.97,
+        "rationale": "Brazil dominates vastly inferior Haiti in any realistic scenario.",
+        "analysis": "No current 2026 WC fixtures or markets list this Group C game yet as the draw is days away. Brazil routinely demolishes Caribbean minnows by large margins; Haiti are ranked ~90 spots lower and rarely score against top sides. The only plausible upset risk is an extreme off-day, which has near-zero historical precedent. MarketOdds: n/a",
+        "scoreline": "5-0",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "\"2026 World Cup\" Group C Brazil Haiti",
+            "summary": "No results found for: \"2026 World Cup\" Group C Brazil Haiti",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Brazil Haiti World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 236,
+          "outputTokens": 114
+        }
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Brazil",
+        "confidence": 0.97,
+        "rationale": "Brazil vastly superior; Haiti is minnow ranked ~84th facing tournament favorites.",
+        "analysis": "Brazil enters as a tournament favorite while Haiti is making only their second World Cup appearance after 52 years, ranked around 84th in the world. The talent gap between Brazil's squad (Vinicius, Rodrygo, etc.) and a CONCACAF qualifier that scraped through is enormous. The only way this isn't a comfortable Brazil win is a major upset or rotation collapse, both extremely unlikely. Expect a multi-goal Brazil victory at Lincoln Financial Field.",
+        "marketOdds": "n/a",
+        "scoreline": "4-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Brazil Haiti 2026 World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Haiti 2026 World Cup squad CONCACAF",
+            "summary": "Search results for \"Haiti 2026 World Cup squad CONCACAF\": 1. Haiti World Cup Squad 2026: Full 26-Player Roster https://worldcuppass.com/haiti-world-cup-squad-2026/ Haiti topped CONCACAF Group C with W3 D2 L1 in six qualifying matches, all played outside the country. Duckens Nazo…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1075,
+          "outputTokens": 6
+        }
+      },
+      {
+        "modelId": "moonshot/kimi-k2.7",
+        "pick": "Brazil",
+        "confidence": 0.85,
+        "rationale": "Oddsmakers price Brazil around 1.10, implying a ~91% win chance against a massive Haitian underdog in a World Cup group opener.",
+        "analysis": "Market lines at Pinnacle show Brazil 1.097, draw 10.76, and BetUS/SportsInteraction list Haiti at +2000/+2200, with Brazil -2.5, reflecting a dominant favorite. Prediction-markets-style source estimates 90% Brazil, 8% draw. Haiti's path is as a huge long-shot qualifier, while Brazil has superior talent and depth. The main counter-risk is a low-stakes group opener where Brazil could be rusty or rotate; still, the talent gap is enormous. I shade slightly under the implied 91% due to squad/rotation uncertainty but not enough to bet the upset.",
+        "marketOdds": "Pinnacle: Brazil 1.097 (~91%), Draw 10.76; SportsInteraction: Brazil -1000, Haiti +2000, Draw +1000",
+        "scoreline": "3-0",
+        "trace": [
+          {
+            "tool": "ActivateTool",
+            "query": "",
+            "summary": "Available on-demand tools (2). Activate with ActivateTool({ \"names\": [\"<name>\", ...] }): - DeFiLlamaPrice: Token price lookup via DefiLlama (covers thousands of tokens — anything DEX-listed) - SearchX: The ONLY tool that can access X (Twitter)",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · 2026 FIFA World Cup Brazil vs Haiti Group C",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Brazil vs Haiti June 19 Lincoln Financial Field Group C",
+            "summary": "Search results for \"2026 FIFA World Cup Brazil vs Haiti June 19 Lincoln Financial Field Group C\": 1. Brazil vs Haiti - World Cup - Match 29 (Group C) tickets - Lincoln ... https://www.vividseats.com/world-cup-soccer-tickets-lincoln-financial-field-6-19-2026--sports-soccer/produc…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/brazil-haiti-live-stream-team-news-tickets",
+            "summary": "URL: https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/articles/brazil-haiti-live-stream-team-news-tickets Status: 200 Content-Type: text/html; charset=utf-8",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Brazil soccer form 2026 World Cup squad odds Haiti World Cup 2026 qualification",
+            "summary": "Search results for \"Brazil soccer form 2026 World Cup squad odds Haiti World Cup 2026 qualification\": 1. Brazil — World Cup 2026 Odds, Squad & Fixtures | Fan Bet Odds https://fanbetodds.com/world-cup/teams/br Brazil at FIFA World Cup 2026. Group C, FIFA rank #4. Compare title od…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.squawka.com/us/news/world-cup/match-preview-brazil-vs-haiti-06-19-26-world-cup-2026/",
+            "summary": "HTTP 403 Forbidden for https://www.squawka.com/us/news/world-cup/match-preview-brazil-vs-haiti-06-19-26-world-cup-2026/ — www.squawka.com likely blocks automated fetch. Try WebSearch for the same query, or fetch a different domain that publishes the same data.",
+            "isError": true
+          },
+          {
+            "tool": "WebSearch",
+            "query": "\"Brazil vs Haiti\" \"June 19\" \"2026\" prediction odds World Cup",
+            "summary": "Search results for \"\"Brazil vs Haiti\" \"June 19\" \"2026\" prediction odds World Cup\": 1. Brazil vs Haiti: World Cup 2026 Prediction | Squawka https://www.squawka.com/us/news/world-cup/match-preview-brazil-vs-haiti-06-19-26-world-cup-2026/ Brazil vs Haiti prediction, Best Bets and b…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.azcentral.com/story/sports/soccer/worldcup/2026/06/18/brazil-haiti-picks-predictions-odds-world-cup-2026-friday/90596217007/",
+            "summary": "URL: https://www.azcentral.com/story/sports/soccer/worldcup/2026/06/18/brazil-haiti-picks-predictions-odds-world-cup-2026-friday/90596217007/ Status: 200 Content-Type: text/html; charset=utf-8 Brazil vs Haiti predictions, picks, odds for World Cup match Friday \"use strict\";if(wi…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Brazil Haiti betting odds World Cup 2026 moneyline draw",
+            "summary": "Search results for \"Brazil Haiti betting odds World Cup 2026 moneyline draw\": 1. Brazil vs Haiti Odds and Lines | 2026 World Cup - BetUS https://www.betus.com.pa/sportsbook/fifa/world-cup/brazil-vs-haiti/ Bet on Brazil vs Haiti in the 2026 World Cup on June 19, 2026, with Brazil…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 9507,
+          "outputTokens": 211
+        }
+      }
+    ],
+    "wc26-d-tr-py": [
+      {
+        "modelId": "anthropic/claude-opus-4.8",
+        "pick": "Turkey",
+        "confidence": 0.42,
+        "rationale": "Bookmakers give Turkey a narrow edge on superior attacking talent in a mutual must-win clash.",
+        "analysis": "Both Turkey and Paraguay lost their opening Group D matches, making this near-elimination match high-stakes for each. Multiple betting previews (Yahoo, gamblingnews) make Turkey the slight favorite on the strength of their young, talented attack (Güler, Kökçü, Yıldız). The strongest counter is Paraguay's defensive organization and big-tournament resilience, which often forces tight, low-scoring games and draws. I land on Turkey but with modest confidence because the bookmaker edge is narrow and tense must-win games are unpredictable, with a real chance of a draw.",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "Turkey vs Paraguay 2026 World Cup Group D June 19 preview",
+            "summary": "Search results for \"Turkey vs Paraguay 2026 World Cup Group D June 19 preview\": 1. Preview: Turkey vs Paraguay - prediction, team news, lineups | World ... https://www.sportsmole.co.uk/football/turkey/world-cup-2026/preview/turkey-vs-paraguay-prediction-team-news-lineups_599370.…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Turkey Paraguay World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions",
+            "summary": "URL: https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions Status: 200 Content-Type: text/html; charset=UTF-8 Turkey vs Paraguay World Cup 2026 Predictions and Best Bets :root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-r…",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 2 URL(s).",
+            "isError": false
+          },
+          {
+            "tool": "ExaAnswer",
+            "query": "Turkey vs Paraguay 2026 World Cup prediction, current group D standings and form…",
+            "summary": "",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey Paraguay World Cup 2026 betting odds favorite prediction",
+            "summary": "Search results for \"Turkey Paraguay World Cup 2026 betting odds favorite prediction\": 1. Turkey vs Paraguay World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions Turkey and Paraguay meet at Levi&…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 2,
+          "outputTokens": 542
+        }
+      },
+      {
+        "modelId": "openai/gpt-5.5",
+        "pick": "Turkey",
+        "confidence": 0.46,
+        "rationale": "Turkey’s superior attacking midfield and market-favorite status outweigh Paraguay’s defensive resilience in a low-scoring neutral-site match.",
+        "analysis": "Current previews consistently frame Turkey as the slight favorite, with Total Football Analysis backing them at around evens and citing stronger squad quality plus 19 qualifying goals. Sportsgambler/Squawka-style odds references also point to Turkey near +100 with under 2.5 goals favored, implying a tight game rather than a mismatch. The strongest counterargument is Paraguay’s traditionally compact, disruptive style and South American qualifying hardness, which make the draw a live outcome. I still land on Turkey because their creative ceiling is higher and one moment from Guler/Yildiz/Calhanoglu-type profiles is the most likely separator.",
+        "marketOdds": "No directly matching open Polymarket/Kalshi market found; sportsbook references show Turkey about +100 (~45-50% pre-vig).",
+        "scoreline": "1-0",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Turkey Paraguay World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Turkey vs Paraguay",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Paraguay national team recent form injuries June 2026 World Cup Turkey",
+            "summary": "Search results for \"Paraguay national team recent form injuries June 2026 World Cup Turkey\": 1. Julio Enciso injury: stretchered off in Paraguay World Cup farewell https://football360.com.au/paraguay-world-cup-star-julio-enciso-injured/ An injury to Paraguay&#x27;s most creative…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey Paraguay football head to head FIFA ranking June 2026",
+            "summary": "Search results for \"Turkey Paraguay football head to head FIFA ranking June 2026\": 1. Turkey vs Paraguay: All-time head-to-head record ahead of FIFA World ... https://khelnow.com/football/world-football-turkey-vs-paraguay-head-to-head-fifa-world-cup-202606 Here, we examine Turke…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey vs Paraguay prediction odds June 2026 World Cup Group D",
+            "summary": "Search results for \"Turkey vs Paraguay prediction odds June 2026 World Cup Group D\": 1. Turkey vs Paraguay Prediction & Odds — World Cup 2026 | FootballExplorer https://www.footballexplorer.com/en/world-cup-2026/matches/turkey-vs-paraguay AI predictions and odds for Turkey vs Pa…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions",
+            "summary": "URL: https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions Status: 200 Content-Type: text/html; charset=UTF-8 Turkey vs Paraguay World Cup 2026 Predictions and Best Bets {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"NewsArticle…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.sportsgambler.com/betting-tips/football/turkey-vs-paraguay-prediction-lineups-odds-2026-06-19/",
+            "summary": "URL: https://www.sportsgambler.com/betting-tips/football/turkey-vs-paraguay-prediction-lineups-odds-2026-06-19/ Status: 200 Content-Type: text/html; charset=UTF-8 Turkey vs Paraguay Prediction, Betting Tips, Lineups & Odds | 19 Jun 2026 --> Predictions Football Predictions Premi…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 5049,
+          "outputTokens": 206
+        }
+      },
+      {
+        "modelId": "google/gemini-3.1-pro",
+        "pick": "Turkey",
+        "confidence": 0.48,
+        "rationale": "Turkey is the betting favorite and expected to capitalize on Paraguay's defensive vulnerabilities in a must-win game.",
+        "analysis": "Both Turkey and Paraguay lost their opening Group D fixtures, making this a do-or-die scenario at Levi's Stadium. Traditional sportsbooks favor Turkey at roughly +105, giving them the statistical edge. Analysts point to Paraguay's suspect defense as a primary liability heading into the clash. Although desperation could force a gritty draw, Turkey's overall offensive quality should be enough to secure a vital win.",
+        "marketOdds": "Sportsbooks: Turkey +105",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Turkey Paraguay",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey vs Paraguay 2026 World Cup Group D predictions June 19",
+            "summary": "Search results for \"Turkey vs Paraguay 2026 World Cup Group D predictions June 19\": 1. Turkey vs Paraguay World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions Turkey and Paraguay meet at Levi&#x…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey Paraguay odds World Cup 2026",
+            "summary": "Search results for \"Turkey Paraguay odds World Cup 2026\": 1. Turkey vs Paraguay World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions Navigate to the World Cup 2026 section and locate the Turkey …",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 4442,
+          "outputTokens": 1600
+        }
+      },
+      {
+        "modelId": "xai/grok-4.3",
+        "pick": "Turkey",
+        "confidence": 0.68,
+        "rationale": "Turkey ranked ~15 spots higher with stronger recent form and squad depth.",
+        "analysis": "Recent FIFA rankings place Turkey around 30-35th and Paraguay 50-60th. Previews (Sports Mole, TotalFootballAnalysis) project Turkey as clear favorites for the June 19 fixture at Levi's Stadium. Paraguay have shown defensive resilience but lack attacking quality to match Turkey's midfield control and set-piece threat. No live betting markets exist yet given the 2026 date.",
+        "marketOdds": "n/a",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "FIFA rankings Turkey Paraguay 2026",
+            "summary": "Search results for \"FIFA rankings Turkey Paraguay 2026\": 1. FIFA/Coca-Cola World Rankings https://www.fifa.com/en/world-rankings Explore the official men&#x27;s and women&#x27;s FIFA/Coca-Cola World Ranking and the latest ranking news. 2. World Cup Group D standings 2026: Update…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Turkey Paraguay World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "FIFA World Cup 2026 Group D Turkey Paraguay preview prediction",
+            "summary": "Search results for \"FIFA World Cup 2026 Group D Turkey Paraguay preview prediction\": 1. World Cup 2026 Group D preview: Prediction, teams, rankings, key ... https://www.sportsmole.co.uk/football/usa/world-cup-2026/feature/world-cup-group-d-preview-predictions-key-fixture-star-pl…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1366,
+          "outputTokens": 132
+        }
+      },
+      {
+        "modelId": "deepseek/deepseek-v4-pro",
+        "pick": "Turkey",
+        "confidence": 0.47,
+        "rationale": "Turkey's superior attacking firepower from qualifying overpowers Paraguay's leaky defense in a must-win match after both lost their openers.",
+        "analysis": "Multiple preview sources from June 2026 (TotalFootballAnalysis, TheSportsRush) consistently back Turkey at near-evens, citing their 19 qualifying goals and stronger overall squad. Both teams enter desperate after losing Group D openers, but Paraguay's defense was specifically flagged as shaky. Turkey's greater quality in attack is the key differentiator in a fixture where neither side can afford to sit back. Main counter-argument: Paraguay can frustrate and grind a draw; however, Turkey's firepower should break through in a high-stakes match.",
+        "marketOdds": "Turkey ~+105 (implied ~48.8%) per published betting previews; no Polymarket/Kalshi contract found.",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Turkey Paraguay World Cup 2026",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey vs Paraguay 2026 World Cup preview June 2026",
+            "summary": "Search results for \"Turkey vs Paraguay 2026 World Cup preview June 2026\": 1. Turkey v Paraguay: World Cup 2026 line-ups, stats and preview, TV ... https://www.101greatgoals.com/match-previews/world-cup-matches/turkey-v-paraguay-line-ups-stats-preview-tv-channel-live-online-strea…",
+            "isError": false
+          },
+          {
+            "tool": "ExaReadUrls",
+            "query": "",
+            "summary": "No readable content returned for the 3 URL(s).",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.si.com/soccer/turkiye-vs-paraguay-world-cup-preview-predictions-lineups-6-19-26",
+            "summary": "URL: https://www.si.com/soccer/turkiye-vs-paraguay-world-cup-preview-predictions-lineups-6-19-26 Status: 200 Content-Type: text/html Turkiye vs. Paraguay—World Cup: Preview, Predictions and Lineups /* * The Typekit service used to deliver this font or fonts for use on websites *…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.footballexplorer.com/en/world-cup-2026/matches/turkey-vs-paraguay",
+            "summary": "URL: https://www.footballexplorer.com/en/world-cup-2026/matches/turkey-vs-paraguay Status: 200 Content-Type: text/html; charset=utf-8 Turkey vs Paraguay Prediction & Odds — World Cup 2026 | FootballExplorer Group D · FIFA World Cup 2026 Turkey vs Paraguay Sat, 20 June 2026 ... (…",
+            "isError": false
+          },
+          {
+            "tool": "PredictionMarket",
+            "query": "searchAll · Turkey Paraguay World Cup",
+            "summary": "No markets matched across any platform.",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey Paraguay World Cup 2026 group D odds prediction June 2026",
+            "summary": "Search results for \"Turkey Paraguay World Cup 2026 group D odds prediction June 2026\": 1. Turkey vs Paraguay World Cup 2026 Predictions and Best Bets https://thesportsrush.com/turkey-v-paraguay-predictions/ Turkey vs Paraguay is a must-win World Cup 2026 Group D clash. We back T…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://www.predictz.com/predictions/international/world-cup-2026-group-d/1189257/",
+            "summary": "HTTP 403 Forbidden for https://www.predictz.com/predictions/international/world-cup-2026-group-d/1189257/ — www.predictz.com likely blocks automated fetch. Try WebSearch for the same query, or fetch a different domain that publishes the same data.",
+            "isError": true
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions",
+            "summary": "URL: https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions Status: 200 Content-Type: text/html; charset=UTF-8 Turkey vs Paraguay World Cup 2026 Predictions and Best Bets {\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"NewsArticle…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 3426,
+          "outputTokens": 97
+        }
+      },
+      {
+        "modelId": "minimax/minimax-m3",
+        "pick": "Turkey",
+        "confidence": 0.48,
+        "rationale": "Close matchup; Turkey slight edge on paper but Paraguay is organized and resilient.",
+        "analysis": "Group D in the 2026 World Cup features USA, Paraguay, Australia, and Turkey. Turkey enters with a talented squad including Calhanoglu and experienced European-based players, giving them a slight technical edge. Paraguay is traditionally a defensive, counter-attacking side that is hard to break down, as seen in South American qualifiers. Levi's Stadium in Santa Clara offers a neutral venue. Markets and oddsmakers have this as essentially a coin flip with maybe slight Turkey favoritism. The most likely outcome by scoreline modeling is a low-scoring draw, but Turkey's individual quality tips the win probability marginally in their favor. A draw remains very plausible.",
+        "marketOdds": "n/a",
+        "scoreline": "1-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group D standings Turkey Paraguay",
+            "summary": "Search results for \"2026 FIFA World Cup Group D standings Turkey Paraguay\": 1. World Cup Group D standings 2026: Updated results, table and fixtures ... https://www.sportingnews.com/us/soccer/news/world-cup-group-d-standings-results-table-2026-usa/169a4b2b0f36c10afc540029 Here&#…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey vs Paraguay World Cup 2026 result score",
+            "summary": "Search results for \"Turkey vs Paraguay World Cup 2026 result score\": 1. Turkiye vs Paraguay: Scores, Results Lineups, H2H & Odds https://www.365scores.com/en-us/football/match/fifa-world-cup-5930/paraguay-turkiye-5047-5070-5930 Follow Turkiye Vs Paraguay. Get Ready with Results,…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 1820,
+          "outputTokens": 18
+        }
+      },
+      {
+        "modelId": "moonshot/kimi-k2.7",
+        "pick": "Turkey",
+        "confidence": 0.52,
+        "rationale": "Turkey's European pedigree and attacking talent edge a desperate South American side in a likely open game.",
+        "analysis": "Both teams reportedly lost their World Cup openers, making this a high-stakes must-not-lose clash. Turkey brings a stronger set of individual offensive weapons and higher-level club experience across Europe than a Paraguay squad that has struggled in recent cycles. However, Paraguay's physicality and fighting spirit after a defeat can keep it close, especially if Turkey is wasteful. The market leans slightly toward Turkey, and I follow that lean with modest confidence given the unpredictability of early knockout-pressure matches.",
+        "marketOdds": "Betting consensus: Turkey narrow favorite (implied roughly 45-50% win), Draw ~28%, Paraguay ~25%",
+        "scoreline": "2-1",
+        "trace": [
+          {
+            "tool": "WebSearch",
+            "query": "2026 FIFA World Cup Group D Turkey Paraguay Levi's Stadium June 19 schedule",
+            "summary": "Search results for \"2026 FIFA World Cup Group D Turkey Paraguay Levi's Stadium June 19 schedule\": 1. 2026 Soccer World Cup Schedule · Levi&#x27;s Stadium Santa Clara · Match ... https://www.worldcupsantaclara.com/matches Full 2026 FIFA World Cup schedule for Levi&#x27;s Stadium …",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Turkey national team squad 2026 World Cup qualification form Paraguay national team 2026",
+            "summary": "Search results for \"Turkey national team squad 2026 World Cup qualification form Paraguay national team 2026\": 1. Turkey 2026 World Cup Team Profile | Squad Analysis & Statistics | Footlab https://footlab-data.com/en/world-cup/team/turkiye Complete analytical profile of Türkiye&…",
+            "isError": false
+          },
+          {
+            "tool": "WebSearch",
+            "query": "Paraguay vs Turkey 2026 World Cup prediction odds betting",
+            "summary": "Search results for \"Paraguay vs Turkey 2026 World Cup prediction odds betting\": 1. Turkey vs Paraguay World Cup 2026 Predictions and Best Bets https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions Turkey and Paraguay meet at Levi&#x27;s…",
+            "isError": false
+          },
+          {
+            "tool": "WebFetch",
+            "query": "https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions",
+            "summary": "URL: https://totalfootballanalysis.com/competitions/fifa-world-cup-2026/turkey-v-paraguay-predictions Status: 200 Content-Type: text/html; charset=UTF-8 Turkey vs Paraguay World Cup 2026 Predictions and Best Bets :root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-r…",
+            "isError": false
+          }
+        ],
+        "turnReason": "completed",
+        "tokens": {
+          "inputTokens": 3973,
+          "outputTokens": 187
         }
       }
     ]
