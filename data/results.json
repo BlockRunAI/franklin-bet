@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-26T00:34:55.547Z",
+  "updatedAt": "2026-06-26T01:41:42.061Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -283,12 +283,12 @@
       "away": 1
     },
     "wc26-f-jp-se": {
-      "status": "live",
+      "status": "finished",
       "home": 1,
       "away": 1
     },
     "wc26-f-tn-nl": {
-      "status": "live",
+      "status": "finished",
       "home": 1,
       "away": 3
     }
