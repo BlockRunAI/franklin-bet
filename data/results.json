@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-06-27T01:37:44.422Z",
+  "updatedAt": "2026-06-27T03:03:11.705Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -313,14 +313,24 @@
       "away": 0
     },
     "wc26-h-cv-sa": {
-      "status": "live",
+      "status": "finished",
       "home": 0,
       "away": 0
     },
     "wc26-h-uy-es": {
-      "status": "live",
+      "status": "finished",
       "home": 0,
       "away": 1
+    },
+    "wc26-g-eg-ir": {
+      "status": "live",
+      "home": 0,
+      "away": 0
+    },
+    "wc26-g-nz-be": {
+      "status": "live",
+      "home": 0,
+      "away": 0
     }
   }
 }
