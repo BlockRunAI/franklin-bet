@@ -16,5 +16,9 @@
   },
   "dependencies": {
     "@blockrun/llm": "^1.0.0"
+  },
+  "overrides": {
+    "ws": "^8.21.0",
+    "postcss": "^8.5.10"
   }
 }
