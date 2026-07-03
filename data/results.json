@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-02T23:23:20.658Z",
+  "updatedAt": "2026-07-03T00:28:32.870Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -419,8 +419,8 @@
     },
     "wc26-roundof32-pt-hr": {
       "status": "live",
-      "home": 0,
-      "away": 0
+      "home": 1,
+      "away": 1
     }
   }
 }
