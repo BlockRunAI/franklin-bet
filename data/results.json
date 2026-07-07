@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T16:21:21.165Z",
+  "updatedAt": "2026-07-07T18:11:40.359Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -473,9 +473,9 @@
       "away": 4
     },
     "wc26-roundof16-ar-eg": {
-      "status": "live",
-      "home": 0,
-      "away": 1
+      "status": "finished",
+      "home": 3,
+      "away": 2
     }
   }
 }
