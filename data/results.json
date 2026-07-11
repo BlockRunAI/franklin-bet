@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-07T23:19:22.885Z",
+  "updatedAt": "2026-07-11T01:14:58.352Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -480,6 +480,16 @@
     "wc26-roundof16-ch-co": {
       "status": "finished",
       "home": 0,
+      "away": 0
+    },
+    "wc26-quarterfinals-es-be": {
+      "status": "finished",
+      "home": 2,
+      "away": 1
+    },
+    "wc26-quarterfinals-fr-ma": {
+      "status": "finished",
+      "home": 2,
       "away": 0
     }
   }
