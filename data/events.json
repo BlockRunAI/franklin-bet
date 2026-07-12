@@ -1152,6 +1152,22 @@
     "unit": "result"
   },
   {
+    "id": "wc26-champion",
+    "category": "World Cup",
+    "emoji": "🏆",
+    "title": "Who wins the 2026 World Cup?",
+    "title_zh": "谁将赢得 2026 年世界杯冠军?",
+    "resolves": "2026-07-19",
+    "question": "Which nation wins the 2026 FIFA World Cup? The four semi-finalists are France, Spain, England, and Argentina. Pick exactly one: 'France', 'Spain', 'England', or 'Argentina'.",
+    "unit": "nation",
+    "options": [
+      "France",
+      "Spain",
+      "England",
+      "Argentina"
+    ]
+  },
+  {
     "id": "btc-eoy-2026",
     "category": "Crypto",
     "emoji": "₿",
@@ -1678,6 +1694,22 @@
     "title": "France vs Spain",
     "resolves": "2026-07-14",
     "question": "In the 2026 FIFA World Cup Semi-finals match France vs Spain (AT&T Stadium, 2026-07-14), which team advances to the Final? After extra time and penalties if needed, pick exactly one: France or Spain.",
+    "unit": "winner"
+  },
+  {
+    "id": "wc26-semifinals-gbe-ar",
+    "category": "Semi-finals",
+    "stage": "knockout",
+    "home": "England",
+    "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "away": "Argentina",
+    "awayFlag": "🇦🇷",
+    "kickoff": "2026-07-15T19:00Z",
+    "venue": "Mercedes-Benz Stadium",
+    "emoji": "🏆",
+    "title": "England vs Argentina",
+    "resolves": "2026-07-15",
+    "question": "In the 2026 FIFA World Cup Semi-finals match England vs Argentina (Mercedes-Benz Stadium, 2026-07-15), which team advances to the Final? After extra time and penalties if needed, pick exactly one: England or Argentina.",
     "unit": "winner"
   }
 ]
