@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-12T02:16:32.486Z",
+  "updatedAt": "2026-07-12T05:02:54.994Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -498,9 +498,9 @@
       "away": 2
     },
     "wc26-quarterfinals-ar-ch": {
-      "status": "live",
-      "home": 1,
-      "away": 0
+      "status": "finished",
+      "home": 3,
+      "away": 1
     }
   }
 }
