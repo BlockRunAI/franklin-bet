@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-14T19:29:15.181Z",
+  "updatedAt": "2026-07-14T20:28:39.945Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -505,7 +505,7 @@
     "wc26-semifinals-fr-es": {
       "status": "live",
       "home": 0,
-      "away": 1
+      "away": 2
     }
   }
 }
