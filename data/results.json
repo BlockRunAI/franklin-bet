@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-15T20:47:14.488Z",
+  "updatedAt": "2026-07-15T21:20:02.159Z",
   "source": "espn",
   "byEvent": {
     "wc26-a-mx-za": {
@@ -508,9 +508,9 @@
       "away": 2
     },
     "wc26-semifinals-gbe-ar": {
-      "status": "live",
+      "status": "finished",
       "home": 1,
-      "away": 1
+      "away": 2
     }
   }
 }
