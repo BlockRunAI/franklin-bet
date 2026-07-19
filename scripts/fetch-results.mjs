@@ -97,6 +97,17 @@ async function main() {
   }
 
   if (matched === 0) {
+    // Between tournaments (or after the final has been recorded) ESPN's
+    // rolling scoreboard has no fixture from our small lookback window. That
+    // is normal once every tracked match has a final result; do not turn the
+    // 30-minute cron into a permanent failure. While any match is still
+    // unresolved, however, zero matches is still a useful provider/mapping
+    // alarm and must fail safely rather than silently doing nothing.
+    const unresolved = events.filter((ev) => existing[ev.id]?.status !== "finished");
+    if (unresolved.length === 0) {
+      console.log(`No source fixtures matched; all ${events.length} tracked fixtures are already finished. results.json left as-is.`);
+      return;
+    }
     console.error("⚠️ 0 fixtures matched — NOT writing (would wipe results). Check the competition code / extend the ALIAS map.");
     process.exit(1);
   }

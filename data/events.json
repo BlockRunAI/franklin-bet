@@ -1711,5 +1711,37 @@
     "resolves": "2026-07-15",
     "question": "In the 2026 FIFA World Cup Semi-finals match England vs Argentina (Mercedes-Benz Stadium, 2026-07-15), which team advances to the Final? After extra time and penalties if needed, pick exactly one: England or Argentina.",
     "unit": "winner"
+  },
+  {
+    "id": "wc26-third-place-gbe-fr",
+    "category": "Third-place play-off",
+    "stage": "knockout",
+    "home": "England",
+    "homeFlag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    "away": "France",
+    "awayFlag": "🇫🇷",
+    "kickoff": "2026-07-18T21:00:00Z",
+    "venue": "Miami Stadium, Miami Gardens",
+    "emoji": "🥉",
+    "title": "England vs France",
+    "resolves": "2026-07-18",
+    "question": "In the 2026 FIFA World Cup third-place play-off England vs France (Miami Stadium, 2026-07-18), which team wins? After extra time and penalties if needed, pick exactly one: England or France.",
+    "unit": "winner"
+  },
+  {
+    "id": "wc26-final-es-ar",
+    "category": "Final",
+    "stage": "knockout",
+    "home": "Spain",
+    "homeFlag": "🇪🇸",
+    "away": "Argentina",
+    "awayFlag": "🇦🇷",
+    "kickoff": "2026-07-19T19:00:00Z",
+    "venue": "New York New Jersey Stadium, East Rutherford",
+    "emoji": "🏆",
+    "title": "Spain vs Argentina",
+    "resolves": "2026-07-19",
+    "question": "In the 2026 FIFA World Cup Final Spain vs Argentina (New York New Jersey Stadium, 2026-07-19), which team wins the World Cup? After extra time and penalties if needed, pick exactly one: Spain or Argentina.",
+    "unit": "winner"
   }
 ]
