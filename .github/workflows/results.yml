@@ -5,11 +5,12 @@ name: Refresh results
 # Source: TheSportsDB (free, keyless) — no wallet, no secret needed.
 # The site reads data/*.json from the repo's raw URL, so a push here goes live
 # within minutes WITHOUT redeploying the container.
+#
+# The World Cup is complete, so automatic polling is intentionally disabled.
+# Keep workflow_dispatch available for a one-off manual correction if needed.
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/30 * * * *"   # every 30 min — refreshes scores during match days
 
 permissions:
   contents: write
