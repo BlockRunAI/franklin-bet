@@ -37,6 +37,11 @@ function slugify(s) {
   return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 48);
 }
 
+function cleanModelText(value, fallback, maxLength) {
+  const text = String(value ?? "").replace(/[\u0000-\u001f\u007f-\u009f]/g, " ").trim().slice(0, maxLength);
+  return text || fallback;
+}
+
 function parseArgs(argv) {
   const args = { topic: [], generate: false };
   for (let i = 0; i < argv.length; i++) {
@@ -78,13 +83,13 @@ async function main() {
 
   const event = {
     id,
-    category: ev.category || "Culture",
-    emoji: ev.emoji || "🔮",
-    title: ev.title || args.topic,
-    title_zh: ev.title_zh || "",
-    resolves: args.resolves || ev.resolves || "",
-    question: ev.question,
-    unit: ev.unit || "outcome",
+    category: cleanModelText(ev.category, "Culture", 40),
+    emoji: cleanModelText(ev.emoji, "🔮", 32),
+    title: cleanModelText(ev.title, args.topic, 200),
+    title_zh: cleanModelText(ev.title_zh, "", 200),
+    resolves: cleanModelText(args.resolves || ev.resolves, "", 32),
+    question: cleanModelText(ev.question, "", 1200),
+    unit: cleanModelText(ev.unit, "outcome", 40),
   };
 
   events.push(event);

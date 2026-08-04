@@ -57,13 +57,15 @@ jobs:
         env:
           BASE_CHAIN_WALLET_KEY: ${{ secrets.BASE_CHAIN_WALLET_KEY }}
           FRANKLIN_CMD: franklin
+          ENGINE: ${{ inputs.engine }}
+          EVENT: ${{ inputs.event }}
+          MAX_SPEND: ${{ inputs.max_spend }}
         run: |
           set -e
-          ARGS=""
-          [ "${{ inputs.engine }}" = "agent" ] && ARGS="$ARGS --agent --max-spend ${{ inputs.max_spend }}"
-          [ -n "${{ inputs.event }}" ] && ARGS="$ARGS --event ${{ inputs.event }}"
-          echo "Running: node scripts/generate.mjs $ARGS"
-          node scripts/generate.mjs $ARGS
+          ARGS=()
+          [ "$ENGINE" = "agent" ] && ARGS+=(--agent --max-spend "$MAX_SPEND")
+          [ -n "$EVENT" ] && ARGS+=(--event "$EVENT")
+          node scripts/generate.mjs "${ARGS[@]}"
 
       - name: Commit & push if changed
         run: |

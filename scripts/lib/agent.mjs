@@ -13,6 +13,9 @@
 import { spawn } from "node:child_process";
 import { parseModelJSON, snapPick } from "./oracle.mjs";
 
+export const MAX_CHILD_STDOUT_BYTES = 2 * 1024 * 1024;
+export const MAX_CHILD_STDERR_BYTES = 64 * 1024;
+
 function franklinInvocation(cmdOverride) {
   // env wins (handy for local dev), then explicit override (from config), then PATH.
   const cmd = process.env.FRANKLIN_CMD || cmdOverride || "franklin";
@@ -63,15 +66,28 @@ export async function askModelAgent(_client, model, event, opts = {}) {
   if (maxSpend != null) args.push("--max-spend", String(maxSpend));
 
   return new Promise((resolve) => {
-    let stdout = "", stderr = "", done = false;
+    let stdout = "", stdoutBytes = 0, stderrBytes = 0, done = false;
     const child = spawn(bin, args, { stdio: ["ignore", "pipe", "pipe"] });
     const finish = (val) => { if (!done) { done = true; clearTimeout(killer); resolve(val); } };
+    const overflow = (stream, maxBytes) => {
+      try { child.kill("SIGKILL"); } catch {}
+      finish({ __abstained: true, modelId: model.id, error: `${stream} exceeded ${maxBytes} byte limit` });
+    };
     const killer = setTimeout(() => { try { child.kill("SIGKILL"); } catch {}
       finish({ __abstained: true, modelId: model.id, error: `timeout after ${timeoutMs}ms` });
     }, timeoutMs);
 
-    child.stdout.on("data", (d) => { stdout += d; });
-    child.stderr.on("data", (d) => { stderr += d; });
+    child.stdout.on("data", (d) => {
+      if (done) return;
+      stdoutBytes += d.length;
+      if (stdoutBytes > MAX_CHILD_STDOUT_BYTES) return overflow("stdout", MAX_CHILD_STDOUT_BYTES);
+      stdout += d.toString("utf8");
+    });
+    child.stderr.on("data", (d) => {
+      if (done) return;
+      stderrBytes += d.length;
+      if (stderrBytes > MAX_CHILD_STDERR_BYTES) overflow("stderr", MAX_CHILD_STDERR_BYTES);
+    });
     child.on("error", (e) => finish({ __abstained: true, modelId: model.id, error: e.message }));
     child.on("close", () => {
       const env = extractEnvelope(stdout);

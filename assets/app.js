@@ -3,6 +3,8 @@
 // file the council produced. Consensus is computed in the browser. No backend,
 // no user data. Language is user-toggleable (EN / 中文).
 
+import { escapeHtml as esc, safeEventEmoji } from "./safe.js";
+
 const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 const el = (tag, cls, html) => {
@@ -11,7 +13,6 @@ const el = (tag, cls, html) => {
   if (html != null) n.innerHTML = html;
   return n;
 };
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const pad = (n) => String(n).padStart(2, "0");
 // Readable URL slugs: "Brazil vs Morocco" → "brazil-vs-morocco". Must match the
 // identical helper in scripts/serve.mjs so server meta and client routing agree.
@@ -354,7 +355,7 @@ function genericCard(ev) {
   const card = el("div", "event-card");
   card.onclick = () => openModal(ev, con);
   const top = el("div", "ec-top");
-  top.append(el("span", "ec-cat", esc(catLabel(ev.category))), el("span", "ec-emoji", ev.emoji || "🔮"));
+  top.append(el("span", "ec-cat", esc(catLabel(ev.category))), el("span", "ec-emoji", safeEventEmoji(ev)));
   card.append(top);
   card.append(el("h3", "ec-title", esc(titleOf(ev))));
   if (con) {
@@ -614,7 +615,7 @@ function openModal(ev, con) {
     cap.append(header);
     if (ev.venue) cap.append(el("div", "m-title-zh", esc(ev.venue)));
   } else {
-    cap.append(el("div", "m-title", `${ev.emoji || "🔮"} ${esc(titleOf(ev))}`));
+    cap.append(el("div", "m-title", `${safeEventEmoji(ev)} ${esc(titleOf(ev))}`));
   }
   cap.append(el("div", "m-question", esc(ev.question)));
 

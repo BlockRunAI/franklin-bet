@@ -12,6 +12,7 @@ import { readFile } from "node:fs/promises";
 import { readFileSync as readSync } from "node:fs";
 import { extname, join, normalize, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { escapeHtml } from "../assets/safe.js";
 
 const ROOT = normalize(join(fileURLToPath(import.meta.url), "..", ".."));
 const PORT = process.env.PORT || 4173;
@@ -22,7 +23,7 @@ const TYPES = {
   ".svg": "image/svg+xml", ".png": "image/png", ".ico": "image/x-icon", ".xml": "application/xml; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
 };
-const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const esc = escapeHtml;
 const readJSON = (p) => { try { return JSON.parse(readSync(join(ROOT, p), "utf8")); } catch { return null; } };
 // Readable URL slug — MUST match slugify()/eventSlug() in assets/app.js.
 const slugify = (s) => String(s || "").normalize("NFKD").replace(/[^\w\s-]/g, "").toLowerCase().trim().replace(/[\s_]+/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
@@ -68,7 +69,22 @@ function sitemap() {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`;
 }
 
-const server = createServer(async (req, res) => {
+const PUBLIC_ROOT_FILES = new Set(["index.html", "oracle.config.json"]);
+const PUBLIC_DIRS = new Set(["assets", "data"]);
+
+/** Resolve only files that are intentionally public in both dev and production. */
+export function resolvePublicFile(reqPath, root = ROOT) {
+  const route = reqPath === "/" ? "/index.html" : reqPath;
+  if (!route.startsWith("/") || route.endsWith("/")) return null;
+  const parts = route.slice(1).split("/");
+  if (parts.some((part) => !part || part === "." || part === ".." || part.startsWith("."))) return null;
+  const allowed = (parts.length === 1 && PUBLIC_ROOT_FILES.has(parts[0])) || PUBLIC_DIRS.has(parts[0]);
+  if (!allowed) return null;
+  const filePath = normalize(join(root, ...parts));
+  return filePath.startsWith(normalize(root) + sep) ? filePath : null;
+}
+
+export const server = createServer(async (req, res) => {
   try {
     const reqPath = decodeURIComponent((req.url || "/").split("?")[0]);
 
@@ -91,19 +107,21 @@ const server = createServer(async (req, res) => {
     }
 
     // Static files
-    let path = reqPath;
-    if (path === "/" || path.endsWith("/")) path += "index.html";
-    const filePath = normalize(join(ROOT, path));
-    // Guard against path traversal — must be ROOT or strictly inside it.
-    if (filePath !== ROOT && !filePath.startsWith(ROOT + sep)) { res.writeHead(403).end("Forbidden"); return; }
+    const filePath = resolvePublicFile(reqPath);
+    if (!filePath) { res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found"); return; }
     const data = await readFile(filePath);
-    res.writeHead(200, { "Content-Type": TYPES[extname(filePath)] || "application/octet-stream" });
+    res.writeHead(200, {
+      "Content-Type": TYPES[extname(filePath)] || "application/octet-stream",
+      "X-Content-Type-Options": "nosniff",
+    });
     res.end(data);
   } catch {
     res.writeHead(404, { "Content-Type": "text/plain" }).end("Not found");
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`\n  🔮 Franklin.bet running at http://localhost:${PORT}\n`);
-});
+if (process.argv[1] && normalize(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  server.listen(PORT, () => {
+    console.log(`\n  🔮 Franklin.bet running at http://localhost:${PORT}\n`);
+  });
+}

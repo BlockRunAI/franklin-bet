@@ -197,9 +197,9 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // Ask one model for one event, with retries and tolerant parsing.
 // Returns a normalized prediction object, or null if it abstains after retries.
 export async function askModel(client, model, event, opts = {}) {
-  const { retries = 2, timeoutMs = 90000, maxTokens = 600, temperature = 0.7 } = opts;
+  const { requestRetries = opts.retries ?? 2, timeoutMs = 90000, maxTokens = 600, temperature = 0.7 } = opts;
   let lastErr = "no response";
-  for (let attempt = 0; attempt <= retries; attempt++) {
+  for (let attempt = 0; attempt <= requestRetries; attempt++) {
     try {
       const prompt = attempt === 0
         ? event.question
@@ -219,7 +219,7 @@ export async function askModel(client, model, event, opts = {}) {
     } catch (err) {
       lastErr = err?.message || String(err);
     }
-    if (attempt < retries) await sleep(400 * (attempt + 1));
+    if (attempt < requestRetries) await sleep(400 * (attempt + 1));
   }
   return { __abstained: true, modelId: model.id, error: lastErr };
 }
@@ -235,11 +235,13 @@ export async function generateEvents(client, events, models, opts = {}, onLog = 
   // Models are non-deterministic: an abstain is often transient (a stream
   // timeout, or a model — e.g. MiniMax/Kimi — that leaked native tool-call
   // markup instead of the final JSON on one turn). Give each model one fresh
-  // attempt before recording an abstention. opts.retries=0 disables it.
-  const retries = opts.retries == null ? 1 : opts.retries;
+  // attempt before recording an abstention. predictionRetries=0 disables it.
+  // The built-in chat adapter already retries individual paid requests. Only
+  // custom adapters (notably Franklin agent mode) get a whole-prediction retry.
+  const predictionRetries = opts.predictionRetries ?? (opts.ask ? 1 : 0);
   const askWithRetry = async (m, ev) => {
     let r = await ask(client, m, ev, opts);
-    for (let attempt = 0; r.__abstained && attempt < retries; attempt++) {
+    for (let attempt = 0; r.__abstained && attempt < predictionRetries; attempt++) {
       onLog("retry", `↻ ${name(models, r.modelId)} retrying — ${r.error}`);
       r = await ask(client, m, ev, opts);
     }

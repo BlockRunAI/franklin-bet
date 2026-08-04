@@ -41,7 +41,9 @@ jobs:
         env:
           BASE_CHAIN_WALLET_KEY: ${{ secrets.BASE_CHAIN_WALLET_KEY }}
           FRANKLIN_CMD: franklin
-        run: node scripts/generate.mjs --agent --skip-done --upcoming ${{ github.event.inputs.upcoming || '3' }} --max-spend ${{ github.event.inputs.max_spend || '1.0' }}
+          UPCOMING: ${{ github.event.inputs.upcoming || '3' }}
+          MAX_SPEND: ${{ github.event.inputs.max_spend || '1.0' }}
+        run: node scripts/generate.mjs --agent --skip-done --upcoming "$UPCOMING" --max-spend "$MAX_SPEND"
       - name: Commit & push if changed
         run: |
           git config user.name  "franklin-bet-bot"
