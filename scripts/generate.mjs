@@ -2,15 +2,14 @@
 //
 // Asks every council model the same structured question for each event, through
 // ONE BlockRun gateway endpoint, and writes data/predictions.json. Every
-// prediction is a real, metered call settled in USDC via x402 — your wallet
-// signature is the only auth.
+// prediction is a real, metered call billed to a BlockRun account or settled
+// in USDC via x402.
 //
 //   npm run generate                 # all events, flagship paid council
 //   npm run generate:free            # all events, free NVIDIA tier ($0)
 //   node scripts/generate.mjs --event world-cup-2026   # one event, merged in
 //
-// Paid tier needs a wallet: BASE_CHAIN_WALLET_KEY in the env, or the funded
-// ~/.blockrun/.session wallet (auto-discovered).
+// Paid tier accepts BLOCKRUN_API_KEY, or an existing funded x402 wallet.
 
 import {
   DATA, loadJSON, writeJSON, FREE_MODELS, loadConfig,
@@ -105,13 +104,13 @@ async function main() {
     try {
       ({ client, how } = await resolveClient({ tier }));
     } catch (err) {
-      console.error(`\n✗ No wallet available: ${err.message}`);
-      console.error("  Set BASE_CHAIN_WALLET_KEY, or run `npm run generate:free`.\n");
+      console.error(`\n✗ No billing credential available: ${err.message}`);
+      console.error("  Set BLOCKRUN_API_KEY or a wallet key, or run `npm run generate:free`.\n");
       process.exit(1);
     }
     console.log("Engine: CHAT (single call) — fast, NOT grounded in live data.");
   }
-  console.log(`Wallet: ${how}`);
+  console.log(`Billing: ${how}`);
 
   // --fill-abstained: re-run ONLY the (event, model) pairs that have no vote
   // yet in predictions.json (abstained or never run). Per-model merge keeps the

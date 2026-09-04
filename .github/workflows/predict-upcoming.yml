@@ -4,8 +4,7 @@ name: Predict upcoming matches
 # next ~3 days that aren't predicted yet — i.e. each match gets its prediction
 # JSON a couple of days before kickoff. Commits data/predictions.json.
 #
-# Requires repo secret BASE_CHAIN_WALLET_KEY (funded Base wallet). Agent mode also
-# needs the Franklin CLI with `franklin predict` (installed below).
+# Recommended repo secret: BLOCKRUN_API_KEY. A funded x402 wallet remains a fallback.
 
 on:
   workflow_dispatch:
@@ -39,6 +38,7 @@ jobs:
         run: npm install -g @blockrun/franklin
       - name: Generate predictions for upcoming matches
         env:
+          BLOCKRUN_API_KEY: ${{ secrets.BLOCKRUN_API_KEY }}
           BASE_CHAIN_WALLET_KEY: ${{ secrets.BASE_CHAIN_WALLET_KEY }}
           FRANKLIN_CMD: franklin
           UPCOMING: ${{ github.event.inputs.upcoming || '3' }}

@@ -65,15 +65,15 @@ npm run generate:free                  # zero-USDC NVIDIA tier (chat)
 ```
 
 Agent mode needs the `franklin` CLI on PATH (`npm i -g @blockrun/franklin`) or
-`FRANKLIN_CMD` pointing at a local build, plus a funded wallet.
+`FRANKLIN_CMD` pointing at a local build, plus `BLOCKRUN_API_KEY` or a funded wallet.
 
-## Wallet & secrets
+## Billing & secrets
 
-- Generation is authenticated by an x402 wallet signature — no API keys.
-- Provide it via `BASE_CHAIN_WALLET_KEY` (env or CI secret) or the local
-  `~/.blockrun/.session` wallet (auto-discovered).
-- **Never commit a private key or `.env`.** They are gitignored. CI reads the
-  key from the `BASE_CHAIN_WALLET_KEY` repo secret.
+- Recommended: register at https://user.blockrun.ai, add credits, create an API key,
+  and set `BLOCKRUN_API_KEY` locally or as a CI secret.
+- x402 wallet fallback supports Solana through Franklin agent mode, then Base via
+  `BASE_CHAIN_WALLET_KEY` or the local session wallet.
+- **Never commit an API key, private key, or `.env`.** They are gitignored.
 
 ## Running locally
 

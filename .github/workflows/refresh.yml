@@ -4,10 +4,8 @@ name: Refresh predictions
 # does), it re-runs the council against the events, commits the updated
 # data/predictions.json, and pushes — which your static host redeploys.
 #
-# Required repo secret:
-#   BASE_CHAIN_WALLET_KEY — a funded Base wallet private key (0x…). Used by both
-#   the chat engine (@blockrun/llm) and the agent engine (Franklin). Keep it a
-#   secret; never commit it.
+# Recommended repo secret: BLOCKRUN_API_KEY. Create it at user.blockrun.ai.
+# BASE_CHAIN_WALLET_KEY remains available for the legacy x402 wallet flow.
 
 on:
   workflow_dispatch:
@@ -55,6 +53,7 @@ jobs:
 
       - name: Generate predictions
         env:
+          BLOCKRUN_API_KEY: ${{ secrets.BLOCKRUN_API_KEY }}
           BASE_CHAIN_WALLET_KEY: ${{ secrets.BASE_CHAIN_WALLET_KEY }}
           FRANKLIN_CMD: franklin
           ENGINE: ${{ inputs.engine }}
