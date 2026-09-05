@@ -17,7 +17,7 @@
     "add-event": "node scripts/add-event.mjs"
   },
   "dependencies": {
-    "@blockrun/llm": "^1.0.0"
+    "@blockrun/llm": "^3.15.0"
   },
   "overrides": {
     "ws": "^8.21.0",

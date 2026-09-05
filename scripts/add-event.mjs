@@ -66,7 +66,7 @@ async function main() {
   const eng = config.engine || {};
 
   const { client, how } = await resolveClient({ tier: eng.tier || "flagship" });
-  console.log(`Normalizing topic with ${NORMALIZER_MODEL} (wallet: ${how})…`);
+  console.log(`Normalizing topic with ${NORMALIZER_MODEL} (billing: ${how})…`);
   const raw = await client.chat(NORMALIZER_MODEL, `Topic: ${args.topic}`, { system: SYSTEM, temperature: 0.4, maxTokens: 400 });
   const ev = looseJSON(raw);
   if (!ev || !ev.question) {

@@ -314,17 +314,22 @@ export function mergePredictions(existing, fresh, { tier, engine = "chat" }) {
   };
 }
 
-// Resolve a BlockRun client: explicit env key wins, else auto-discover the
-// funded ~/.blockrun/.session wallet. Returns the client or throws.
+// Resolve account billing first, then preserve the existing x402 wallet fallback.
 export async function resolveClient({ tier }) {
   let LLMClient, setupAgentWallet;
   ({ LLMClient, setupAgentWallet } = await import("@blockrun/llm"));
-  const baseURL = process.env.BLOCKRUN_BASE_URL;
+  if (process.env.BLOCKRUN_API_KEY) {
+    return {
+      client: new LLMClient({ apiKey: process.env.BLOCKRUN_API_KEY, apiUrl: process.env.BLOCKRUN_API_BASE_URL }),
+      how: "BlockRun account API",
+    };
+  }
+  const apiUrl = process.env.BLOCKRUN_BASE_URL;
   if (process.env.BASE_CHAIN_WALLET_KEY) {
-    return { client: new LLMClient(baseURL ? { baseURL } : {}), how: "env key" };
+    return { client: new LLMClient({ privateKey: process.env.BASE_CHAIN_WALLET_KEY, apiUrl }), how: "Base x402 wallet" };
   }
   if (tier !== "free" && !process.env.BASE_CHAIN_WALLET_KEY) {
     // setupAgentWallet still works for paid if a session/file wallet exists.
   }
-  return { client: setupAgentWallet(), how: "~/.blockrun/.session" };
+  return { client: setupAgentWallet(), how: "local x402 wallet" };
 }

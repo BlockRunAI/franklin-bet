@@ -10,9 +10,9 @@ upset calls, and **how each model did its research before committing**.
 
 It's a marketing gimmick with a point: in grounded mode every prediction is a
 real agent that searches the live web for form and team news, reads
-prediction-market odds, and pays per call in USDC via x402 through one BlockRun
+prediction-market odds, and pays per call through the BlockRun account API or in USDC via x402 through one BlockRun
 endpoint. The whole pipeline is **open-source and reproducible** — anyone can
-re-run it with their own wallet. The site *is* the demo.
+re-run it with their own API key or wallet. The site *is* the demo.
 
 English-first, with Chinese accents. Fixtures are **curated by maintainers**;
 the site takes no user input. Built on [Franklin](https://blockrun.ai) ×
@@ -74,17 +74,18 @@ npm run dev        # → http://localhost:4173
 The data pipeline is fully open. There are two ways the `data/predictions.json`
 the site renders can be produced — and **anyone can run either**:
 
-- **The canonical site** is refreshed server-side (the GitHub Action below) using
-  the project's own funded wallet, then committed and redeployed.
-- **You** can fork the repo, point it at **your own wallet**, and regenerate the
-  exact same way. Every model call is metered on-chain via x402, so the cost and
-  provenance are transparent. Because grounded runs use live web search and model
+- **The canonical site** is refreshed server-side using a BlockRun account API key,
+  then committed and redeployed.
+- **You** can fork the repo, register at [user.blockrun.ai](https://user.blockrun.ai),
+  add [credits](https://user.blockrun.ai/dashboard/credits), create an
+  [API key](https://user.blockrun.ai/dashboard/keys), and regenerate the same way.
+  The x402 wallet flow remains available. Because grounded runs use live web search and model
   sampling, you reproduce the **method**, not bit-identical output — that's
   expected for forecasting.
 
 ```bash
 npm run seed                          # 0) zero-USDC placeholder data to render
-export BASE_CHAIN_WALLET_KEY=0x...     # your funded Base wallet (or ~/.blockrun/.session)
+export BLOCKRUN_API_KEY=brk_...         # recommended account billing
 npm run generate -- --agent           # 1) grounded: each model researches + bets
 npm run generate -- --agent --event wc26-arg-nga   # one match, merged in
 npm run generate:free                 # zero-USDC NVIDIA tier (chat engine)
@@ -123,8 +124,8 @@ npm run add-event -- "Who wins Euro 2028?" --generate                      # app
 
 `.github/workflows/refresh.yml` lets a maintainer trigger a regenerate from the
 Actions tab (choose `chat`/`agent`, optional single event), commits the updated
-`predictions.json`, and pushes — your static host redeploys. Set the
-`BASE_CHAIN_WALLET_KEY` repo secret first. A weekly schedule is included
+`predictions.json`, and pushes — your static host redeploys. Set the `BLOCKRUN_API_KEY` repo secret first. Wallet fallback order is Solana, then Base;
+agent mode inherits either wallet from Franklin while chat mode supports the Base wallet. A weekly schedule is included
 (commented out — agent mode spends real USDC).
 
 ## Deploy on a BlockRun subdomain
